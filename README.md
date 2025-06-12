@@ -62,5 +62,10 @@ Security Features
 - Passwords are always sent and stored in sha-256 format**  
 - Service port should run above 1023 to avoid root access*
 - ( consider firewall geolocation filter )*  
+
+
+If you would like to be a part of the project, or have any other suggestions or comments please send a note to:  
+"rgb.trust@gmail.com"  
+
     
   ...  
