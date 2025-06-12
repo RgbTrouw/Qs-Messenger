@@ -33,7 +33,7 @@ a) Qs Messenger Client
 b) Qs Messenger Server  
 
   Requirements:   
-    - Php Pear (Mail);
+    - Php Pear (Mail);  
     - MySql server;  
     
   Setup:  
