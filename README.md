@@ -60,4 +60,5 @@ Security Features
 - Secure Socket Layer  
 - Server doesn't process same request twice (repead)*  
 - Passwords are always sent and stored in sha-256 format  
+  
   ...  
