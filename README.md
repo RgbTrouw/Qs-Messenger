@@ -25,18 +25,19 @@ Linux -
 a) Qs Messenger Client
 
   Features:  
-  Notes:  
+  Install:
+    
     - install .deb package (dpkg -i <package name>);   
     - set server hostaddress and port in the "/etc/QsMessenger/hostname" file;  
     - run;  
-
+  
 b) Qs Messenger Server  
 
   Requirements:   
     - Php Pear (Mail);  
     - MySql server;  
     
-  Setup:  
+  Install:  
       
     - install .deb package (dpkg -i <package name>);  
       
