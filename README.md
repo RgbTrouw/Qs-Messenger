@@ -25,7 +25,7 @@
 Linux   
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------     
 
-a) Client
+a) Client Install:
    
    Install:
     
@@ -35,14 +35,12 @@ a) Client
       
   Features: 
   
-b) Server  
+b) Server Install:  
 
-  Requirements:   
+  Requirements_   
     - php Pear (Mail);  
     - MySql server;  
     
-  Install:  
-      
     - install .deb package (dpkg -i <package name>);  
       
     - import ssl certificate and key in "/etc/QsMessengerServer/crt/" folder;  
@@ -58,4 +56,8 @@ b) Server
   
 Windows 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------      
+
+Client Install:  
   
+        
+  Features: 
