@@ -33,7 +33,9 @@ a) Qs Messenger Client
 b) Qs Messenger Server  
 
   Requirements:   
-    - Php Pear (Mail)  
+    - Php Pear (Mail);
+    - MySql server;
+    
   Setup:  
     - install .deb package (dpkg -i <package name>);   
     - import sql database template from "src/sql" folder;  
