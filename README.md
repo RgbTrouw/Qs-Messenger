@@ -26,21 +26,17 @@ Linux
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------     
 
 a) Client Install:
-   
-   Install:
     
     - install .deb package (dpkg -i <package name>);   
     - set server hostaddress and port in the "/etc/QsMessenger/hostname" file;  
     - run;  
       
-  Features: 
   
 b) Server Install:  
-
-  Requirements_   
-    - php Pear (Mail);  
-    - MySql server;  
-    
+  
+    - require php Pear (Mail)*  
+    - require MySql server*  
+      
     - install .deb package (dpkg -i <package name>);  
       
     - import ssl certificate and key in "/etc/QsMessengerServer/crt/" folder;  
@@ -51,8 +47,6 @@ b) Server Install:
       
     - run;  
     
-   Features:    
-    - log    
   
 Windows 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------      
