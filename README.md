@@ -46,8 +46,7 @@ b) Server Install:
     - set MySQL Credentials in "/etc/QsMessengerServer/mysql" file;  
     - set Mail Credentials in "/etc/QsMessengerServer/mail" file;  
       
-    - run;  
-    
+    - run;    
   
 Windows 
 -------------------------------------------------------------------------------------------------------------------------      
@@ -55,4 +54,10 @@ Windows
 Client Install:  
   
         
-  Features: 
+Security Features
+--------------------------------------------------------------------------
+
+- Secure Socket Layer  
+- server doesn't process same request twice (repead)*  
+- passwords are always sent and stored in sha-256 format  
+  ...  
