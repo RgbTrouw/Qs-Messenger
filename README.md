@@ -1,5 +1,5 @@
      QsMessenger v 0.1 Instant Messaging Client & Server Application  
-     Copyright (C) 2025  Radu G. Balaban G.  
+     Copyright (C) 2023-2025  Radu G. Balaban G.  
   
      This program is free software: you can redistribute it and/or modify  
      it under the terms of the GNU General Public License as published by  
@@ -21,6 +21,7 @@
      - C++ open source program developed with Qt Creator IDE -  
 
 <Introduction>
+*Release Date: ( ... ) 
 
 Linux   
 ----------------------------------------------------------------------------------------------------------------------     
