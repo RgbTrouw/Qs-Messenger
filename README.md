@@ -1,5 +1,4 @@
-**Qs Messenger v.0.1 - Client & Server - Linux, Windows*, Android*
-**
+** Qs Messenger v.0.1 - Client & Server - Linux, Windows, Android **
 
 <Introduction>
 
