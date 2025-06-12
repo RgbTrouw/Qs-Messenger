@@ -34,7 +34,7 @@ a) Client Install:
   
 b) Server Install:  
       
-    - require ssl certificate + key*
+    - require ssl certificate and key*
     - require MySql server*  
     - require php Pear (Mail)* 
       
