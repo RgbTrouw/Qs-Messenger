@@ -58,6 +58,6 @@ Security Features
 --------------------------------------------------------------------------
 
 - Secure Socket Layer  
-- server doesn't process same request twice (repead)*  
-- passwords are always sent and stored in sha-256 format  
+- Server doesn't process same request twice (repead)*  
+- Passwords are always sent and stored in sha-256 format  
   ...  
