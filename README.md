@@ -38,7 +38,7 @@ b) Qs Messenger Server
     
   Setup:  
     - install .deb package (dpkg -i <package name>);   
-    - import sql database template from "src/sql" folder;  
+    - import sql database template from "src/sql" folder to MySql server;  
     - import ssl certificate and key in "/etc/QsMessengerServer/crt/" folder;  
     - set MySQL user and password in "/etc/QsMessengerServer/mysql" file;  
     - set Mail Credentials in "/etc/QsMessengerServer/mail" file;  
