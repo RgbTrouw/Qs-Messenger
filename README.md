@@ -21,8 +21,8 @@
      - C++ open source program developed with Qt Creator IDE -  
 
 <Introduction>
-Linux Release: 14.06.2025  / 
-Windows Release: 16.06.2025  
+Linux Release: 14th of June 2025  / 
+Windows Release: 16th of June 2025  
 
 Windows   
 ----------------------------------------------------------------------------------------------------------------------     
