@@ -22,7 +22,18 @@
 
 <Introduction>
 *Linux Release: 14.06.2025  
+*Windows Release: 16.06.2025  
 
+Windows   
+----------------------------------------------------------------------------------------------------------------------     
+
+a) Portable Client:
+
+    ** Notice ** Windows Startup Registery Key to Portable Folder -> place folder to desired location;  
+      
+    - set server address and port in "hostname" file;    
+    - run;  
+    
 Linux   
 ----------------------------------------------------------------------------------------------------------------------     
 
