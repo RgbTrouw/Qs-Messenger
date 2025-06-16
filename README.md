@@ -46,9 +46,10 @@ a) Client Install:
   
 b) Server Install:  
       
-    - require ssl certificate and key*
-    - require MySql server*  
-    - require php Pear (Mail)* 
+    - require ssl certificate and key
+    - require MySql server  
+    - require openssl  
+    - require php Pear (Mail) 
       
     - install .deb package (dpkg -i <package name>);  
       
