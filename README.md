@@ -24,7 +24,6 @@
 Linux Release: 14th of June 2025  / 
 Windows Release: 16th of June 2025  
 
-** Note: Some files seem to be corrupted so will have to upload again...  
 
 Windows   
 ----------------------------------------------------------------------------------------------------------------------     
