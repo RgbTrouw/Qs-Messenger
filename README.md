@@ -1,4 +1,4 @@
-     QsMessenger v 0.1 PreRelease Instant Messaging Client & Server Application  
+     QsMessenger v 1.0.2 Instant Messaging Client & Server Application  
      Copyright (C) 2023-2025  Radu G. Balaban G.  
   
      This program is free software: you can redistribute it and/or modify  
