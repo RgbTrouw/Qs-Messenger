@@ -77,7 +77,7 @@ Client Install:
     
 * server <-> client syntax format is -> "procedure:parameter:parameter:session_id";
 * files (binary data) respect the same pattern as binary suffix data;
-* messages and status messages are exported and imported as hex data within the requests;
+* messages and status messages are hendled as hex data within the requests;
   
 
     
