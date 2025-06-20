@@ -96,7 +96,7 @@ Client Install:
               -> changeAvailability
               -> changeStatusMessage
               -> getPersonalData
-              -> getListContent
+              -> getListData
               
               - listContextMenu
                    -> addNewUser
