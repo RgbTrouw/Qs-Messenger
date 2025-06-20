@@ -85,7 +85,7 @@ Client Install:
   (-> this plain data is loaded into FriendsList->groups->peers Object' - on the client side;)  
   (-> 'groups' Object contains a 'header' Object that displays the actual group name and online count;)  
   (-> *note some context menu action procedures - ie. remove group, add group, move to group - refresh the list tree view, expanding the tree. Status updates only update user data,
-  keeping current list tree preference - show all/ show online/ show none - unchanged;)  
+  keeping current list tree preference - show all/ show only online/ show none - unchanged;)  
     
 * database information is handled by its unique integer id;  
 * currently used mailing service is smtp with gmail account -> which is for testing purposes only;  
