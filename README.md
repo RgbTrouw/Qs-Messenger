@@ -106,7 +106,7 @@ Client Install:
      * IM "has read at time" function 'almost' implemented, with window focus feedback + server/ database support
        -> which is different from implemented function "last message received at time";
         
-      // ( *note some context menu action procedures - ie. remove group, add group, move to group - refresh the list tree view, expanding the tree. Status updates only update user data,
+      // ( *note that some context menu action procedures - ie. remove group, add group, move to group - refresh the list tree view, expanding the tree. Status updates only update user data,
        keeping current list tree preference - show all/ show only online/ show none - unchanged;)  
 
   
