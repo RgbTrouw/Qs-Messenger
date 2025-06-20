@@ -95,6 +95,7 @@ Client Install:
               -> changeAvatar
               -> changeAvailability
               -> changeStatusMessage
+              
               -> getPersonalData
               -> getListData
               -> getListChangeData
