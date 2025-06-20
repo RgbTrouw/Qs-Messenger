@@ -100,7 +100,8 @@ Client Install:
               -> getPersonalData
               -> getListData
               -> getListChangeData
-              
+
+              -> *listDisplay
               -> listContextMenu
                         -> *updateList
                    -> addNewUser
