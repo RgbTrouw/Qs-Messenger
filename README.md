@@ -111,6 +111,7 @@ Client Install:
                - respondFriendRequest
                
                - instantMessage
+                    -> getPeerAvatar
                     -> sendIm
                          -> sendBuzz
                          -> playSound
