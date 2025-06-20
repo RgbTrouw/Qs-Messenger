@@ -81,7 +81,7 @@ Client Install:
        
      * messages and status messages are hendled as hex data within the requests;  
   
-     * more strengthened parameters validation to be added in the future;  
+     * more strengthened parameters validation to be added in the future releases;  
        
      * FriendsListData Format: |Group:user/userdata/userdata:user/userdata/userdata|Group:user/userdata/userdata:user/userdata/userdata (or something simmilar)  
        -> split by "|", ":", "/";  
