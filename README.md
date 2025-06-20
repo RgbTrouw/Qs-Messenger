@@ -110,7 +110,7 @@ b) Server
   
 * some sections could use some simplification - especially in the handling of the lists - but the code does accomplish some work for now;
   
--> perhaps something for the future releases; 
+-> something for the future releases; 
   
 c) Database  
   
