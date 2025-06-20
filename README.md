@@ -68,7 +68,7 @@ Client Install:
   
 
 
- Client Implemented Procedures Workflow
+ Implemented Procedures Workflow of Client
 -------------------------------------------------------------------------------------------------------------------------
 
          - trayIcon
