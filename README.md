@@ -73,23 +73,23 @@ Client Install:
      some bits of code (not quite very many) are not executed as they might be part of a removed or not fully yet implemented procedure;  
      Ie. "session_id" had been implemented and doesn't actually do any work for now, except it might be a good log indicator;
 
-* sql template database included ( with minimal, fictional batch clients data )
+     * sql template database included ( with minimal, fictional batch clients data )
     
-* server <-> client syntax format is -> "procedure:parameter:parameter:session_id";
-* files (binary data) respect the same pattern as binary suffix data;
-* messages and status messages are hendled as hex data within the requests;
-* more strengthened parameters validation to be added in the future;
-* FriendsListData Format: |Group:user/userdata/userdata:user/userdata/userdata|Group:user/userdata/userdata:user/userdata/userdata (or something simmilar)  
-  -> split by "|", ":", "/";  
-  -> might be converted to xml or something else in the future;  
-  (-> this plain data is loaded into FriendsList->groups->peers Object' - on the client side;)  
-  (-> 'groups' Object contains a 'header' Object that displays the actual group name and online count;)  
+     * server <-> client syntax format is -> "procedure:parameter:parameter:session_id";
+     * files (binary data) respect the same pattern as binary suffix data;
+     * messages and status messages are hendled as hex data within the requests;
+     * more strengthened parameters validation to be added in the future;
+     * FriendsListData Format: |Group:user/userdata/userdata:user/userdata/userdata|Group:user/userdata/userdata:user/userdata/userdata (or something simmilar)  
+       -> split by "|", ":", "/";  
+       -> might be converted to xml or something else in the future;  
+       (-> this plain data is loaded into FriendsList->groups->peers Object' - on the client side;)  
+       (-> 'groups' Object contains a 'header' Object that displays the actual group name and online count;)  
  
     
-* database information is handled by its unique integer id;  
-* currently used mailing service is smtp with gmail account -> which is for testing purposes only;  
-  -> note that the smtp gmail service requires setting up an "app password" and is different from your regular gmail account password;  
-  -> this has to be updated for further releases but could work (does work) for a small testing batch;
+     * database information is handled by its unique integer id;  
+     * currently used mailing service is smtp with gmail account -> which is for testing purposes only;  
+       -> note that the smtp gmail service requires setting up an "app password" and is different from your regular gmail account password;  
+       -> this has to be updated for further releases but could work (does work) for a small testing batch;
     
     
 a) Client  
