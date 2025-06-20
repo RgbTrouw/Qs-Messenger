@@ -70,7 +70,7 @@ Client Install:
   About Source Code
 --------------------------------------------------------------------------  
 
- Implemented Procedures Workflow:
+ Client Implemented Procedures Workflow:
 
          - trayIcon
               -> contextMenu
