@@ -89,7 +89,7 @@ Client Install:
 * database information is handled by its unique integer id;  
 * currently used mailing service is smtp with gmail account -> which is for testing purposes only;  
   -> this has to be updated at some point;  
-  -> not the smtp gmail service requires setting up an "app password" and is different from your regular gmail account password;  
+  -> note that the smtp gmail service requires setting up an "app password" and is different from your regular gmail account password;  
   -> could work (does work), for a small testing batch;
     
     
