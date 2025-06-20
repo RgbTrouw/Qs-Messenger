@@ -70,7 +70,7 @@ Client Install:
   About Source Code
 --------------------------------------------------------------------------  
 
-     some bits of code are not executed as they might be part of a removed or not fully yet implemented procedure;  
+     some bits of code (not quite very many) are not executed as they might be part of a removed or not fully yet implemented procedure;  
 
 * "session_id" had been implemented and doesn't actually do any work for now, except it might be a good log indicator;
 * sql template database included ( with minimal, fictional batch clients data )      
