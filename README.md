@@ -81,7 +81,8 @@ a) Client
     
 * IM window does include some unimplemented function buttons.  
     
-* IM "has read" function 'almost' implemented, with window focus feedback + server/ database support;  
+* IM "has read at time" function 'almost' implemented, with window focus feedback + server/ database support
+  -> which is different from implemented function "last message received at time";  
   
 b) Server  
   
