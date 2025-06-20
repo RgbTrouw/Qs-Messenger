@@ -68,9 +68,23 @@ Client Install:
   
    
   About Source Code
---------------------------------------------------------------------------
-  
+--------------------------------------------------------------------------  
 
+    - some bits of code are not executed as they might be part of a removed or not fully yet implemented procedure;  
+  
+a) Client  
+    
+    * 'Objects' folder ie. includes a non graphical version of the FriendsListWidgetObject and is not actually used;  
+    
+  * IM window does include some unimplemented function buttons.  
+    
+  * IM "has read" function almost implemented, with server/ database support;  
+  
+b) Server  
+  
+c) Database  
+
+    
 
         
 Security Features
