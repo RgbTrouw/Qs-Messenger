@@ -93,7 +93,7 @@ Client Install:
      (* database information is handled by its unique integer id;)  
        
      * currently used mailing service is smtp with gmail account -> which is for testing purposes only;  
-       -> note that the smtp gmail service requires setting up an "app password" and is different from your regular gmail account password;  
+       -> *note that the smtp gmail service requires setting up an "app password" and is different from your regular gmail account password;  
        -> this has to be updated for further releases but could work (does work) for a small testing batch;
     
     
@@ -105,7 +105,8 @@ Client Install:
     
      * IM "has read at time" function 'almost' implemented, with window focus feedback + server/ database support
        -> which is different from implemented function "last message received at time";
-      // (-> *note some context menu action procedures - ie. remove group, add group, move to group - refresh the list tree view, expanding the tree. Status updates only update user data,
+        
+      // ( *note some context menu action procedures - ie. remove group, add group, move to group - refresh the list tree view, expanding the tree. Status updates only update user data,
        keeping current list tree preference - show all/ show only online/ show none - unchanged;)  
 
   
