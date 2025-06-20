@@ -73,7 +73,12 @@ Client Install:
      some bits of code (not quite very many) are not executed as they might be part of a removed or not fully yet implemented procedure;  
      Ie. "session_id" had been implemented and doesn't actually do any work for now, except it might be a good log indicator;
 
-* sql template database included ( with minimal, fictional batch clients data )      
+* sql template database included ( with minimal, fictional batch clients data )
+    
+* requests are made in the format (request:parameter:parameter:session_id);
+* files (binary data) respect the same pattern as binary suffix data;
+* messages and status messages are exported and imported as hex data within the requests;
+  
 
     
 a) Client  
