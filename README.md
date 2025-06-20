@@ -38,14 +38,14 @@ a) Portable Client:
 Linux Install   
 ----------------------------------------------------------------------------------------------------------------------     
 
-a) Client Install:
+a) Client:
     
     - install .deb package (dpkg -i <package name>);   
     - set server hostaddress and port in the "/etc/QsMessenger/hostname" file;  
     - run;  
       
   
-b) Server Install:  
+b) Server:  
       
     - require ssl certificate and key
     - require MySql server  
