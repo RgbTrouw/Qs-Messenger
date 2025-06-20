@@ -72,7 +72,8 @@ Client Install:
 
      some bits of code are not executed as they might be part of a removed or not fully yet implemented procedure;  
 
-  -> sql template database included ( with minimal, fictional batch clients data )
+  -> sql template database included ( with minimal, fictional batch clients data )  
+  
 a) Client  
     
 * 'Source/Objects' folder ie. includes a non graphical version of the FriendsListWidgetObject and is not actually used;  
