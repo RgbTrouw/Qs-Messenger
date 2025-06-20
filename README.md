@@ -82,7 +82,7 @@ Client Install:
 * FriendsListData Format: |Group:user/userdata/userdata:user/userdata/userdata|Group:user/userdata/userdata:user/userdata/userdata (or something simmilar)  
   -> split by "|", ":", "/";  
   -> might be converted to xml or something else in the future;  
-  (-> this plain data is loaded into FriendsList->groups->peers Object';)
+  (-> this plain data is loaded into FriendsList->groups->peers Object' - on the client side;)  
   (-> 'groups' Object contains a 'header' Object that displays the actual group name and online count;)
     
 * database information is handled by its unique integer id;  
