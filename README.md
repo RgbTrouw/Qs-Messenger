@@ -111,7 +111,7 @@ b) Server
   
 * some sections could use some simplification - especially in the handling of the lists - but the code does accomplish some work for now;
   
-* perhaps it can be cleaned up / compressed a bit in the future; 
+-> perhaps something for the future releases; 
   
 c) Database  
   
