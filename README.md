@@ -97,6 +97,7 @@ Client Install:
               -> changeStatusMessage
               -> getPersonalData
               -> getListData
+              -> getListChangeData
               
               - listContextMenu
                    -> addNewUser
