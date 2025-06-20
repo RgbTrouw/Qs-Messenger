@@ -79,7 +79,7 @@ Client Install:
                    -> Close
                          -> yes / now
          
-         - Socket Connection
+         - *Socket Connection
          
          - registerNewUser
               -> resendActivationCode
