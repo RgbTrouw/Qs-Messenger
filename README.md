@@ -105,18 +105,16 @@ Client Install:
     
      * IM "has read at time" function 'almost' implemented, with window focus feedback + server/ database support
        -> which is different from implemented function "last message received at time";
-
       // (-> *note some context menu action procedures - ie. remove group, add group, move to group - refresh the list tree view, expanding the tree. Status updates only update user data,
        keeping current list tree preference - show all/ show only online/ show none - unchanged;)  
 
   
-  
      b) Server  
   
-     * some sections could use some simplification - especially in the handling of the lists - but the code does accomplish some work for now;
-  
+     * some sections could use some simplification - especially in the handling of the lists - but the code does accomplish some work for now;  
      -> something for the future releases; 
-  
+       
+    
      c) Database  
   
      * I would keep an eye out on the sql errors if some functions don't seem to be working after importing the sql database template. Ie. if the database is not imported properly.
