@@ -115,13 +115,13 @@ Security Features
 --------------------------------------------------------------------------
 
 - Secure Socket Layer  
-  
-  *notice Server doesn't process same request twice*  
-  
+    
 - Passwords are always sent and stored in sha-256 format (hash -> rehash)**
     
 - Service port should run above 1023 to avoid root access*
-  
+
+  *notice Server doesn't process same request twice*  
+    
   *consider firewall geolocation filter*  
 
   
