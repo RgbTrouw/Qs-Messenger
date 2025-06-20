@@ -82,10 +82,16 @@ a) Client
   
 b) Server  
   
+* some parts could use some better order - especially in the handling of the lists - but does accomplishsome workfor now;
+  
+* perhaps it can be cleaned up / compressed a bit in the future; 
+  
 c) Database  
-
+  
+* I would keep an eye out on the sql errors if some functions don't seem to be working after implementing the sql database template. Ie. if the database is not imported properly.
+  
+* Know issue: extraneous "," in list csv data, that doesn't seem to affect the handeling of the lists. Should be fixed eventually.
     
-
         
 Security Features
 --------------------------------------------------------------------------
