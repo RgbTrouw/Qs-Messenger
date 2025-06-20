@@ -95,7 +95,9 @@ Client Install:
               -> changeAvatar
               -> changeAvailability
               -> changeStatusMessage
-         
+              -> getPersonalData
+              -> getListContent
+              
               - listContextMenu
                    -> addNewUser
                         -> userEmail
