@@ -67,7 +67,7 @@ Windows
 Client Install:  
   
    
-  About Source src
+  About Source Code
 --------------------------------------------------------------------------
   
 
