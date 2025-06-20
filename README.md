@@ -84,7 +84,7 @@ Client Install:
   -> might be converted to xml or something else in the future;  
   (-> this plain data is loaded into FriendsList->groups->peers Object' - on the client side;)  
   (-> 'groups' Object contains a 'header' Object that displays the actual group name and online count;)  
-  (-> some context menu action procedures refresh the list tree view, expanding the tree - ie. remove group, add group etc. - whilst status updates only update user data,
+  (-> *note some context menu action procedures refresh the list tree view, expanding the tree - ie. remove group, add group etc. - whilst status updates only update user data,
   keeping list tree setup - show all/ show online/ show none - unchanged;)  
     
 * database information is handled by its unique integer id;  
