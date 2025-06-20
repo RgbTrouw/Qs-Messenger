@@ -101,6 +101,7 @@ Client Install:
               -> getListChangeData
               
               -> listContextMenu
+                        -> *updateList
                    -> addNewUser
                         -> userEmail
                    -> addNewGroup
@@ -111,23 +112,28 @@ Client Install:
                         -> yes / now
                    -> removeGroup
                         -> yes / now
-                        
-               -> respondFriendRequest
+
+               -> *getNewFriendRequests
+                    -> respondFriendRequest            
+               -> *getNewMessages
+                    -> appendMessage
+               -> *getNewStatusUpdates
+                    -> updateUserData
                
                -> instantMessage
                     -> getPeerAvatar
+                    -> *receiveIm
+                         -> receiveBuzz
+                         -> playSound
                     -> sendIm
                          -> sendBuzz
-                         -> playSound
-                    -> receiveIm
-                         -> receiveBuzz
                          -> playSound
                     -> loadPreviousMessages
                     -> appearOfflineToContactNotice
 
+
                -> userWentOnlineNotification
-                    -> playSound
-                    
+                    -> playSound       
                -> userWentOfflineNotification
                     -> playSound
 
