@@ -120,9 +120,9 @@ Security Features
     
 - Service port should run above 1023 to avoid root access*
 
-  *notice Server doesn't process same request twice*  
+  *notice - Server doesn't process same request twice*  
     
-  *consider firewall geolocation filter*  
+  *consider - firewall geolocation filter*  
 
   
 
