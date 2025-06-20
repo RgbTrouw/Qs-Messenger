@@ -70,15 +70,15 @@ Client Install:
   About Source Code
 --------------------------------------------------------------------------  
 
-    - some bits of code are not executed as they might be part of a removed or not fully yet implemented procedure;  
+     some bits of code are not executed as they might be part of a removed or not fully yet implemented procedure;  
   
 a) Client  
     
-    * 'Objects' folder ie. includes a non graphical version of the FriendsListWidgetObject and is not actually used;  
+* 'Source/Objects' folder ie. includes a non graphical version of the FriendsListWidgetObject and is not actually used;  
     
-  * IM window does include some unimplemented function buttons.  
+* IM window does include some unimplemented function buttons.  
     
-  * IM "has read" function 'almost' implemented, with window focus feedback + server/ database support;  
+* IM "has read" function 'almost' implemented, with window focus feedback + server/ database support;  
   
 b) Server  
   
