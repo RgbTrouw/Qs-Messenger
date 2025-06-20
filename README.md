@@ -97,31 +97,31 @@ Client Install:
        -> this has to be updated for further releases but could work (does work) for a small testing batch;
     
     
-a) Client  
+     a) Client  
     
-* 'Source/Objects' folder ie. includes a non graphical version of the FriendsListWidgetObject and is not actually used;  
+     * 'Source/Objects' folder ie. includes a non graphical version of the FriendsListWidgetObject and is not actually used;  
     
-* IM window does include some unimplemented function buttons.  
+     * IM window does include some unimplemented function buttons.  
     
-* IM "has read at time" function 'almost' implemented, with window focus feedback + server/ database support
-  -> which is different from implemented function "last message received at time";
+     * IM "has read at time" function 'almost' implemented, with window focus feedback + server/ database support
+       -> which is different from implemented function "last message received at time";
 
- // (-> *note some context menu action procedures - ie. remove group, add group, move to group - refresh the list tree view, expanding the tree. Status updates only update user data,
-  keeping current list tree preference - show all/ show only online/ show none - unchanged;)  
+      // (-> *note some context menu action procedures - ie. remove group, add group, move to group - refresh the list tree view, expanding the tree. Status updates only update user data,
+       keeping current list tree preference - show all/ show only online/ show none - unchanged;)  
 
   
   
-b) Server  
+     b) Server  
   
-* some sections could use some simplification - especially in the handling of the lists - but the code does accomplish some work for now;
+     * some sections could use some simplification - especially in the handling of the lists - but the code does accomplish some work for now;
   
--> something for the future releases; 
+     -> something for the future releases; 
   
-c) Database  
+     c) Database  
   
-* I would keep an eye out on the sql errors if some functions don't seem to be working after implementing the sql database template. Ie. if the database is not imported properly.
+     * I would keep an eye out on the sql errors if some functions don't seem to be working after importing the sql database template. Ie. if the database is not imported properly.
   
-* Know issue: extraneous "," in db 'list' csv data, that doesn't seem to affect the handeling of the lists. Should be fixed eventually.
+     * Know issue: extraneous "," in db 'list' csv data, that doesn't seem to affect the handeling of the lists. Should be fixed eventually.
     
         
 Security Features
