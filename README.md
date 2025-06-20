@@ -101,19 +101,19 @@ Client Install:
               -> getListData
               -> getListChangeData
 
-              -> *listDisplay
-              -> listContextMenu
-                        -> *updateList
-                   -> addNewUser
-                        -> userEmail
-                   -> addNewGroup
-                        -> groupName
-                   -> moveToGroupDown
-                   -> moveToGroupUp
-                   -> removeUser
-                        -> yes / now
-                   -> removeGroup
-                        -> yes / now
+              -> friendsListDisplay
+                   -> listContextMenu
+                             -> *updateList
+                        -> addNewUser
+                             -> userEmail
+                        -> addNewGroup
+                             -> groupName
+                        -> moveToGroupDown
+                        -> moveToGroupUp
+                        -> removeUser
+                             -> yes / now
+                        -> removeGroup
+                             -> yes / now
 
                -> *getNewFriendRequests
                     -> respondFriendRequest            
