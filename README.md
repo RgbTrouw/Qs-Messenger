@@ -22,7 +22,7 @@
 
 <Introduction>
     
-** NOTICE ** Some files have to be re-uploaded ie. are pending **  SRC ONLY   
+** NOTICE ** Some files have to be re-uploaded ie. are pending **  SRC is Available   
 
 
 Windows Install   
