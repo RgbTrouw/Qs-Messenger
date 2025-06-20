@@ -125,10 +125,10 @@ Client Install:
                     -> getPeerAvatar
                     -> *receiveIm
                          -> receiveBuzz
-                         -> playSound
+                              -> playSound
                     -> sendIm
                          -> sendBuzz
-                         -> playSound
+                              -> playSound
                     -> loadPreviousMessages
                     -> appearOfflineToContactNotice
 
@@ -217,7 +217,8 @@ Security Features
   
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
-* No need to mention the resemblance with some other old messaging application.  
+* No need to mention the resemblance with some other old messaging application.
+* Aand the rough content that reminds you of ... some windows development platform -> work in progress;
   
 If you would like to be a part of the project, or have any other suggestions or comments please send a note to:  
   
