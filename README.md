@@ -78,7 +78,7 @@ a) Client
     
   * IM window does include some unimplemented function buttons.  
     
-  * IM "has read" function almost implemented, with server/ database support;  
+  * IM "has read" function 'almost' implemented, with window focus feedback + server/ database support;  
   
 b) Server  
   
