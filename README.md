@@ -84,8 +84,7 @@ Client Install:
   -> might be converted to xml or something else in the future;  
   (-> this plain data is loaded into FriendsList->groups->peers Object' - on the client side;)  
   (-> 'groups' Object contains a 'header' Object that displays the actual group name and online count;)  
-  // (-> *note some context menu action procedures - ie. remove group, add group, move to group - refresh the list tree view, expanding the tree. Status updates only update user data,
-  keeping current list tree preference - show all/ show only online/ show none - unchanged;)  
+ 
     
 * database information is handled by its unique integer id;  
 * currently used mailing service is smtp with gmail account -> which is for testing purposes only;  
@@ -101,7 +100,12 @@ a) Client
 * IM window does include some unimplemented function buttons.  
     
 * IM "has read at time" function 'almost' implemented, with window focus feedback + server/ database support
-  -> which is different from implemented function "last message received at time";  
+  -> which is different from implemented function "last message received at time";
+
+ // (-> *note some context menu action procedures - ie. remove group, add group, move to group - refresh the list tree view, expanding the tree. Status updates only update user data,
+  keeping current list tree preference - show all/ show only online/ show none - unchanged;)  
+
+  
   
 b) Server  
   
