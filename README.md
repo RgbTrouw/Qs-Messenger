@@ -139,7 +139,7 @@ Client Install:
                     -> playSound
 
                       
-   Server Implemented Procedures Workflow
+   Implemented Procedures Workflow of Server
 -------------------------------------------------------------------------------------------------------------------------  
   >...
   
