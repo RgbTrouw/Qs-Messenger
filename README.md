@@ -121,8 +121,64 @@ Client Install:
      * I would keep an eye out on the sql errors if some functions don't seem to be working after importing the sql database template. Ie. if the database is not imported properly.
   
      * Know issue: extraneous "," in db 'list' csv data, that doesn't seem to affect the handeling of the lists. Should be fixed eventually.
+
     
-        
+    Implemented Functions Workflow:
+
+         - trayIcon
+              -> contextMenu
+                   -> Hide / Show
+                   -> Sign In / Sign Out
+                   -> Close
+                         -> yes / now
+                   
+         - registerNewUser
+              -> activateNewAccount
+                   -> resendActivationCode
+                   
+         - getResetPassCode
+              -> resetPassword
+         
+         - login
+              -> autoLogin
+              -> rememberCredentials
+              -> signInAsInvisible
+         
+         - mainWindow
+              -> changeAvatar
+              -> changeAvailability
+              -> changeStatusMessage
+         
+              - listContextMenu
+                   -> addNewUser
+                        -> userEmail
+                   -> addNewGroup
+                        -> groupName
+                   -> moveToGroupDown
+                   -> moveToGroupUp
+                   -> removeUser
+                        -> yes / now
+                   -> removeGroup
+                        -> yes / now
+                        
+               - respondFriendRequest
+               
+               - instantMessage
+                    -> sendIm
+                         -> sendBuzz
+                         -> playSound
+                    -> receiveIm
+                         -> receiveBuzz
+                         -> playSound
+                    -> loadPreviousMessages
+                    -> appearOfflineToContactNotice
+
+               - userWentOnlineNotification
+                    -> playSound
+                    
+               - userWentOfflineNotification
+                    -> playSound
+
 Security Features
 --------------------------------------------------------------------------
 
