@@ -81,7 +81,7 @@ Client Install:
 * more strengthened parameters validation to be added in the future;
 * FriendsListData Format: |Group:user/userdata/userdata:user/userdata/userdata|Group:user/userdata/userdata:user/userdata/userdata (or something simmilar)  
   -> split by "|", ":", "/";  
-  -> might be converted to xml or something else in the future;
+  -> might be converted to xml or something else in the future;  
   (-> this plain data is loaded into FriendsList->groups->peers Object';)
   (-> 'groups' Object contains a 'header' Object that displays the actual group name and online count;)
     
