@@ -75,7 +75,7 @@ Client Install:
 
 * sql template database included ( with minimal, fictional batch clients data )
     
-* requests are made in the format (request:parameter:parameter:session_id);
+* server <-> client syntax format is -> "procedure:parameter:parameter:session_id";
 * files (binary data) respect the same pattern as binary suffix data;
 * messages and status messages are exported and imported as hex data within the requests;
   
