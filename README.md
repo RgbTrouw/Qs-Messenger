@@ -78,7 +78,9 @@ Client Install:
                    -> Sign In / Sign Out
                    -> Close
                          -> yes / now
-                   
+         
+         - Socket Connection
+         
          - registerNewUser
               -> resendActivationCode
               -> activateNewAccount
