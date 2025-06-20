@@ -22,8 +22,8 @@
 
 <Introduction>
     
-** NOTICE ** Some files have to be re-uploaded / pending **  SRC ONLY   
-** NOTICE ** Readme File Work in Progress  
+** NOTICE ** Some files have to be re-uploaded ie. are pending **  SRC ONLY   
+
 
 Windows Install   
 ----------------------------------------------------------------------------------------------------------------------     
