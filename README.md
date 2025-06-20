@@ -22,7 +22,7 @@
 
 <Introduction>
     
-** NOTICE ** Binary release has to be re-uploaded ie. is pending **  SRC is Available   
+** NOTICE ** More Builds Pending Soon ** Stay tuned for the latest updates and developments   
 
 
 Windows Install   
