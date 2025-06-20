@@ -47,7 +47,7 @@ a) Client:
   
 b) Server:  
       
-    - require ssl certificate and key
+    - require ssl ca_bundle, certificate and key
     - require MySql server  
     - require openssl  
     - require php Pear (Mail) 
