@@ -95,7 +95,7 @@ c) Database
   
 * I would keep an eye out on the sql errors if some functions don't seem to be working after implementing the sql database template. Ie. if the database is not imported properly.
   
-* Know issue: extraneous "," in list csv data, that doesn't seem to affect the handeling of the lists. Should be fixed eventually.
+* Know issue: extraneous "," in db 'list' csv data, that doesn't seem to affect the handeling of the lists. Should be fixed eventually.
     
         
 Security Features
