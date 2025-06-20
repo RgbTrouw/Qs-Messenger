@@ -92,6 +92,7 @@ Client Install:
               -> signInAsInvisible
          
          - mainWindow
+              -> handleCloseWindowToHideWindow
               -> changeAvatar
               -> changeAvailability
               -> changeStatusMessage
