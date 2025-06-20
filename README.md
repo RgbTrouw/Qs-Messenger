@@ -123,6 +123,8 @@ Security Features
   
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
+* No need to mention the resemblance with some other old messaging application.  
+  
 If you would like to be a part of the project, or have any other suggestions or comments please send a note to:  
   
 "rgb.trust@gmail.com"  
