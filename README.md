@@ -30,7 +30,7 @@ Windows Install
 
 a) Portable Client:
 
-    ** Notice ** Windows Startup Registery Key to Portable Folder -> place folder to desired location;  
+    ** Notice ** Windows Startup Registery Key to Portable Folder -> place folder at desired location;  
       
     - set server address and port in "hostname" file;    
     - run;  
