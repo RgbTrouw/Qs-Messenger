@@ -79,8 +79,8 @@ Client Install:
                          -> yes / now
                    
          - registerNewUser
-              -> activateNewAccount
               -> resendActivationCode
+              -> activateNewAccount
                    
          - getResetPassCode
               -> resetPassword
