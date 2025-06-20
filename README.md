@@ -74,7 +74,7 @@ Client Install:
 
          - trayIcon
               -> contextMenu
-                   -> Hide / Show
+                   -> Hide / Show Window
                    -> Sign In / Sign Out
                    -> Close
                          -> yes / now
