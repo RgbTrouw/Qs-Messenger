@@ -21,7 +21,7 @@
      - C++ open source program developed with Qt Creator IDE -  
 
 <Introduction>
-
+     ** Note that windows portable binaries set up a windows startup registery key, making the application start on windows startup. Move the QsMessenger folder to a friendly location before starting.  
      ** Make sure to adjust the server address within the enclosed "hostname" file; (address:port)    
      
      ** Stay tuned for the latest updates and developments   
