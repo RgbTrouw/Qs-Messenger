@@ -33,7 +33,7 @@ Server configuration:
 *require php Pear (Mail)  
 *require mysql server  
 *require openssl  
-*require certificate bundle  
+*require ssl certificate bundle  
   
 
 - configure credentials in 'assets' folder;
