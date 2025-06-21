@@ -31,7 +31,7 @@
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
 
   
-If you would like to be a part of the project, or have any other suggestions or comments please send a note to:  
+If you would like to be a part of the project or have any other suggestions or comments please send a note to:  
   
 "rgb.trust@gmail.com"  
 
