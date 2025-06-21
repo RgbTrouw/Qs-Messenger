@@ -26,6 +26,18 @@
      
      ** Stay tuned for the latest updates and developments   
 
+Server configuration:  
+
+*require php Pear (Mail)
+*require mysql server  
+*require openssl  
+*require certificate bundle  
+  
+
+- configure credentials in 'assets' folder;
+  (sql and email smtp)  
+- import certificates to 'crt' folder  
+- import 'messenger.sql' file to mysql database 'messenger'  
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
