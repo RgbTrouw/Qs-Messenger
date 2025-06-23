@@ -28,7 +28,6 @@
      
      ** Stay tuned for the latest updates and developments.   
   
-     ** A new release with more features is probably not far away.  
 
 Server configuration:  
 --------------------------------------------------
