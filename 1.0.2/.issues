@@ -1,3 +1,3 @@
 1. Minor error identified within the server code. 
 Avatars and supposed to be saved to "avatars/" folder but the program searches for "/usr/local/share/QsMessenger/avatars" folder.
-(which is a .deb release target folder)
+(which is a .deb package release target folder )
