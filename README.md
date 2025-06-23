@@ -26,9 +26,9 @@
        
      ** Make sure to adjust the server address within the enclosed "hostname" file; (address:port)    
      
-     ** Stay tuned for the latest updates and developments   
-
-     
+     ** Stay tuned for the latest updates and developments.   
+  
+     ** A new release with more features is probably not far away.  
 
 Server configuration:  
 --------------------------------------------------
