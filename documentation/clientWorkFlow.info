@@ -49,8 +49,7 @@
  
                 -> *getNewFriendRequests
                      -> respondFriendRequest            
-                -> *getNewMessages
-                     -> appendMessage
+            
                 -> *getNewStatusUpdates
                      -> updateUserData
                 
