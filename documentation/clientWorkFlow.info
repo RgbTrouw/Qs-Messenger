@@ -31,7 +31,6 @@
                
                -> getPersonalData
                -> getListData
-               -> *getListChangeData
  
                -> friendsListDisplay
                     -> listContextMenu
