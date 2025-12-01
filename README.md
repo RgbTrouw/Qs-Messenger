@@ -44,7 +44,7 @@ Server configuration:
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
-
+* Some features are to be improved in a future version.
   
 If you would like to be a part of the project or have any other suggestions or comments please send a note to:  
   
