@@ -49,7 +49,7 @@ Server configuration:
 Known Issues:
 - Secure Socket doesn't seem to be connecting on Windows for now. This has to somehow be fixed. 
 
-- Messages relay delay of 1 second has to be removed.  
+- Messages relay delay of 1 second has to be removed / changed to instand forwarding. 
 
 - An eronous comma "," will occur in the friends list sql database table. This does not affect the server/client communication process and should be fixed at some point. 
 
