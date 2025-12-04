@@ -47,7 +47,7 @@ Server configuration:
 * Some features are to be improved in a future version.
 
 Known Issues:
-- Secure Socket doesn't seem to be connecting on Windows for now. This has to somehow be fixed. 
+- Secure Socket doesn't seem to be connecting on Windows for now .? 
 
 - Window position is also off on Windows and a simple fix has been designed. 
 
