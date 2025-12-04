@@ -47,7 +47,7 @@ Server configuration:
 * Some features are to be improved in a future version.
 
 Known Issues:
-- Secure Socket doesn't seem to be connecting on Windows for now. This has to be mitigated.  
+- Secure Socket doesn't seem to be connecting on Windows for now. This has to somehow be fixed. 
 
 - Messages relay delay of 1 second has to be removed.  
 
