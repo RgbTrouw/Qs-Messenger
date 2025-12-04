@@ -45,7 +45,15 @@ Server configuration:
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
 * Some features are to be improved in a future version.
-  
+
+Known Issues:
+- Secure Socket doesn't seem to be connecting on Windows for now. This has to be mitigated.  
+
+- Messages relay delay of 1 second has to be removed.  
+
+- An eronous comma "," will occur in the friends list sql database table. This does not affect the server/client communication process and should be fixed at some point. 
+
+
 If you would like to be a part of the project or have any other suggestions or comments please send a note to:  
   
 "rgb.trust@gmail.com"  
