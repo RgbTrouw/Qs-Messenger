@@ -58,6 +58,7 @@ Known Issues:
 Note:
 If you plan on testing the email sending processes with Google Smtp service, the smtp account password differs from the regular account password and has to be generated from Google Account Settings (generate app password).
 
+- A Visual Studio Client could also come up, but the development speed is very slow for now. -
 
 If you would like to be a part of the project or have any other suggestions or comments please send a note to:  
   
