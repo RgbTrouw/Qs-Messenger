@@ -55,6 +55,8 @@ Known Issues:
 
 - An eronous comma "," will occur in the friends list sql database table. This does not affect the server/client communication process and should be fixed at some point. 
 
+- Clear messages function not yet implemented. 
+
 Note:
 If you plan on testing the email sending processes with Google Smtp service, the smtp account password differs from the regular account password and has to be generated from Google Account Settings (generate app password).
 
