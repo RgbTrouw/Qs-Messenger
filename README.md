@@ -58,6 +58,10 @@ Ie. fixing the Ssl connection or generating an in-app encryption layer over Tcp.
 
 - Clear messages function not yet implemented.
 
+  
+- Some file/folder paths inherited a debia package installer format. This is an error. Thus "/usr/local/share/QsMessengerServer/avatars/" would have to become "./avatars".  
+  
+  
 Note:
 If you plan on testing the email sending processes with Google Smtp service, the smtp account password differs from the regular account password and has to be generated from Google Account Settings (generate app password).
 
