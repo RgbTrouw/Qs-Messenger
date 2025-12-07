@@ -59,7 +59,7 @@ Ie. fixing the Ssl connection or generating an in-app encryption layer over Tcp.
 - Clear messages function not yet implemented.
 
   
-- Some file/folder paths inherited a debia package installer format. This is an error. Thus "/usr/local/share/QsMessengerServer/avatars/" would have to become "./avatars".  
+- Some file/folder paths inherited a debian package installer format. This is an error. Thus "/usr/local/share/QsMessengerServer/avatars/" would have to become "./avatars".  
   
   
 Note:
