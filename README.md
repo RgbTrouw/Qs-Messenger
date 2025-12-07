@@ -48,6 +48,7 @@ Server configuration:
 
 Known Issues:
 - Secure Socket doesn't seem to be connecting on Windows for now .? We are working on finding suitable solutions on resolving the issue.
+Ie. resolving the Ssl connection or generating an in app encryption over tcp. 
 
 - Window position is also off on Windows and a simple fix has been designed. 
 
