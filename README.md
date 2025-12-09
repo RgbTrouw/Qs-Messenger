@@ -27,8 +27,11 @@
      ** Make sure to adjust the server address within the enclosed "hostname" file; (address:port)    
      
      ** Stay tuned for the latest updates and developments.   
+ 
+Client configuration:  
+--------------------------------------------------
+Host address and port has to be assigned within the messenger client folder "host" file.  
   
-Host address and port has to be assigned within the messenger client folder "host" file.
 
 Server configuration:  
 --------------------------------------------------
