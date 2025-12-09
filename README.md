@@ -28,6 +28,7 @@
      
      ** Stay tuned for the latest updates and developments.   
   
+Host address and port has to be assigned within the messenger client folder "host" file.
 
 Server configuration:  
 --------------------------------------------------
