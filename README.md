@@ -46,6 +46,14 @@ Server configuration:
 - import certificates to 'crt' folder  
 - import 'messenger.sql' file to mysql database 'messenger'  
 
+About Source:  
+--------------------------------------------------  
+  
+The source is mostly clean. 
+Only the server source might be hard to follow at times, especially when it comes to the list handling.  
+
+The client source does contain some unused objects. These are within the "Source/Objects" folder and ar just a working "FriendsList" object version, but without the Widget component.  
+  
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
 * Some features are to be improved in a future version.
