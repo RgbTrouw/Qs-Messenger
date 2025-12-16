@@ -57,6 +57,7 @@ Only the server source might be hard to follow at times, especially when it come
 The client source does contain some unused objects. These are within the "Source/Objects" folder and are just a working, early version of the "FriendsList" object but without the "Widget" component. They are not #included anywhere.    
 The used components are within the "Objects/Windows" folder.
   
+* sessionId was supposed to be implemented, is still present in all queries, but doesn't provide any particular purpose, except that it could be a log indicator.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
 * Some features are to be improved in a future version.
@@ -72,7 +73,6 @@ Known Issues:
 
 - Clear messages function not yet implemented.
 
-  
 - Some file/folder paths inherited a debian package installer format. This is an error. Thus "/usr/local/share/QsMessengerServer/avatars/" would have to become "./avatars".  
   
   
