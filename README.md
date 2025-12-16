@@ -78,7 +78,7 @@ Note:
 If you plan on testing the email sending processes with Google Smtp service, the smtp account password differs from the regular account password and has to be generated from Google Account Settings (generate app password).
 
 Note:
-The program is supposed to be similar to/ replacee an old, popular instant messaging application that has become unavailable.
+The program is supposed to be similar to/ replace an old, popular instant messaging application that has become unavailable.
 
 For suggestions or comments please send a note to:  
   
