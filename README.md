@@ -22,7 +22,7 @@
 
 <Introduction>  
   
-The program is supposed to be similar to/ replace an old, popular instant messaging application that has become unavailable.  
+The program is supposed to be similar to/ replace an old, popular instant messaging application that has eventually become unavailable.  
   
      ** Note that windows portable binaries set up a windows startup registery key, making the application start on windows startup. Move the QsMessenger folder to a friendly location before starting.  
        
