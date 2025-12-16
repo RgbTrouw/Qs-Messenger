@@ -20,8 +20,10 @@
   
      - C++ open source program developed with qt5 / Qt Creator IDE -  
 
-<Introduction>
-       
+<Introduction>  
+  
+The program is supposed to be similar to/ replace an old, popular instant messaging application that has become unavailable.  
+  
      ** Note that windows portable binaries set up a windows startup registery key, making the application start on windows startup. Move the QsMessenger folder to a friendly location before starting.  
        
      ** Make sure to adjust the server address within the enclosed "hostname" file; (address:port)    
@@ -77,8 +79,6 @@ Known Issues:
 Note:
 If you plan on testing the email sending processes with Google Smtp service, the smtp account password differs from the regular account password and has to be generated from Google Account Settings (generate app password).
 
-Note:
-The program is supposed to be similar to/ replace an old, popular instant messaging application that has become unavailable.
 
 For suggestions or comments please send a note to:  
   
