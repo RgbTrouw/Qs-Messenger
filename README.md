@@ -54,10 +54,10 @@ About Source:
 The source is mostly clean. 
 Only the server source might be hard to follow at times, especially when it comes to the list handling.  
 
-The client source does contain some unused objects. These are within the "Source/Objects" folder and are just a working, early version of the "FriendsList" object but without the "Widget" component. They are not #included anywhere.    
+* The client source does contain some unused objects. These are within the "Source/Objects" folder and are just a working, early version of the "FriendsList" object but without the "Widget" component. They are not #included anywhere.    
 The used components are within the "Objects/Windows" folder.
   
-* sessionId was supposed to be implemented in early stages, is still present in all queries, but doesn't provide any particular purpose, except for being a potential log indicator.
+* SessionId was supposed to be implemented in early stages, is still present in all queries, but doesn't provide any particular purpose, except for being a potential log indicator.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
 * Some features are to be improved in a future version.
