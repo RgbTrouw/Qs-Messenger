@@ -52,7 +52,7 @@ About Source:
 The source is mostly clean. 
 Only the server source might be hard to follow at times, especially when it comes to the list handling.  
 
-The client source does contain some unused objects. These are within the "Source/Objects" folder and are just a working, early version of the "FriendsList" object, but without the "Widget" component.  
+The client source does contain some unused objects. These are within the "Source/Objects" folder and are just a working, early version of the "FriendsList" object but without the "Widget" component.  
 The used components are within the "Objects/Windows" folder.
   
 
