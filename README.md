@@ -57,7 +57,7 @@ Only the server source might be hard to follow at times, especially when it come
 * The client source does contain some unused objects. These are within the "Source/Objects" folder and are just a working, early version of the "FriendsList" object but without the "Widget" component. They are not #included anywhere.    
 The used components are within the "Objects/Windows" folder.
   
-* SessionId was supposed to be implemented in early stages, is still present in all queries, but doesn't provide any particular purpose, except for being a potential log indicator. (it is more specific to rest apis)
+* SessionId was supposed to be implemented in early stages, is still present in all queries, but doesn't provide any particular purpose, except for being a potential log indicator. (it is more specific to REST APIs)
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
 * Some features are to be improved in a future version.
