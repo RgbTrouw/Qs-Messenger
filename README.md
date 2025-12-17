@@ -52,7 +52,12 @@ About Source:
 --------------------------------------------------  
   
 The source is mostly clean. 
-Only the server source might be hard to follow at times, especially when it comes to the list handling.  
+Only the server source might be hard to follow at times, especially when it comes to the list handling.
+
+The proeminent element of the program is the FriendsList Object / Widget. It consists of "group" objects (+group "header") and subsequent "peer" objects, enclosed as QList.
+These are accessed in the form of FriendsList.groups.at(n).peers.at(n) along with their values and objects.
+
+This design allows easy addition of other features to the peers list.
 
 * The client source does contain some unused objects. These are within the "Source/Objects" folder and are just a working, early version of the "FriendsList" object but without the "Widget" component. They are not #included anywhere.    
 The used components are within the "Objects/Windows" folder.
