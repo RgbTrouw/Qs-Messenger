@@ -60,7 +60,7 @@ The FriendsListWidget is fed the raw list server data which is interpreted and p
   (The raw data could be formated as xml in the future)  
 The groups and their peers are eventually accessible in the form of FriendsList.groups.at(n).peers.at(n) along with their variables and objects.
 
-This design allows easy addition of other features to the peers list display.
+* This design allows easy addition of other features to the peers list display.
 
 * The client source does contain some unused objects. These are within the "Source/Objects" folder and are just a working, early version of the "FriendsList" object but without the "Widget" component. They are not #included anywhere.    
 The used components are within the "Objects/Windows" folder.
