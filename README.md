@@ -56,7 +56,7 @@ Only the server source might be hard to follow at times, especially when it come
 
 After login, the proeminent element of the client program is the FriendsList Object / Widget. It consists of "group" objects (+group "header") and subsequent "peer" objects, enclosed as nested QList<> type variables.  
   
-The List is fed the raw server data that is interpreted and propagated througout the subsequent components.  
+The FriendsListWidget is fed the raw list server data which is interpreted and propagated througout the subsequent components.  
 These components are eventually accessible in the form of FriendsList.groups.at(n).peers.at(n) along with their variables and objects.
 
 This design allows easy addition of other features to the peers list.
