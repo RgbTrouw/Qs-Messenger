@@ -54,7 +54,7 @@ About Source:
 The source is mostly clean. 
 Only the server source might be hard to follow at times, especially when it comes to the list handling.
 
-After login, the proeminent element of the program is the FriendsList Object / Widget. It consists of "group" objects (+group "header") and subsequent "peer" objects, enclosed as QList<> type variable. In an abstract sense it consists of nested QLists. 
+After login, the proeminent element of the program is the FriendsList Object / Widget. It consists of "group" objects (+group "header") and subsequent "peer" objects, enclosed as QList<> type variable. In an abstract sense it consists of nested QLists.  
 These are accessed in the form of FriendsList.groups.at(n).peers.at(n) along with their variables and objects.
 
 This design allows easy addition of other features to the peers list.
