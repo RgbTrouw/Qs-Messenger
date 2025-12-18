@@ -38,9 +38,9 @@ Host address and port has to be assigned within the messenger client folder "hos
 Server configuration:  
 --------------------------------------------------
 *require Php Pear (Mail)  
-*require mysql server  
-*require openssl  
-*require ssl certificate bundle  
+*require Mysql Server  
+*require Openssl  
+*require Ssl certificate bundle  
   
 
 - configure credentials in 'assets' folder;
