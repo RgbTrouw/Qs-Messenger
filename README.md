@@ -70,7 +70,7 @@ Known Issues:
 
 - Messages relay delay of 1 second has to be removed / changed to instant forwarding. 
 
-- An eronous comma "," will occur in the friends list sql database table. This does not affect the server/client communication process and should be fixed at some point. 
+- An eronous comma "," will occur in the friends list sql database table. This does not affect the list processing and should be fixed at some point. 
 
 - Clear messages function not yet implemented.
 
