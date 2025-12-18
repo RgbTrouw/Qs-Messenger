@@ -68,7 +68,7 @@ Known Issues:
 
 - Window positioning is off on Windows and a simple fix has been designed. 
 
-- Messages relay delay of 1 second has to be removed / changed to instant forwarding. 
+- Messages relay has a delay of 1 second and has to be addapted for instant forwarding. 
 
 - An eronous comma "," will occur in the friends list sql database table. This does not affect the list data processing and should be fixed at some point. 
 
