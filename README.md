@@ -66,7 +66,7 @@ The used components are within the "Objects/Windows" folder.
 Known Issues:
 - Secure Socket doesn't seem to be connecting on Windows for now .? We are working on finding suitable solutions to resolve the issue. 
 
-- Window position is also off on Windows and a simple fix has been designed. 
+- Window positioning is off on Windows and a simple fix has been designed. 
 
 - Messages relay delay of 1 second has to be removed / changed to instant forwarding. 
 
