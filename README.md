@@ -74,7 +74,7 @@ Known Issues:
 
 - Clear messages function not yet implemented.
 
-- Some file/folder paths inherited a debian package installer format. This is an error. Thus "/usr/local/share/QsMessengerServer/avatars/" would have to become "./avatars".  
+- Some file/folder paths inherited a debian package installer format. This is a publishing error. Thus "/usr/local/share/QsMessengerServer/avatars/" would have to become "./avatars".  
   
   
 Note:
