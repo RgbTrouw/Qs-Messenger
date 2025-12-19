@@ -19,6 +19,12 @@
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
      - C++ open source program developed with qt5 / Qt Creator IDE -  
+  
+*** Latest Update ***   
+  
+A partial workaround for creating a Windows connection might have been found. It is only a partial result for now so we have to further investigate. A full solution might be close. 
+     
+*** Latest Update ***
 
 
 <Introduction>  
