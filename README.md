@@ -20,11 +20,6 @@
   
      - C++ open source program developed with qt5 / Qt Creator IDE -  
 
-*** Latest Update ***   
-  
-A workaround for creating a Windows connection might have been found, so we might be happy to provide an update / patch this following period.  
-    
-*** Latest Update ***
 
 <Introduction>  
   
