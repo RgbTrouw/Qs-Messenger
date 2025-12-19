@@ -22,7 +22,7 @@
   
 *** Latest Update ***   
   
-A partial workaround for creating a Windows connection has been found. A full solution might just be close. 
+A partial workaround for creating a Windows connection has been found. A full solution might also be close. 
      
 *** Latest Update ***
 
