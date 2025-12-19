@@ -24,7 +24,7 @@
   
 A workaround for creating a Windows connection might have been found, so we might be happy to provide an update / patch this following period.  
   
-It is merely an intermediary solution to allow general public, basic testing of the app and it requires a bit of network architecture adaptation.   
+It is merely an intermediary solution to allow general public testing of the app and it requires a bit of network architecture adaptation.   
   
 *** Latest Update ***
 
