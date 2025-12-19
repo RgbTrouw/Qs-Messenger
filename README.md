@@ -23,9 +23,7 @@
 *** Latest Update ***   
   
 A workaround for creating a Windows connection might have been found, so we might be happy to provide an update / patch this following period.  
-  
-It is merely an intermediary solution to allow general public testing of the app and it involves some changes to the network architecture.   
-  
+    
 *** Latest Update ***
 
 <Introduction>  
