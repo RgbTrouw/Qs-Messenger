@@ -20,7 +20,6 @@
   
      - C++ open source program developed with qt5 / Qt Creator IDE -  
   
-** Notice ** Some files have been revised. Binaries have thus been removed for now.   
 
 <Introduction>  
   
@@ -31,6 +30,10 @@ The program is supposed to be similar to/ replace an old, popular instant messag
      ** Make sure to adjust the server address within the enclosed "hostname" file; (address:port)    
      
      ** Stay tuned for the latest updates and developments.   
+
+  
+** Notice ** Some files have been revised. Binaries have thus been removed for now.   
+  
  
 Client configuration:  
 --------------------------------------------------
