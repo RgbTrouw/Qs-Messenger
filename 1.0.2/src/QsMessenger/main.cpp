@@ -34,7 +34,9 @@ int main(int argc, char *argv[])
 
 
 
-    MainWindow mw; int x=1652; int y=0; mw.setGeometry(x,y,274,980); mw.show();
+    MainWindow mw;
+    int x=1642; int y=42; mw.setGeometry(x,y,274,980);
+    mw.show();
 
 
     return app.exec();
