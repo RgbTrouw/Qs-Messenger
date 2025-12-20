@@ -166,7 +166,7 @@ void RegisterNewUserObject::validate_input(){
 
       QRegularExpression re("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|[1][0-2])/(19[0-9][0-9]|20[0-9][0-9])");
       QRegularExpressionMatch match = re.match(date_of_birth);
-      
+
       bool hasMatch = match.hasMatch();
 
      if(hasMatch){ //qInfo() << "date of birth is valid";
