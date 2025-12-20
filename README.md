@@ -20,7 +20,7 @@
   
      - C++ open source program developed with qt5 / Qt Creator IDE -  
   
-
+** Notice ** Some files have been revised. Binaries have thus been removed for now.   
 
 <Introduction>  
   
