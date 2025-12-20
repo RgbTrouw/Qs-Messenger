@@ -18,7 +18,7 @@
 #include "ui_RegisterNewUserObject.h"
 
 #include <QCryptographicHash>
-#include <QDesktopWidget>
+//#include <QDesktopWidget>
 #include <QTimer>
 
     //#include <QDebug>
@@ -34,11 +34,13 @@ RegisterNewUserObject::RegisterNewUserObject(QWidget *parent) :
     this->setWindowIcon(QIcon("./Resources/icons/2221968.png"));
     this->setWindowTitle("Registration");
 
-    QDesktopWidget dWidget;
-    int screenWidth = dWidget.screen()->width();
-    int screenHeight = dWidget.screen()->height();
+    // QDesktopWidget dWidget;
+    // int screenWidth = dWidget.screen()->width();
+    // int screenHeight = dWidget.screen()->height();
 
-    this->setGeometry((screenWidth/2)-(this->width()/2),(screenHeight/2)-(this->height()/2),this->width(),this->height());
+    // this->setGeometry((screenWidth/2)-(this->width()/2),(screenHeight/2)-(this->height()/2),this->width(),this->height());
+
+    //// ... //////
 
     ui->stackedWidget->setCurrentIndex(0);
 
@@ -159,6 +161,8 @@ void RegisterNewUserObject::validate_input(){
 
      if (hasMatch ) { //qInfo() << "nickname is valid";
 
+     if (ui->countriesBox->currentIndex() != 0){
+
      if (ui->male_radioButton->isChecked() || ui->female_radioButton->isChecked()) {
 
          if (male) {gender = "male";} else if (female) {gender = "female";}
@@ -217,7 +221,7 @@ void RegisterNewUserObject::validate_input(){
 
      emit server_request(request);
 
-    } else { ui->message_Label->setText("Agreement is not checked...");}
+    } else { ui->message_Label->setText("Agreement is not checked..."); }
 
     } else { ui->message_Label->setText("Password is not validated..."); }
 
@@ -225,9 +229,11 @@ void RegisterNewUserObject::validate_input(){
 
     } else { ui->message_Label->setText("Email is not validated..."); }
 
-    } else { ui->message_Label->setText("Date of birth is not validated...");}
+    } else { ui->message_Label->setText("Date of birth is not validated..."); }
 
     } else { ui->message_Label->setText("Gender selection is not validated..."); }
+
+    } else {  ui->message_Label->setText("Country selection is not validated..."); }
 
     } else { ui->message_Label->setText("Nickname is not validated..."); }
 
