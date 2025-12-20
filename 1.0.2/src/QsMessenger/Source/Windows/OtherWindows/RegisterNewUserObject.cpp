@@ -150,10 +150,7 @@ void RegisterNewUserObject::validate_input(){
 
     if ( hasMatch  && full_name.length() < 40 && full_name.length() > 5) {
 
-
-
      QString sp = "[a-zA-Z0-9]{1,1}[a-zA-Z0-9]{0,5}[a-zA-Z0-9_]{1,1}[a-zA-Z0-9]{0,5}[a-zA-Z0-9]{1,5}";
-
 
      QRegularExpression re("[a-zA-Z0-9]{1,1}[a-zA-Z0-9]{0,5}[a-zA-Z0-9_]{1,1}[a-zA-Z0-9]{0,5}[a-zA-Z0-9]{1,5}");
      QRegularExpressionMatch match = re.match(nickname);
@@ -162,20 +159,19 @@ void RegisterNewUserObject::validate_input(){
      if (hasMatch ) { //qInfo() << "nickname is valid";
 
 
-
      if (ui->male_radioButton->isChecked() || ui->female_radioButton->isChecked()) {
 
-         if (male) {gender = "male";} else if (female) {gender = "female";}
+     if (male) {gender = "male";} else if (female) {gender = "female";}
 
 
-         QRegularExpression re("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|[1][0-2])/(19[0-9][0-9]|20[0-9][0-9])");
+      QRegularExpression re("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|[1][0-2])/(19[0-9][0-9]|20[0-9][0-9])");
+      QRegularExpressionMatch match = re.match(date_of_birth);
+      
+      bool hasMatch = match.hasMatch();
 
-         QRegularExpressionMatch match = re.match(date_of_birth);
-         bool hasMatch = match.hasMatch();
+     if(hasMatch){ //qInfo() << "date of birth is valid";
 
-        if(hasMatch){ //qInfo() << "date of birth is valid";
-
-        if (ui->countriesBox->currentIndex() != 0){
+     if (ui->countriesBox->currentIndex() != 0){
 
      sp = "*@*.*";
 
@@ -211,7 +207,7 @@ void RegisterNewUserObject::validate_input(){
 
     } else { ui->message_Label->setText("Email is not validated..."); }
          
-    } else {  ui->message_Label->setText("Country selection is not validated..."); }
+    } else { ui->message_Label->setText("Country selection is not validated..."); }
 
     } else { ui->message_Label->setText("Date of birth is not validated..."); }
 
