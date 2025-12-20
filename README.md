@@ -33,7 +33,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
 
   
 ** Notice ** Some source files have been revised. Binaries have thus been removed for now.
-The source code is still available and will always be within the license agreement terms.
+The source code is still available and will always be - within the license agreement terms.
   
  
 Client configuration:  
