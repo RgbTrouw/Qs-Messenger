@@ -29,7 +29,7 @@ RegisterNewUserObject::RegisterNewUserObject(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->countriesBox->addItems(countries);
-    ui->countriesBox->setCurrentIndex(142);
+    ui->countriesBox->setCurrentIndex(0);
     ui->full_name_Prompt->setFocus();
     this->setWindowIcon(QIcon("./Resources/icons/2221968.png"));
     this->setWindowTitle("Registration");
