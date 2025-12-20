@@ -161,7 +161,7 @@ void RegisterNewUserObject::validate_input(){
 
      if (hasMatch ) { //qInfo() << "nickname is valid";
 
-     if (ui->countriesBox->currentIndex() != 0){
+
 
      if (ui->male_radioButton->isChecked() || ui->female_radioButton->isChecked()) {
 
@@ -229,11 +229,17 @@ void RegisterNewUserObject::validate_input(){
 
     } else { ui->message_Label->setText("Email is not validated..."); }
 
+     if (ui->countriesBox->currentIndex() != 0){
+         
+     } else {  ui->message_Label->setText("Country selection is not validated..."); }
+
     } else { ui->message_Label->setText("Date of birth is not validated..."); }
+
+
 
     } else { ui->message_Label->setText("Gender selection is not validated..."); }
 
-    } else {  ui->message_Label->setText("Country selection is not validated..."); }
+
 
     } else { ui->message_Label->setText("Nickname is not validated..."); }
 
