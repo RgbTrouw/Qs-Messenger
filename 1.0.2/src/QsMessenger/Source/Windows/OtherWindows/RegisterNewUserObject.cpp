@@ -175,6 +175,7 @@ void RegisterNewUserObject::validate_input(){
 
         if(hasMatch){ //qInfo() << "date of birth is valid";
 
+        if (ui->countriesBox->currentIndex() != 0){
 
      sp = "*@*.*";
 
@@ -202,25 +203,6 @@ void RegisterNewUserObject::validate_input(){
          valid = true;
 
 
-
-
-     request = "register:";
-     request.append(full_name + ":");
-     request.append(nickname + ":");
-     request.append(gender + ":");
-     request.append(email + ":");
-
-     QByteArray hash = password.toUtf8();
-     QString hashed_password = QCryptographicHash::hash(hash, QCryptographicHash::Sha256).toHex();
-
-     request.append(hashed_password + ":");
-     request.append("true");
-
-     ui->message_Label->setText("Processing...");
-     ui->message_Label_2->setText(ui->message_Label->text());
-
-     emit server_request(request);
-
     } else { ui->message_Label->setText("Agreement is not checked..."); }
 
     } else { ui->message_Label->setText("Password is not validated..."); }
@@ -228,22 +210,17 @@ void RegisterNewUserObject::validate_input(){
     } else { ui->message_Label->setText("Passwords do not match..."); }
 
     } else { ui->message_Label->setText("Email is not validated..."); }
-
-     if (ui->countriesBox->currentIndex() != 0){
          
-     } else {  ui->message_Label->setText("Country selection is not validated..."); }
+    } else {  ui->message_Label->setText("Country selection is not validated..."); }
 
     } else { ui->message_Label->setText("Date of birth is not validated..."); }
 
-
-
     } else { ui->message_Label->setText("Gender selection is not validated..."); }
-
-
 
     } else { ui->message_Label->setText("Nickname is not validated..."); }
 
     } else { ui->message_Label->setText("Full name is not validated..."); }
+
 
     //////////////////////////////////////////////////////////////////
 
