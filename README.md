@@ -32,7 +32,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
      ** Stay tuned for the latest updates and developments.   
 
   
-** Notice ** Some files have been revised. Binaries have thus been removed for now.   
+** Notice ** Some source files have been revised. Binaries have thus been removed for now.   
   
  
 Client configuration:  
