@@ -32,9 +32,16 @@ The program is supposed to be similar to/ replace an old, popular instant messag
      ** Stay tuned for the latest updates and developments.   
 
   
-** Notice ** Some source files have been revised. Binaries have thus been removed for now.  
+** Notice **  
+Some source files have been revised. Binaries have thus been removed for now.  
 We are working on making the application more accessible and stable.  
-The source code is still available within the license agreement terms.
+The source code is still available within the license agreement terms.  
+  
+** The Good NEWS is that the Linux version is functional... (yay) this means that we can still make progress on the server/client in the meantime.  
+There is also a Windows development setup installed but we still have to see to the connectivity issue.
+
+'The QsMessenger Team' wishes you a Merry Christmass and a Happy New Year!  
+**
   
  
 Client configuration:  
