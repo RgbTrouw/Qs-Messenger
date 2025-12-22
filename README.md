@@ -56,7 +56,6 @@ The program is supposed to be similar to/ replace an old, popular instant messag
      The source code is still available within the license agreement terms.  
 
      * App Icon has changed...  
-     * The development speed can be slow at times...  
   
  
 Client configuration:  
