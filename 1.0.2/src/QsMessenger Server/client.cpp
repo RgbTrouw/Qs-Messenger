@@ -358,7 +358,7 @@ void client::process_text_message(QString message){
             if (userid != "unsigned"){
              //qInfo() << "retrieve avatar request...";
 
-             QString path = "/usr/local/share/QsMessengerServer/avatars/";
+             QString path = "./avatars/";
              path.append(userid);
 
              QFileInfo check_file(path);
@@ -366,7 +366,7 @@ void client::process_text_message(QString message){
 
              if (check_file.exists() && check_file.isFile()) {
 
-             QString path = "/usr/local/share/QsMessengerServer/avatars/";
+             QString path = "./avatars/";
              path.append(userid);
 
              QFile picfile(path);
@@ -429,7 +429,7 @@ void client::process_text_message(QString message){
              //qInfo() << qr.value(0);
              if(qr.size() > 0){
 
-             QString path = "/usr/local/share/QsMessengerServer/avatars/";
+             QString path = "./avatars/";
              path.append(qr.value(0).toString());
 
             // qInfo() << path;
@@ -1458,7 +1458,7 @@ void client::process_binary_message(QByteArray data){
 
         data = data.right(data.size() - 9);
 
-            QString path = "/usr/local/share/QsMessengerServer/avatars/";
+            QString path = "./avatars/";
             path.append(userid);
 
             QFile avatar(path);
