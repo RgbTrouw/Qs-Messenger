@@ -97,7 +97,7 @@ The used components are within the "Objects/Windows" folder.
 Known Issues:
 - Secure Socket doesn't seem to be connecting on Windows for now .? We are working on finding suitable solutions to resolve the issue. 
 
-- Messages relay has a delay of 1 second and has to be addapted for instant forwarding. 
+- Messages relay has a delay of 1 second and has to be adapted for instant forwarding. 
 
 - An eronous comma "," will occur in the friends list sql database table. This does not affect the list data processing and should be fixed at some point. 
 
