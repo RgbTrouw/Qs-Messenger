@@ -41,7 +41,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
   
      A new version with latest fixes should be available next. 
   
-     There is also a Windows development framework setup, but we still have to see to the connectivity issue.
+     There is also a Windows development framework set up, but we still have to see to the connectivity issue.
 
      Thank you for your insterest into the still early development stages.   
   
