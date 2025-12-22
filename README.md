@@ -22,8 +22,11 @@
   
 
 <Introduction>  
-  
+
+    
 The program is supposed to be similar to/ replace an old, popular instant messaging application that has become unavailable.  
+  
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
      ** Note that windows portable binaries set up a windows startup registery key, making the application start on windows startup. Move the QsMessenger folder to a friendly location before starting.  
        
@@ -32,23 +35,27 @@ The program is supposed to be similar to/ replace an old, popular instant messag
      ** Stay tuned for the latest updates and developments.   
 
   
-** Notice **  
-Some source files have been revised. Binaries have thus been removed for now.  
-We are working on making the application more accessible and stable.  
-The source code is still available within the license agreement terms.  
-**  
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
-** The Good NEWS ** is that the Linux version is functional... this means that we can still make some progress on the server/client in the meantime.  
+     ** The Good NEWS ** is that the Linux version is functional... this means that we can still make some progress on the server/client in the meantime.  
   
-A new version with latest fixes should be available next. 
+     A new version with latest fixes should be available next. 
   
-There is also a Windows development framework setup, but we still have to see to the connectivity issue.
+     There is also a Windows development framework setup, but we still have to see to the connectivity issue.
 
-Thank you for your insterest into the still new development stage.   
+     Thank you for your insterest into the still early development stages.   
   
-'The QsMessenger Team' wishes you a Merry Christmass and a Happy New Year!  
+     'The QsMessenger Team' wishes you a Merry Christmass and a Happy New Year!  
   
-**
+     **
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+     ** Notice **  
+     Some source files have been revised. Binaries have thus been removed for now.  
+     We are working on making the application more accessible and stable.  
+     The source code is still available within the license agreement terms.  
+     **  
   
  
 Client configuration:  
@@ -68,6 +75,9 @@ Server configuration:
   (sql and smtp)  
 - import certificates to 'crt' folder  
 - import 'messenger.sql' file to mysql database 'messenger'  
+
+Note:
+If you plan on testing the email sending processes with Google Smtp service, the smtp account password differs from the regular account password and has to be generated from Google Account Settings (generate app password).
 
 About Source:  
 --------------------------------------------------  
@@ -96,8 +106,6 @@ Known Issues:
 - Some file/folder paths inherited a debian package installer format. This is a publishing error. Thus "/usr/local/share/QsMessengerServer/avatars/" would have to become "./avatars".  
   
   
-Note:
-If you plan on testing the email sending processes with Google Smtp service, the smtp account password differs from the regular account password and has to be generated from Google Account Settings (generate app password).
 
 
 For suggestions or comments please send a note to:  
