@@ -15,7 +15,7 @@
      along with this program. If not, see <https://www.gnu.org/licenses/>.  
   
     
- Qs Messenger Client and Server for Linux, Windows (and Android*)   
+ Qs Messenger Client and Server for Linux, Windows (and Android soon*)   
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
      - C++ open source program developed with qt5 / Qt Creator IDE -  
