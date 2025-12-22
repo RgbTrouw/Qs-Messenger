@@ -55,7 +55,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
      We are working on making the application more accessible and stable.  
   
 
-     ** App Icon has changed...  
+     ** The App Icon has changed...  
   
  
 Client configuration:  
