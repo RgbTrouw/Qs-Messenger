@@ -47,7 +47,6 @@ The program is supposed to be similar to/ replace an old, popular instant messag
   
      'The QsMessenger Team' wishes you a Merry Christmass and a Happy New Year!  
   
-     **
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
@@ -55,7 +54,6 @@ The program is supposed to be similar to/ replace an old, popular instant messag
      Some source files have been revised. Binaries have thus been removed for now.  
      We are working on making the application more accessible and stable.  
      The source code is still available within the license agreement terms.  
-     **  
   
  
 Client configuration:  
