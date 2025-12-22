@@ -67,7 +67,7 @@ Server configuration:
 --------------------------------------------------
 *require Php Pear (Mail)  
 *require Mysql Server  
-*require Openssl  
+*require OpenSSL  
 *require Ssl certificate bundle  
   
 
