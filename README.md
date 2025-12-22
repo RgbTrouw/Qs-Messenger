@@ -39,7 +39,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
   
      ** The Good NEWS ** is that the Linux version is functional... this means that we can still make some progress on the server/client in the meantime.  
   
-     A new version with latest fixes should be available next. 
+     A new version with latest fixes should be available next. Other changes are not excluded.
   
      There is also a Windows development framework set up, but we still have to see to the connectivity issue.
 
