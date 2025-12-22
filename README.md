@@ -40,9 +40,9 @@ The source code is still available within the license agreement terms.
   
 ** The Good NEWS ** is that the Linux version is functional... this means that we can still make some progress on the server/client in the meantime.  
   
-A new version with latest fixes and debian package should be available next. 
+A new version with latest fixes should be available next. 
   
-There is also a Windows development setup installed but we still have to see to the connectivity issue.
+There is also a Windows development framework setup, but we still have to see to the connectivity issue.
 
 Thank you for your insterest into the still new development stage.   
 'The QsMessenger Team' wishes you a Merry Christmass and a Happy New Year!  
