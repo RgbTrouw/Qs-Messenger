@@ -46,6 +46,7 @@ There is also a Windows development framework setup, but we still have to see to
 
 Thank you for your insterest into the still new development stage.   
 'The QsMessenger Team' wishes you a Merry Christmass and a Happy New Year!  
+  
 **
   
  
