@@ -44,6 +44,7 @@ A new version with latest fixes and debian package should be available next.
   
 There is also a Windows development setup installed but we still have to see to the connectivity issue.
 
+Thank you for your insterest into the still new development stage. 
 'The QsMessenger Team' wishes you a Merry Christmass and a Happy New Year!  
 **
   
