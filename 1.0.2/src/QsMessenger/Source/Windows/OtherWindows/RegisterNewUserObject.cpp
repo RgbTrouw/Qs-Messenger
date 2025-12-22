@@ -94,7 +94,7 @@ void RegisterNewUserObject::previousPage(){
 
     ui->full_name_Prompt->clear();
     ui->nick_Prompt->clear();
-    ui->countriesBox->setCurrentIndex(142);
+    ui->countriesBox->setCurrentIndex(0);
     ui->agreement_checkBox->setChecked(false);
     ui->date_of_birthPrompt->clear();
     ui->email_Prompt->clear();
@@ -312,7 +312,7 @@ void RegisterNewUserObject::closeEvent (QCloseEvent *event)
         ui->full_name_Prompt->clear();
         ui->nick_Prompt->clear();
         ui->date_of_birthPrompt->clear();
-        ui->countriesBox->setCurrentIndex(142);
+        ui->countriesBox->setCurrentIndex(0);
         ui->email_Prompt->clear();
         ui->password_Prompt->clear();
         ui->password_2_Prompt->clear();
