@@ -37,7 +37,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
   
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
-     ** The Good NEWS ** is that the Linux version is functional... this means that we can still make some progress on the server/client in the meantime.  
+     ** The Good NEWS ** is that the Linux version is functional... this means that other updates are due to come.  
   
      A new version with latest fixes should be available next. Other changes are not excluded.
   
