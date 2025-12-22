@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     this->setWindowTitle("Qs Messenger");
-    this->setWindowIcon(QIcon("./Resources/icons/smiley.png"));
+    this->setWindowIcon(QIcon("./Resources/icons/AppIcon.png"));
 
 
 
