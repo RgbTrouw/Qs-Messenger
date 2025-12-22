@@ -37,9 +37,9 @@ The program is supposed to be similar to/ replace an old, popular instant messag
   
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
-     ** The Good NEWS ** is that the Linux version is has connectivity and is functional.   This means that other updates are due to come.  
+     ** The Good NEWS ** is that the Linux version is has connectivity and is functional. This means that other updates are due to come.  
   
-     A new version with latest fixes should be available soon'.    
+     A new version with latest fixes should be available relatively soon.    
   
      There is also a Windows development framework set up, but we still have to solve the connectivity issue.
 
