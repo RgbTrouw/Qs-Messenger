@@ -45,6 +45,7 @@ A new version with latest fixes should be available next.
 There is also a Windows development framework setup, but we still have to see to the connectivity issue.
 
 Thank you for your insterest into the still new development stage.   
+  
 'The QsMessenger Team' wishes you a Merry Christmass and a Happy New Year!  
   
 **
