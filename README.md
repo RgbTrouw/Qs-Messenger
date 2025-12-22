@@ -43,7 +43,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
   
      There is also a Windows development framework set up, but we still have to solve the connectivity issue.
 
-     Thank you for your insterest into the still early development stages.   
+     Thank you for your insterest in the still early development stages.   
   
      'The QsMessenger Team' wishes you a Merry Christmass and a Happy New Year!  
   
