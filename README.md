@@ -110,7 +110,7 @@ Known Issues:
 - Messages relay has a delay of 1 second and has to be adapted for instant forwarding.
 A solution has already been tested out and is due pe published within the next version.  
 
-- The database keys have to migrate to 'email' for better performance.  
+- Some database keys have to migrate to 'email' for better performance.  
 
   
 - An eronous comma "," will occur in the friends list sql database table. This does not affect the list data processing and should be fixed at some point. 
