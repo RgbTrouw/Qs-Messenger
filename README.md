@@ -93,7 +93,7 @@ The used components are within the "Source/Windows" folder.
   
 * SessionId is a parameter that was supposed to be implemented in early stages, is still present in all queries, but doesn't provide any particular purpose. (except for being a potential log indicator)
 
-* Status messages and private messages are processed in the format ascii(hex) code.
+* Status messages and private messages are processed in the format ascii(hex) code. (this supports the safe use of any character)
 
 * All server requests and responses are in ascii, except for files which are binary with an attached, temporary, ascii prefix/ header.
 
