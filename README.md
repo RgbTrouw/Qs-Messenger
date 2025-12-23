@@ -97,7 +97,7 @@ The used components are within the "Source/Windows" folder.
 
 * All server requests and responses are in ascii, except for files which are binary with an attached, temporary, ascii prefix/ header.
 
-* Account passwords are processed/ sent/ stored as `hash 256` twice. ( hash256(hash256(password)) ) 
+* Account passwords are processed/ sent/ stored as `hash 256` twice. ( hash256(hash256(ascii_password)) ) 
 
 * The password for template account "steve@qsmessenger.com" is 'password'.
   
