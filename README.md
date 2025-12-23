@@ -78,7 +78,9 @@ Server configuration:
 
 Note:
 If you plan on testing the server with Google Smtp service, the password used here differs from the regular account password and has to be generated from Google Account Settings (generate app password).
+(Please use this method only for limited testing and do not use it to send out spam or any unsolicited advertising.)
 
+    
 About Source:  
 --------------------------------------------------  
   
@@ -91,6 +93,12 @@ The used components are within the "Source/Windows" folder.
   
 * SessionId is a parameter that was supposed to be implemented in early stages, is still present in all queries, but doesn't provide any particular purpose. (except for being a potential log indicator)
 
+* Status messages and private messages are processed in the format ASCII(HEX) code.
+
+* Passwords are processed as `hash 256` twice.
+
+* The password for template account "steve@qsmessenger.com" is 'password'.
+  
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
 * Some features are to be improved in a future version.
 
