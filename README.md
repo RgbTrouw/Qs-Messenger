@@ -45,7 +45,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
 
      Thank you for your insterest in the application.    
   
-     'The QsMessenger Team' wishes you a Merry Christmass and a Happy New Year!  
+     'The QsMessenger Team' wishes you a Merry Christmas and a Happy New Year!  
   
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
