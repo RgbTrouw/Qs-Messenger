@@ -93,7 +93,7 @@ The used components are within the "Source/Windows" folder.
   
 * SessionId is a parameter that was supposed to be implemented in early stages, is still present in all queries, but doesn't provide any particular purpose. (except for being a potential log indicator)
 
-* Status messages and private messages are processed in the format ASCII(HEX) code.
+* Status messages and private messages are processed in the format ascii(hex) code.
 
 * Account passwords are processed/ sent/ stored as `hash 256` twice. ( hash256(hash256(password)) ) 
 
