@@ -77,7 +77,7 @@ Server configuration:
 - import 'messenger.sql' file to mysql database 'messenger'  
 
 Note:
-If you plan on testing the server with Google Smtp service, the password used here differs from the regular account password and has to be generated from Google Account Settings (generate app password).
+If you plan on testing the server with Google Smtp service, the password used here differs from the regular account password and has to be generated from Google Account Settings (generate app password).  
 (Please use this method only for limited testing and do not use it to send out spam or any unsolicited advertising.)
 
     
