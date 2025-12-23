@@ -73,7 +73,7 @@ Server configuration:
 
 - configure credentials in 'assets' folder;
   (sql and smtp)  
-- import certificates to 'crt' folder  
+- import certificates to 'crt' folder  nd out spa
 - import 'messenger.sql' file to mysql database 'messenger'  
 
 Note:
@@ -95,7 +95,7 @@ The used components are within the "Source/Windows" folder.
 
 * All server requests and responses are in ascii, except for files which are binary with an attached, temporary, ascii prefix/ header.
 
-* Status messages and private messages are processed in the format ascii(hex) code. (this supports the safe use of any character)  
+* Status messages and private messages are processed in the format ascii(hex) code. (this supports the use of any character)  
   
 * Account passwords are processed/ sent/ stored as `hash 256` twice. ( hash256(hash256(ascii_password)) ) 
 
