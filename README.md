@@ -95,7 +95,7 @@ The used components are within the "Source/Windows" folder.
 
 * Status messages and private messages are processed in the format ASCII(HEX) code.
 
-* Passwords are processed as `hash 256` twice.
+* Account passwords are processed/ sent/ stored as `hash 256` twice. ( hash256(hash256(password)) ) 
 
 * The password for template account "steve@qsmessenger.com" is 'password'.
   
