@@ -17,7 +17,9 @@
     
  Qs Messenger Client and Server for Linux, Windows (and Android soon*)   
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  
+
+
+      
      - C++ open source program developed with qt5 / Qt Creator IDE -  
   
 
@@ -124,12 +126,11 @@ A solution has already been tested out and is due pe published within the next v
 
 - Clear messages function not yet implemented.
 
-  
-
        
+//  
+//  
+//  
   
-
-
 For suggestions or comments please send a note to:  
   
 "rgb.trust@gmail.com"  
