@@ -180,7 +180,6 @@ INSERT INTO `users` (`id`, `full_name`, `nickname`, `picture`, `gender`, `countr
 (42, 'Christian', 'christian', NULL, 'male', '', 'christian@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
 (43, 'Isabelle', 'isabelle', NULL, 'female', '', 'isabelle@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
 (44, 'Britney', 'britney', NULL, 'female', '', 'britney@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(48, 'Radu Gabriel Balaban Grajdan', 'Bala', NULL, 'male', '', 'rgb.trust@gmail.com', '9bf1f69c229f3dd6410cafb89cd71f29e7791a5140bda9e40449d689f1a0ef0d', 3, NULL, '', '53d3448a0ef9d01e5b11c3c61334778de97c4542171b2afae15ba8951368217dffa34fe685500c29', 1, '29/11/1990', 1766360232434);
 
 --
 -- Indexes for dumped tables
