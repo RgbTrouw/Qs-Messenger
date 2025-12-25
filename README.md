@@ -41,7 +41,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
   
 Looping functions have been replaced with instant forwarding, most database keys have migrated from table "id" to "email" parameter and session_id has been removed from all queries.  
   
-All of these changes will improve the server capabilities. 
+All of these changes will improve the server performance. 
 **
 
      ** The Good NEWS ** is that the Linux version has connectivity and is functional. This means that other updates are due to come.  
