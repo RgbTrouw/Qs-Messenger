@@ -9,4 +9,10 @@ Main changes:
 
 * sessionId still to be removed;
   
-It is still a new preview, other errors are not excluded, but it does seem to be ok considering the amount of changed parameters.
+It is still a new preview, other errors are not excluded, but it does seem to be ok considering the amount of changed parameters.  
+
+  
+Other planned changes:  
+  
+- geolocation filter for server  
+  
