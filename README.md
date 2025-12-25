@@ -36,7 +36,14 @@ The program is supposed to be similar to/ replace an old, popular instant messag
 
   
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+** Version 1.0.2a will be released soon. Most improvements come with the server.  
   
+Looping functions have been replaced with instant forwarding, most database keys have migrated from table "id" to "email" parameter and session_id has been removed from all queries.  
+  
+All of these changes will improve the server capabilities. 
+**
+
      ** The Good NEWS ** is that the Linux version has connectivity and is functional. This means that other updates are due to come.  
   
      A new version with latest fixes should be available relatively soon.    
