@@ -1,4 +1,3 @@
-
 /*   QsMessenger Server v 1.0.2a Instant Messaging Application
      Copyright (C) 2026  Radu G. Balaban G.
 
@@ -111,7 +110,6 @@ void client::process_text_message(QString message){
               pClient->flush();
              //qInfo() << response;
 
-              emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" +"  Request: " + message + " ->" + "\n" + "  Delivery: " + response);
 
          }
 
@@ -204,8 +202,6 @@ void client::process_text_message(QString message){
 
 
 
-              emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + response);
-
          }
 
 
@@ -230,8 +226,6 @@ void client::process_text_message(QString message){
                  QString group_name = "";
 
                  response = "friends_list";
-
-                 peersList.clear();
 
                  while(query.next()){
 
@@ -264,7 +258,7 @@ void client::process_text_message(QString message){
                     QString availability = qs.value(1).toString();
                     if (availability == "3"){availability = "2";}
                      list.append(":" + qs.value(0).toString() + "/" +  availability + "/" +  qs.value(2).toString() + "/picture/" + qs.value(4).toString());
-                     peersList.append(qs.value(0).toString() + "/" +  availability + "/" +  qs.value(2).toString() + "/picture/" + qs.value(4).toString());
+                     myPeers.append(qs.value(0).toString() + "/" +  availability + "/" +  qs.value(2).toString() + "/picture/" + qs.value(4).toString());
                  }
 
                  //qInfo() << list;
@@ -294,8 +288,6 @@ void client::process_text_message(QString message){
              pClient->sendTextMessage(response.toUtf8());
              pClient->flush();
              //qInfo() << response;
-
-             emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + response);
 
 
          }
@@ -337,26 +329,6 @@ void client::process_text_message(QString message){
               QTimer::singleShot(1000, this, SLOT(getOfflineFriendRequests()));
 
              //qInfo() << response;
-              emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + response);
-
-             }
-         }
-
-         challenge.setPattern(uploadAvatarRequest);
-         if ( challenge.exactMatch(message)){
-
-              QString session_id = message.split(":").at(1);
-
-             if (userid != "unsigned"){
-             //qInfo() << "upload avatar request...";
-             pending_binary = "avatar_upload";
-             response = "ok_upload_avatar";
-
-             pClient->sendTextMessage(response.toUtf8());
-             //qInfo() << response;
-              pClient->flush();
-              emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + response);
-
 
              }
          }
@@ -390,7 +362,6 @@ void client::process_text_message(QString message){
              pClient->sendBinaryMessage(ba);
              pClient->flush();
 
-             emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "your_avatar: ( data )");
 
                 }
              }
@@ -428,8 +399,6 @@ void client::process_text_message(QString message){
                      pClient->sendBinaryMessage(ba);
                      pClient->flush();
                      //qInfo() << ba.left(34);
-
-                      emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch())  + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + prep + " ( data )");
 
                      }
                  }
@@ -470,7 +439,6 @@ void client::process_text_message(QString message){
 //             pClient->sendTextMessage(response.toUtf8());
 //             pClient->flush();
 
-              emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "( none )");
 
              }
 
@@ -494,7 +462,6 @@ void client::process_text_message(QString message){
                          QSqlQuery query;
                          query.exec("UPDATE `messages` SET `has_read` = '1' , `read_time` = '" + mseconds + "' WHERE `fromEmail` = '" + peerEmail + "' AND `toEmail` = '" + myEmail + "' AND `has_read` = '0';");
 
-                         emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "( none )");
 
                       }
                    }
@@ -543,7 +510,6 @@ void client::process_text_message(QString message){
                             //qInfo() << pmessage;
                             pClient->flush();
 
-                             emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + pmessage);
 
                         }
                  }
@@ -604,7 +570,6 @@ void client::process_text_message(QString message){
              //qInfo() << response;
              pClient->flush();
 
-              emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + response);
 
          }
 
@@ -637,8 +602,6 @@ void client::process_text_message(QString message){
                     pClient->flush();
 
 
-                    emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "Activation code resent...");
-
                 } else {
 
                         QSqlError err = query.lastError();
@@ -650,7 +613,6 @@ void client::process_text_message(QString message){
                     pClient->sendTextMessage("Email not registered or already activated...");
                     pClient->flush();
 
-                     emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "Email not registered or already activated...");
                 }
                 } else {
                         QSqlError err = query.lastError();
@@ -723,8 +685,7 @@ void client::process_text_message(QString message){
                  //qInfo() << response;
                  pClient->flush();
 
-                 emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + response);
-             }
+                 }
 
          }
 
@@ -776,7 +737,6 @@ void client::process_text_message(QString message){
                              pClient->sendTextMessage("userRemovedFromList:" + peerEmail);
                              pClient->flush();
 
-                             emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "userRemovedFromList:" + peerEmail);
 
                          }
                      }
@@ -801,7 +761,6 @@ void client::process_text_message(QString message){
                  pClient->sendTextMessage("Group Deleted:" + groupName);
                  pClient->flush();
 
-                  emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "Group Deleted:" + groupName );
 
                  }
              }
@@ -869,9 +828,6 @@ void client::process_text_message(QString message){
              pClient->sendTextMessage("Friendship request accepted...");
              pClient->flush();
 
-
-
-               emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "Friendship request accepted...");
              }
 
              else if (parameters.at(2) == "no"){
@@ -884,7 +840,6 @@ void client::process_text_message(QString message){
                pClient->sendTextMessage("Friendship request declined...");
                pClient->flush();
 
-               emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "Friendship request declined...");
              }
 
 
@@ -912,7 +867,6 @@ void client::process_text_message(QString message){
              if (parameters.at(1) == "2"){
                  query.exec("UPDATE `users` SET `status_message` = '' WHERE `email` = '" + myEmail + "';");
 
-                 emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + " ( none ) ");
 
              }
 
@@ -947,7 +901,6 @@ void client::process_text_message(QString message){
                   query.exec("UPDATE `users` SET `status_message` = '' WHERE `email` = '" + myEmail + "';");
              }
 
-             emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + " ( none ) ");
 
              emit emit_statusUpdate(myEmail, myPeers);
 
@@ -967,8 +920,6 @@ void client::process_text_message(QString message){
              query.exec("UPDATE `users` SET `status_message` = '' WHERE `email` = '" + myEmail + "';");
 
              userid = "unsigned";
-
-             emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + " ( none ) ");
 
             }
          }
@@ -1008,8 +959,6 @@ void client::process_text_message(QString message){
                pClient->sendTextMessage("Activation success...");
                pClient->flush();
 
-                emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "Activation success...");
-
 
 
              } else { QSqlError err = query.lastError();
@@ -1017,7 +966,6 @@ void client::process_text_message(QString message){
                      pClient->sendTextMessage("Activation failed...");
                      pClient->flush();
 
-                      emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "Activation failed...");
 
                  }
 
@@ -1027,7 +975,6 @@ void client::process_text_message(QString message){
 
              pClient->sendTextMessage("Activation failed...");
              pClient->flush();
-               emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "Activation failed...");
 
              }
 
@@ -1036,13 +983,11 @@ void client::process_text_message(QString message){
 
              pClient->sendTextMessage("Activation failed...");
              pClient->flush();
-               emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "Activation failed...");
 
              }
          } else {
                  pClient->sendTextMessage("Activation failed...");
                  pClient->flush();
-                   emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "Activation failed...");
 
              }
 
@@ -1091,7 +1036,6 @@ void client::process_text_message(QString message){
              pClient->sendTextMessage(response.toUtf8());
               pClient->flush();
              //qInfo() << response;
-              emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + response);
 
 
          }
@@ -1139,20 +1083,16 @@ void client::process_text_message(QString message){
                             pClient->sendTextMessage("Password changed...");
                             pClient->flush();
 
-                               emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "Password changed...");
-
 
                         } else {
                             pClient->sendTextMessage("Reset code not validated...");
                             pClient->flush();
-                            emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "Reset code not validated...");
                         }
 
 
                         } else {
                             pClient->sendTextMessage("Password must not be null...");
                             pClient->flush();
-                            emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "Password must not be null...");
                         }
 
          }
@@ -1178,15 +1118,11 @@ void client::process_text_message(QString message){
                      pClient->sendTextMessage("New Group Created:" + groupName);
                      pClient->flush();
 
-                     emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "New Group Created:" + groupName);
-
-
                  } else {
 
                      pClient->sendTextMessage("Group already exists:" + groupName);
                      pClient->flush();
 
-                    emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "Group already exists:" + groupName);
                  }
 
              }
@@ -1255,8 +1191,7 @@ void client::process_text_message(QString message){
                  pClient->sendTextMessage("userMovedToGroup:" + peerEmail + ":" + targetGroupName);
                  pClient->flush();
 
-                 emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + "userMovedToGroup:" + peerEmail + ":" + targetGroupName);
-             }
+                }
          }
 
 
@@ -1288,8 +1223,7 @@ void client::process_binary_message(QByteArray data){
                 //qInfo() <<
                 avatar.write(data);
 
-                emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + "myAvatar: ( data ) " + " ->" + "\n" + "  Delivery: " + " ( none ) ");
-            }
+           }
 
         }
 
@@ -1313,7 +1247,6 @@ void client::socket_disconnected(){
 
     QTimer::singleShot(1000, this, [=](){emit emit_close(session_id);});
 
-    emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "  DISCONNECTED");
 
 }
 
@@ -1331,9 +1264,6 @@ void client::receiveMessage(QString senderEmail, QString receiverEmail, QString 
 
     pClient->sendTextMessage(qr.toUtf8());
     pClient->flush();
-
-    emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + "none" + " ->" + "\n" + "  Delivery: " + qr);
-
 
 }
 
@@ -1373,8 +1303,6 @@ void client::getOfflineMessages(){
 
                 }
 
-                emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + "none" + " ->" + "\n" + "  Delivery: " + qr);
-
 
             }
 
@@ -1402,7 +1330,6 @@ void client::getOfflineFriendRequests(){
 
             pClient->flush();
 
-            emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + " ( none ) " + " ->" + "\n" + "  Delivery: " + response);
             response = "";
 
         }
@@ -1432,8 +1359,7 @@ void client::receiveFriendRequest(QString peerEmail, QString myEmail)
 
               pClient->flush();
 
-              emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + " ( none ) " + " ->" + "\n" + "  Delivery: " + response);
-              response = "";
+             response = "";
 
           }
 
@@ -1479,311 +1405,9 @@ void client::receiveStatusUpdate(QString peerEmail){
     pClient->sendTextMessage(updateString.toUtf8());
     pClient->flush();
 
-    emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + " ( update status ) " + " ->" + "\n" + "  Delivery: " + updateString);
 
     }
 
 }
-//void client::getNewMessages(){
 
 
-
-//    if (userid != "unsigned"){
-//   //qInfo() << "get new messages...";
-
-
-//    QSqlQuery query;
-//    query.exec("SELECT * FROM `messages` WHERE `msg_to` = '" + userid + "' AND `server_sent` = '0';");
-
-////    for(int i=0; i<query.size(); i++){
-////        query.next();
-        
-////    }
-////    }
-//    while (query.next()){
-
-//    //qInfo() << "nr of messages: " + QString::number(query.size());
-//    QString from;
-//    from = query.value(1).toString();
-
-
-//    QString message;
-//    message = query.value(3).toString();
-
-
-//    QSqlQuery qrs;
-//    qrs.exec("SELECT `list` FROM `friends_list` WHERE `owner_id` = '" + userid + "';");
-//    //qInfo() << "nr of lists: " + QString::number(qrs.size());
-//    while(qrs.next()){
-
-//    QString list = qrs.value(0).toString();
-
-//    QStringList slist = list.split(",");
-//    list = "";
-//    for (int i =0; i< slist.size(); i++){
-//        list.append("'");
-//        list.append(slist.at(i));
-//        list.append("'");
-//        if (i != slist.size() - 1){
-//            list.append(",");
-//        }
-//    }
-
-//    //qInfo() << "current list: " + list;
-
-//    for(int a=0; a < slist.count(); a++){
-//        if (from == slist.at(a)){
-//            //qInfo() << true;
-
-//            qrs.exec("SELECT `email` FROM `users` WHERE `id` = '" + from + "' AND `id` IN (" + list + ");");
-//            qrs.next();
-
-
-//            if(qrs.size()>0){
-//            //qInfo() << "peer name: " + qrs.value(0).toString();
-
-//            QString peerEmail = qrs.value(0).toString();
-
-//            QString qr;
-//            qr = "im:";
-//            qr.append(peerEmail);
-//            qr.append(":");
-//            qr.append(message);
-//            qr.append(":");
-//            qr.append(query.value(4).toString());
-
-
-//            pClient->sendTextMessage(qr.toUtf8());
-//            pClient->flush();
-
-//            emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + message + " ->" + "\n" + "  Delivery: " + qr);
-
-//            //qInfo() << query.value(4).toString();
-//            query.exec("UPDATE `messages` SET `server_sent` = '1' WHERE `msg_from` = '" + from + "' AND `msg_to` = '" + userid + "' AND `time` = '" + query.value(4).toString() + "' AND `server_sent` = '0';");
-
-//            a=slist.count();
-
-//        }
-
-//    }
-
-
-
-
-//    }   }  }
-
-//    //QTimer::singleShot(1000, this, [=]() { getNewMessages(); });
-
-
-//    }
-
-
-
-//}
-
-//void client::get_list(){
-
-    //qInfo() << "getList";
-    //qInfo() << userid + " debug";
-
-    //qInfo() << "Breakpoint 24.0";
-//    QString glist;
-//    glist.prepend("friends_list");
-
-
-//    if (userid != "unsigned"){
-
-
-//        if (!list_type){
-
-//        QSqlQuery query;
-//        query.exec("SELECT `list`, `group_name` FROM `friends_list` WHERE `owner_id` = '" + userid + "';");
-
-//        QString list;
-//        QString group_name;
-
-//        peersListCompare.clear();
-
-//        while(query.next()){
-
-//        group_name = query.value(1).toString();
-//        list = query.value(0).toString();
-
-//        QStringList slist = list.split(",");
-//        list = "";
-//        for (int i =0; i< slist.size(); i++){
-//            list.append("'");
-//            list.append(slist.at(i));
-//            list.append("'");
-//            if (i != slist.size() -1){
-//                list.append(",");
-//            }
-//        }
-
-//        QSqlQuery qs;
-//        qs.exec("SELECT `nickname`, `availability`, `status_message`, `full_name`,`email`,`picture` FROM `users` WHERE `id` IN (" + list + ") ORDER BY `nickname`;");
-//        // Info() << "c";
-//        list = "";
-//        QString availability;
-
-
-//        while (qs.next()) {
-
-//            availability = qs.value(1).toString();
-//            if (availability == "3") { availability = "2";}
-//            list.append(":" + qs.value(0).toString() + "/" +  availability + "/" +  qs.value(2).toString() + "/picture/" + qs.value(4).toString());
-
-//            peersListCompare.append(qs.value(0).toString() + "/" +  availability + "/" +  qs.value(2).toString() + "/picture/" + qs.value(4).toString());
-
-
-//        }
-
-
-//        glist.append(":|" + group_name + "/3//picture/");
-//        glist.append(list);
-
-//        }
-
-//        //qInfo() << glist;
-
-//        peersListBuffer = peersListCompare;
-
-
-//        if(peersListCompare.size() > peersList.count()){
-//        for (int i = 0; i < peersListCompare.count(); i++){
-//            for (int a = 0; a < peersList.count(); a++){
-
-//                if (peersListCompare.at(i) == peersList.at(a)){
-//                    peersListCompare.removeAt(i);
-//                }
-
-//            }
-//        }
-
-//        if (peersListCompare.size() != peersList.count()){
-//            for (int i=0; i< peersListCompare.size(); i++){
-
-//                //qInfo() << peersListCompare;                     /// update_user_data -> //
-
-//                QSqlQuery query;
-//                query.exec("SELECT `id` FROM `users` WHERE `email` = '" + peersListCompare.at(i).split("/").at(4) + "';");
-//                query.next();
-
-//                QString peerId = query.value(0).toString();
-
-//                QStringList friendsListA;
-//                QString groupNameA;
-
-//               // qInfo() << peerId;
-
-//                query.exec("SELECT `list`, `group_name` FROM `friends_list` WHERE `owner_id` = '" + userid + "';");
-//                while(query.next()){
-
-//                groupNameA = query.value(1).toString();
-//                friendsListA = query.value(0).toString().split(",");
-
-//                for(int b = 0; b<friendsListA.count(); b++ ){
-
-//                    if(friendsListA.at(b) == peerId){
-
-//                        QString updateString = "addUserToGroup:" + peersListCompare.at(i) + ":" + groupNameA;
-//                        pClient->sendTextMessage(updateString.toUtf8());
-//                        pClient->flush();
-
-//                        emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + " ( none ) " + " ->" + "\n" + "  Delivery: " + updateString);
-
-//                        break;
-//                    }
-
-//                }
-
-
-//                }
-
-//            }
-//        }
-
-//        } else if (peersListCompare.size() == peersList.count()) {
-
-//            for (int i = 0; i < peersListCompare.count(); i++){
-//                       for (int a = 0; a < peersList.count(); a++){
-//                           if (peersListCompare.at(i) == peersList.at(a)){
-//                               peersListCompare.removeAt(i);
-//                           }
-//                       }
-//                   }
-
-
-
-//                   peersList = peersListBuffer;
-
-//            if (peersListCompare.size()>0){
-//                       for (int i=0; i< peersListCompare.size(); i++){
-
-//                           //qInfo() << peersListCompare;                     /// update_user_data -> //
-
-//                           QString updateString = "updateUser:" + peersListCompare.at(i);
-//                           pClient->sendTextMessage(updateString.toUtf8());
-//                           pClient->flush();
-
-//                           emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + " ( none ) " + " ->" + "\n" + "  Delivery: " + updateString);
-
-//                       }
-//                   }
-
-//        }
-
-
-//        peersList = peersListBuffer;
-
-
-
-//        if (previous_list == ""){
-//            previous_list = glist;
-//        }
-
-
-//        if (previous_list != glist){
-
-//        QString update_list = glist;
-
-//        previous_list = glist;
-
-
-//        }
-
-//        }
-
-//                //qInfo() << "get_friend_requests...";
-
-//                QSqlQuery query;
-//                query.exec("SELECT * FROM `friendship_requests` WHERE `fto` = '" + userid + "' AND `fstatus` = '0';");
-
-//                //qInfo() << query.size();
-//                if (query.size() > 0) {
-//                    query.next();
-
-//                    QString msg = query.value(3).toString();
-
-//                    query.exec("SELECT `email` FROM `users` WHERE `id` = '" + query.value(1).toString() + "';");
-
-//                    query.next();
-//                    response="newfriendshiprequest:";
-//                    response.append(query.value(0).toString());
-
-//                    pClient->sendTextMessage(response);
-//                    //qInfo() << response;
-//                    pClient->flush();
-
-//                    emit emit_logData("\n" + IPaddress.toString() + ":" + RemotePortString + "  " + QString::number(QDateTime::currentMSecsSinceEpoch()) + "\n" + "  Request: " + " ( none ) " + " ->" + "\n" + "  Delivery: " + response);
-
-//                    }
-
-//    ss->singleShot(1000, this, SLOT(get_list()));
-
-
-//    } else if (userid == "unsigned") { //qInfo() << "user not signed in...";
-//    }
-
-
-//}
