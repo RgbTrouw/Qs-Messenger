@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1deb5ubuntu1
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 19, 2025 at 04:44 PM
--- Server version: 8.0.42-0ubuntu0.22.04.1
--- PHP Version: 8.1.2-1ubuntu2.21
+-- Generation Time: Dec 26, 2025 at 12:51 PM
+-- Server version: 8.0.42-0ubuntu0.20.04.1
+-- PHP Version: 7.4.3-4ubuntu2.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -29,18 +30,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `friendship_requests` (
   `id` int NOT NULL,
-  `ffrom` int NOT NULL,
-  `fto` int NOT NULL,
+  `ffrom` int DEFAULT NULL,
+  `fto` int DEFAULT NULL,
   `fstatus` int NOT NULL,
-  `groupName` varchar(12) NOT NULL
+  `groupName` varchar(12) NOT NULL,
+  `fromEmail` text NOT NULL,
+  `toEmail` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `friendship_requests`
---
-
-INSERT INTO `friendship_requests` (`id`, `ffrom`, `fto`, `fstatus`, `groupName`) VALUES
-(2, 46, 46, 1, 'Friends');
 
 -- --------------------------------------------------------
 
@@ -50,20 +46,20 @@ INSERT INTO `friendship_requests` (`id`, `ffrom`, `fto`, `fstatus`, `groupName`)
 
 CREATE TABLE `friends_list` (
   `id` int NOT NULL,
-  `owner_id` int NOT NULL,
+  `owner_id` int DEFAULT NULL,
   `group_name` varchar(24) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'Friends',
-  `list` text
+  `list` text,
+  `ownerEmail` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `friends_list`
 --
 
-INSERT INTO `friends_list` (`id`, `owner_id`, `group_name`, `list`) VALUES
-(1, 1, 'Friends', '1,2,3,4,5,6,7,8,9,10,11,12,15,18,19,23,24,25,26,28,29,30,31,32,33,34,35,37,39,40,41,42,43,44'),
-(3, 1, 'Work', ',14,20,22,36,38,16,17,27'),
-(4, 1, 'Gaming', ',13,21'),
-(5, 46, 'Friends', '46');
+INSERT INTO `friends_list` (`id`, `owner_id`, `group_name`, `list`, `ownerEmail`) VALUES
+(8, NULL, 'Friends', 'francesca@qsmessenger.com,sara@qsmessenger.com,steve@qsmessenger.com,bob@qsmessenger.com,robert@qsmessenger.com,patricia@qsmessenger.com,jessica@qsmessenger.com,diana@qsmessenger.com', 'steve@qsmessenger.com'),
+(11, NULL, 'Work', 'peter@qsmessenger.com,stephanie@qsmessenger.com,sandra@qsmessenger.com', 'steve@qsmessenger.com'),
+(12, NULL, 'Gaming', 'danielle@qsmessenger.com,monica@qsmessenger.com,thomas@qsmessenger.com,michael@qsmessenger.com', 'steve@qsmessenger.com');
 
 -- --------------------------------------------------------
 
@@ -73,21 +69,16 @@ INSERT INTO `friends_list` (`id`, `owner_id`, `group_name`, `list`) VALUES
 
 CREATE TABLE `messages` (
   `id` int NOT NULL,
-  `msg_from` text NOT NULL,
-  `msg_to` text NOT NULL,
+  `msg_from` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+  `msg_to` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
   `txt_message` text NOT NULL,
   `time` bigint DEFAULT NULL,
   `has_read` int NOT NULL DEFAULT '1',
   `server_sent` int NOT NULL DEFAULT '0',
-  `read_time` bigint DEFAULT NULL
+  `read_time` bigint DEFAULT NULL,
+  `fromEmail` text NOT NULL,
+  `toEmail` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `messages`
---
-
-INSERT INTO `messages` (`id`, `msg_from`, `msg_to`, `txt_message`, `time`, `has_read`, `server_sent`, `read_time`) VALUES
-(1, '1', '2', '3c64696e673e', 1750334867051, 1, 1, 1750334868890);
 
 -- --------------------------------------------------------
 
@@ -118,48 +109,48 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `full_name`, `nickname`, `picture`, `gender`, `country`, `email`, `password`, `availability`, `last_msg_read_time`, `status_message`, `hex`, `status`, `date_of_birth`, `lastLogin`) VALUES
-(1, 'Steve', 'steve', NULL, 'male', 'Country', 'steve@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 2, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(3, 'Andrew', 'andrew', NULL, 'male', 'Country', 'andrew@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(4, 'Samantha', 'samantha', NULL, 'female', 'Country', 'samantha@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 0, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(5, 'Emma', 'emma', NULL, 'female', 'Country', 'emma@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(6, 'Elizabeth', 'elizabeth', NULL, 'female', 'Country', 'elizabeth@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(7, 'Jennifer', 'jennifer', NULL, 'female', 'Country', 'jennifer@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(8, 'Monica', 'monica', NULL, 'female', 'Country', 'monica@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 1, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(9, 'Smith', 'smith', NULL, 'male', 'Country', 'smith@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(10, 'Peter', 'peter', NULL, 'male', 'Country', 'peter@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 0, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(11, 'Margaret', 'margaret', NULL, 'female', 'Country', 'margaret@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 1, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(12, 'Amy', 'amy', NULL, 'female', 'Country', 'amy@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 1, NULL, '7a7a5a5a7a', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(13, 'Thomas', 'thomas', NULL, 'male', 'Country', 'thomas@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(14, 'Richard', 'richard', NULL, 'male', 'Country', 'richard@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(15, 'Bob', 'bob', NULL, 'male', 'Country', 'bob@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 0, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(16, 'Michael', 'michael', NULL, 'male', 'Country', 'michael@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(17, 'Robert', 'robert', NULL, 'male', 'Country', 'robert@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(18, 'Patricia', 'patricia', NULL, 'female', 'Country', 'patricia@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(19, 'Jessica', 'jessica', NULL, 'female', 'Country', 'jessica@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 0, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(20, 'Sandra', 'sandra', NULL, 'female', 'Country', 'sandra@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(21, 'Stephanie', 'stephanie', NULL, 'female', 'Country', 'stephanie@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(22, 'Laura', 'laura', NULL, 'female', 'Country', 'laura@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 0, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(23, 'Anna', 'anna', NULL, 'female', 'Country', 'anna@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(24, 'Helen', 'helen', NULL, 'female', 'Country', 'helen@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(25, 'Sara', 'sara', NULL, 'female', 'Country', 'sara@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(26, 'Diana', 'diana', NULL, 'female', 'Country', 'diana@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 1, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(27, 'Scott', 'scott', NULL, 'male', 'Country', 'scott@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(28, 'Arthur', 'arthur', NULL, 'male', 'Country', 'arthur@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(29, 'Alice', 'alice', NULL, 'female', 'Country', 'alice@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(31, 'Danielle', 'danielle', NULL, 'female', 'Country', 'danielle@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 1, NULL, '646f206e6f742064697374757262', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(32, 'Kathy', 'kathy', NULL, 'female', 'Country', 'kathy@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 0, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(33, 'Francesca', 'francesca', NULL, 'female', 'Country', 'francesca@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(34, 'Jacqueline', 'jacqueline', NULL, 'female', 'Country', 'jacqueline@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(35, 'Gerald', 'gerald', NULL, 'male', 'Country', 'gerald@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 0, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(36, 'Jordan', 'jordan', NULL, 'male', 'Country', 'jordan@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(37, 'Stephan', 'stephan', NULL, 'male', 'Country', 'stephan@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(38, 'Jonathan', 'jonathan', NULL, 'male', 'Country', 'jonathan@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 1, NULL, '776f726b696e67', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(39, 'Eve', 'eve', NULL, 'female', 'Country', 'eve@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(40, 'Samia', 'samia', NULL, 'female', 'Country', 'samia@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(41, 'Jeff', 'jeff', NULL, 'male', 'Country', 'jeff@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 1, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(42, 'Christian', 'christian', NULL, 'male', 'Country', 'christian@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 2, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(43, 'Isabelle', 'isabelle', NULL, 'female', 'Country', 'isabelle@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
-(44, 'Britney', 'britney', NULL, 'female', 'Country', 'britney@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0);
+(1, 'Steve', 'steve', NULL, 'male', '', 'steve@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 2, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 1766745518186),
+(3, 'Andrew', 'andrew', NULL, 'male', '', 'andrew@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(4, 'Samantha', 'samantha', NULL, 'female', '', 'samantha@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(5, 'Emma', 'emma', NULL, 'female', '', 'emma@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(6, 'Elizabeth', 'elizabeth', NULL, 'female', '', 'elizabeth@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(7, 'Jennifer', 'jennifer', NULL, 'female', '', 'jennifer@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(8, 'Monica', 'monica', NULL, 'female', '', 'monica@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(9, 'Smith', 'smith', NULL, 'male', '', 'smith@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(10, 'Peter', 'peter', NULL, 'male', '', 'peter@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(11, 'Margaret', 'margaret', NULL, 'female', '', 'margaret@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(12, 'Amy', 'amy', NULL, 'female', '', 'amy@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '2d207a7a5a5a7a', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(13, 'Thomas', 'thomas', NULL, 'male', '', 'thomas@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(14, 'Richard', 'richard', NULL, 'male', '', 'richard@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(15, 'Bob', 'bob', NULL, 'male', '', 'bob@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(16, 'Michael', 'michael', NULL, 'male', '', 'michael@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(17, 'Robert', 'robert', NULL, 'male', '', 'robert@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(18, 'Patricia', 'patricia', NULL, 'female', '', 'patricia@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(19, 'Jessica', 'jessica', NULL, 'female', '', 'jessica@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(20, 'Sandra', 'sandra', NULL, 'female', '', 'sandra@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(21, 'Stephanie', 'stephanie', NULL, 'female', '', 'stephanie@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(22, 'Laura', 'laura', NULL, 'female', '', 'laura@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(23, 'Anna', 'anna', NULL, 'female', '', 'anna@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(24, 'Helen', 'helen', NULL, 'female', '', 'helen@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(25, 'Sara', 'sara', NULL, 'female', '', 'sara@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(26, 'Diana', 'diana', NULL, 'female', '', 'diana@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(27, 'Scott', 'scott', NULL, 'male', '', 'scott@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(28, 'Arthur', 'arthur', NULL, 'male', '', 'arthur@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(29, 'Alice', 'alice', NULL, 'female', '', 'alice@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(31, 'Danielle', 'danielle', NULL, 'female', '', 'danielle@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '2d20646f206e6f742064697374757262', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(32, 'Kathy', 'kathy', NULL, 'female', '', 'kathy@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(33, 'Francesca', 'francesca', NULL, 'female', '', 'francesca@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(34, 'Jacqueline', 'jacqueline', NULL, 'female', '', 'jacqueline@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(35, 'Gerald', 'gerald', NULL, 'male', '', 'gerald@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(36, 'Jordan', 'jordan', NULL, 'male', '', 'jordan@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(37, 'Stephan', 'stephan', NULL, 'male', '', 'stephan@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(38, 'Jonathan', 'jonathan', NULL, 'male', '', 'jonathan@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '2d20776f726b696e67', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(39, 'Eve', 'eve', NULL, 'female', '', 'eve@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(40, 'Samia', 'samia', NULL, 'female', '', 'samia@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(41, 'Jeff', 'jeff', NULL, 'male', '', 'jeff@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(42, 'Christian', 'christian', NULL, 'male', '', 'christian@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(43, 'Isabelle', 'isabelle', NULL, 'female', '', 'isabelle@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0),
+(44, 'Britney', 'britney', NULL, 'female', '', 'britney@qsmessenger.com', '113459eb7bb31bddee85ade5230d6ad5d8b2fb52879e00a84ff6ae1067a210d3', 3, NULL, '', '48642bc6103b8ab15755d30e0d329c1aa535e7364025e6b47b1de753f35702d867fa34732cdabb4c', 1, '01/01/1990', 0);
 
 --
 -- Indexes for dumped tables
@@ -198,25 +189,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `friendship_requests`
 --
 ALTER TABLE `friendship_requests`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `friends_list`
 --
 ALTER TABLE `friends_list`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
