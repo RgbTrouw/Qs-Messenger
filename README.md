@@ -15,7 +15,7 @@
      along with this program. If not, see <https://www.gnu.org/licenses/>.  
   
     
-New Qs Messenger Client and Server 1.0.2a for Linux, Windows (and Android soon*)   
+New QsMessenger Client and Server 1.0.2a for Linux and Windows  
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
