@@ -1,4 +1,3 @@
-
 /*   QsMessenger Server v 1.0.2a Instant Messaging Application
      Copyright (C) 2026  Radu G. Balaban G.
 
@@ -33,10 +32,14 @@
     // #include <QDebug>
 
 
-QsMessengerServer::QsMessengerServer(quint16 port, QObject *parent) :
+QsMessengerServer::QsMessengerServer(quint16 port, bool log, QObject *parent) :
     QObject(parent),
     m_pWebSocketServer(nullptr)
 {
+
+    if (log){
+        startLogging = true;
+    }
 
     openDataBase();
 
@@ -82,16 +85,19 @@ QsMessengerServer::QsMessengerServer(quint16 port, QObject *parent) :
         QDir().mkpath("./logs/");
     }
 
-    qint64 logName = QDateTime::currentMSecsSinceEpoch();
+    if(startLogging){
+        qint64 logName = QDateTime::currentMSecsSinceEpoch();
 
-    logPath = "./logs/";
-    logPath += QString::number(logName);
-    logPath += ".log";
+        logPath = "./logs/";
+        logPath += QString::number(logName);
+        logPath += ".log";
 
-    QFile logFile(logPath);
-    if(logFile.open(QIODevice::WriteOnly | QIODevice::Append)){
-    logFile.write("Log Start: \n");
-    logFile.close();
+        QFile logFile(logPath);
+
+        if(logFile.open(QIODevice::WriteOnly | QIODevice::Append)){
+        logFile.write("Log Start: \n");
+        //logFile.close();
+        }
     }
 
 }
@@ -100,6 +106,7 @@ QsMessengerServer::QsMessengerServer(quint16 port, QObject *parent) :
 QsMessengerServer::~QsMessengerServer()
 {
     m_pWebSocketServer->close();
+    //logFile.close();
     qDeleteAll(m_clients.begin(), m_clients.end());
 }
 
@@ -118,9 +125,10 @@ void QsMessengerServer::onNewConnection()
 
 
     clients_id += 1;
-    clients.append(new client(pSocket->peerAddress(), pSocket->peerPort(), session_id_code, clients_id));
 
+    if(startLogging == false){
 
+        clients.append(new client(pSocket->peerAddress(), pSocket->peerPort(), session_id_code, clients_id));
 
     connect(pSocket, &QWebSocket::textMessageReceived, clients.last(), &client::process_text_message);
     connect(pSocket, &QWebSocket::binaryMessageReceived, clients.last(), &client::process_binary_message);
@@ -131,15 +139,31 @@ void QsMessengerServer::onNewConnection()
     connect(clients.last(), SIGNAL(emit_statusUpdate(QString, QStringList)), this, SLOT(updateStatus(QString, QStringList)));
     connect(clients.last(), SIGNAL(emit_friendRequest(QString,QString)), this, SLOT(fwFriendRequest(QString,QString)));
 
+    } else {
 
-    dateTime();
+        dclients.append(new dclient(pSocket->peerAddress(), pSocket->peerPort(), session_id_code, clients_id));
+
+    connect(pSocket, &QWebSocket::textMessageReceived, dclients.last(), &dclient::process_text_message);
+    connect(pSocket, &QWebSocket::binaryMessageReceived, dclients.last(), &dclient::process_binary_message);
+    connect(pSocket, &QWebSocket::disconnected, dclients.last(), &dclient::socket_disconnected);
+    connect(dclients.last(), SIGNAL(emit_close(QString)), this, SLOT(close_client(QString)) );
+    connect(dclients.last(), SIGNAL(emit_logData(QString)), this, SLOT(logData(QString)));
+    connect(dclients.last(), SIGNAL(emit_sendMsg(QString,QString,QString,QString)), this, SLOT(fwMessage(QString,QString,QString,QString)));
+    connect(dclients.last(), SIGNAL(emit_statusUpdate(QString, QStringList)), this, SLOT(updateStatus(QString, QStringList)));
+    connect(dclients.last(), SIGNAL(emit_friendRequest(QString,QString)), this, SLOT(fwFriendRequest(QString,QString)));
+
+    }
+
 }
 
 
 
 void QsMessengerServer::onSslErrors(QList<QSslError> errors)
 {
-    //qDebug() << "Ssl errors occurred";
+    qInfo() << "Ssl errors occurred";
+    for(int i=0; i<errors.size(); i++){
+        qInfo() << errors.at(i);
+    }
 }
 
 
@@ -149,19 +173,21 @@ void QsMessengerServer::logData(QString data){
     QByteArray wData = (data + "\n").toUtf8();
 
     QFile logFile(logPath);
-    if(logFile.open(QIODevice::WriteOnly | QIODevice::Append)){
-    logFile.write(wData);
-    logFile.close();
+
+    if(openLogOnce == false){
+
+
+        logFile.open(QIODevice::WriteOnly | QIODevice::Append);
+        openLogOnce == true;
     }
 
+    logFile.write(wData);
+    //logFile.close();
+
+
 }
 
 
-
-
-void QsMessengerServer::dateTime(){
-    QTimer::singleShot(1000, this, [=](){dateTime();});
-}
 
 void QsMessengerServer::close_client(QString session_id){
         for (int i = 0; i< clients.count(); i++ ){
@@ -252,13 +278,8 @@ void QsMessengerServer::openDataBase(){
 
 void QsMessengerServer::clearDatabase(){
 
-
-
-
-
     QSqlQuery query;
     query.exec("UPDATE `users` SET `availability` = '3';");
 
-    //db.close();
 }
 
