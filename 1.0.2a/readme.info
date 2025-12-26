@@ -7,6 +7,7 @@ Main changes:
 - ( The database also has some changes; )
 
 * sessionId not yet removed;
+* other unused variables to be removed;
   
 It is still a new preview, other errors are not excluded, but it does seem to be ok for now.  
   
