@@ -15,7 +15,7 @@
      along with this program. If not, see <https://www.gnu.org/licenses/>.  
   
     
-New QsMessenger Client and Server 1.0.2a for Linux and Windows Release    
+*New* QsMessenger Client and Server 1.0.2a Released    
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
