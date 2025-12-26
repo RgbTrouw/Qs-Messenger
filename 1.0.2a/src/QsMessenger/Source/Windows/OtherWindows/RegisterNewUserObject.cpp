@@ -1,5 +1,5 @@
-/*   QsMessenger Client v 1.0.2a Instant Messaging Application
-     Copyright (C) 2026  Radu G. Balaban G.
+/*   QsMessenger Client v 1.0.2 Instant Messaging Application
+     Copyright (C) 2025  Radu G. Balaban G.
 
      This program is free software: you can redistribute it and/or modify
      it under the terms of the GNU General Public License as published by
@@ -238,7 +238,7 @@ void RegisterNewUserObject::validate_input(){
 
         request.append(hashed_password + ":");
         request.append("true");
-        request.append(":ssid");
+        request.append(":sessionId"); // TO DO ...
 
         ui->message_Label->setText("Processing...");
         ui->message_Label_2->setText(ui->message_Label->text());
@@ -312,7 +312,7 @@ void RegisterNewUserObject::closeEvent (QCloseEvent *event)
         ui->full_name_Prompt->clear();
         ui->nick_Prompt->clear();
         ui->date_of_birthPrompt->clear();
-        ui->countriesBox->setCurrentIndex(142);
+        ui->countriesBox->setCurrentIndex(0);
         ui->email_Prompt->clear();
         ui->password_Prompt->clear();
         ui->password_2_Prompt->clear();
