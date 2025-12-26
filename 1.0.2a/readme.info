@@ -3,10 +3,14 @@ QsMessengerServer 1.0.2a Preview Available
 Main changes:
 
 - Relay functions have all been adapted for instant forwarding;  
-- Almost all database queries use "email" as primary key; 
+  
+- Almost all database queries use "email" as primary key;  
+  
 - ( The database also has some changes; )  
+  
 - Some unused variables and functions have been removed;  
-- Logging is only started with the "-log" program argument;
+  
+- Logging is only started with the "-log" program argument;  
   (Two distinct client classes are used to spare processing time)  
 
 * sessionId not yet removed;
