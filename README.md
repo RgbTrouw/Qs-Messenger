@@ -15,7 +15,7 @@
      along with this program. If not, see <https://www.gnu.org/licenses/>.  
   
     
- Qs Messenger Client and Server for Linux, Windows (and Android soon*)   
+New Qs Messenger Client and Server 1.0.2a for Linux, Windows (and Android soon*)   
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -44,9 +44,8 @@ The program is supposed to be similar to/ replace an old, popular instant messag
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
   
-  QsMessenger Client & Server 1.0.2a Release Available  
-
-Main changes:
+  QsMessenger Client & Server 1.0.2a Release Main Changes:  
+    
 
 - Host address setting added to client, along with other minor changes.  
   
