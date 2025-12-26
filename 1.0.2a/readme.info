@@ -6,7 +6,7 @@ Main changes:
 - Almost all database queries use "email" as primary key; 
 - ( The database also has some changes; )
 
-* sessionId still to be removed;
+* sessionId not yet removed;
   
 It is still a new preview, other errors are not excluded, but it does seem to be ok for now.  
   
