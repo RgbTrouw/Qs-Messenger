@@ -3,7 +3,7 @@ QsMessenger Client & Server 1.0.2a Release Available
 
 Main changes:
 
-- Host Address setting added to client, along with other minor changes.  
+- Host address setting added to client, along with other minor changes.  
   
 - Relay functions have all been adapted for instant forwarding;  
   
