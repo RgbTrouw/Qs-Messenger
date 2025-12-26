@@ -1,23 +1,26 @@
-QsMessengerServer 1.0.2a Preview Available  
+  
+QsMessenger Client & Server 1.0.2a Release Available  
 
 Main changes:
 
+- Host Address setting added to client, along with other minor changes.  
+  
 - Relay functions have all been adapted for instant forwarding;  
   
 - Almost all database queries use "email" as primary key;  
   
 - ( The database also has some changes; )  
   
-- Some unused variables and functions have been removed;  
+- Some unused variables and functions have been removed (including sessionId from all requests);  
   
 - Logging is only started with the "-log" program argument;  
   (Two distinct client classes are used to spare processing time)  
 
-* sessionId not yet removed;
+ 
   
-It is still a new preview, other errors are not excluded, but it does seem to be ok for now.  
+It is still a new release, other errors are not excluded, but it does seem to be ok for now.  
   
-Other changes like maximum nr. of clients, workload management, IP lookup and filtering, server service messages may also be included...
+Other changes may be included in the future... 
  
 
 
