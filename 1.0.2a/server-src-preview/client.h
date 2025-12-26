@@ -1,4 +1,3 @@
-
 /*   QsMessenger Server v 1.0.2a Instant Messaging Application
      Copyright (C) 2026  Radu G. Balaban G.
 
@@ -19,7 +18,6 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
-#include <QFileSystemWatcher>
 
 #include <QHostAddress>
 #include <QSqlDatabase>
@@ -82,12 +80,7 @@ private:
 
     QString logPath;
 
-    QTimer *ss = new QTimer();
-    QTimer *tmr= new QTimer();
-
-    QList<QString> peersList;
-    QList<QString> peersListCompare;
-    QList<QString> peersListBuffer;
+    QList<QString> myPeers;
 
     QString session_id_request="session_id";
     //QString sql_request="sql:*:*:*";
@@ -120,19 +113,11 @@ private:
 
     QString getPeerGroupNameRequest="getPeerGroupName:*";
 
-    bool reset = true;
-    bool compact_list;
-    bool list_type=false;
-    QString pending_binary = "none";
-    QString wpath;
     QString sp;
     QString uname;
     QString userid = "unsigned";
 
 
-    QStringList myPeers;
-
-    QString previous_list;
     QString response;
     QString previousRequestBuffer;
 
