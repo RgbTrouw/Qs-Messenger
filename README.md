@@ -1,5 +1,5 @@
-     QsMessenger v 1.0.2 Instant Messaging Client & Server Application  
-     Copyright (C) 2023-2025  Radu G. Balaban G.  
+     QsMessenger v 1.0.2a Instant Messaging Client & Server Application  
+     Copyright (C) 2026 Radu G. Balaban G.  
   
      This program is free software: you can redistribute it and/or modify  
      it under the terms of the GNU General Public License as published by  
@@ -30,46 +30,48 @@ The program is supposed to be similar to/ replace an old, popular instant messag
   
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
+ Thank you for your insterest in the application.    
+  
+'The QsMessenger Team' wishes you a Merry Christmas and a Happy New Year!  
+
+     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
+       
      ** Note that windows portable binaries set up a windows startup registery key, making the application start on windows startup. Move the QsMessenger folder to a friendly location before starting.  
        
-     ** Make sure to adjust the server address within the enclosed "hostname" file; (address:port)    
      
      ** Stay tuned for the latest updates and developments.   
 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
   
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  QsMessenger Client & Server 1.0.2a Release Available  
+
+Main changes:
+
+- Host address setting added to client, along with other minor changes.  
+  
+- Relay functions have all been adapted for instant forwarding;  
+  
+- Almost all database queries use "email" as primary key;  
+  
+- ( The database also has some changes; )  
+  
+- Some unused variables and functions have been removed (including sessionId from all requests);  
+  
+- Logging is only started with the "-log" program argument;  
+  (Two distinct client classes are used to spare processing time)  
+
+ 
+  
+It is still a new release, other errors are not excluded, but it does seem to be ok for now.  
+  
+Other changes may be included in the future...
     
-** Version 1.0.2a will be released soon. Most improvements come with the server. * A preview is available *  
-  
-Looping functions have been replaced with instant forwarding, most database keys have migrated from table "id" to "email" parameter and session_id has been removed from all queries.  
-  
-All of these changes will improve the server performance, bringing it up to standards.  
-**
-
-     ** The Good NEWS ** is that the Linux version has connectivity and is functional. This means that other updates are due to come.  
-  
-     A new version with latest fixes should be available relatively soon.    
-  
-     There is also a Windows development framework set up, but we still have to solve the connectivity issue.
-
-     Thank you for your insterest in the application.    
-  
-     'The QsMessenger Team' wishes you a Merry Christmas and a Happy New Year!  
-  
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  
-     ** Notice **  
-     Some source files have been revised. Binaries have thus been removed for now.  
-     We are working on making the application more accessible and stable.  
-  
-
-     ** The App Icon has changed...  
   
  
 Client configuration:  
 --------------------------------------------------
-Host address and port has to be assigned within the messenger client folder "host" file.  
+Host address and port has to be assigned within the messenger settings menu.  
   
 
 Server configuration:  
@@ -89,43 +91,7 @@ Note:
 If you plan on testing the server with Google Smtp service, the password used here differs from the regular account password and has to be generated from Google Account Settings (generate app password).  
 (Please use this method only for limited testing and do not use it to send out spam or any unsolicited advertising.)
 
-    
-About Source:  
---------------------------------------------------  
   
-The source is mostly clean. 
-Only the server source might be hard to follow at times, especially when it comes to the list handling.
-
-
-* The client source does contain some unused objects. These are within the "Source/Objects" folder and are just a working, early version of the "FriendsList" object but without the "Widget" component. They are not #included anywhere.    
-The used components are within the "Source/Windows" folder.
-  
-* SessionId is a parameter that was supposed to be implemented in early stages, is still present in all queries, but doesn't provide any particular purpose. (except for being a potential log indicator)
-
-* All server requests and responses are in ascii, except for files which are binary with an attached, temporary, ascii prefix/ header.
-
-* Status messages and private messages are processed in the format ascii(hex) code. (this supports the use of any character)  
-  
-* Account passwords are processed/ sent/ stored as `hash 256` twice. ( hash256(hash256(ascii_password)) ) 
-
-* The password for template account "steve@qsmessenger.com" is 'password'.
-  
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
-* Some features are to be improved in a future version.
-
-Known Issues:
-- Secure Socket doesn't seem to be connecting on Windows for now .? We are working on finding suitable solutions to resolve the issue. 
-
-- Messages relay has a delay of 1 second and has to be adapted for instant forwarding.
-A solution has already been tested out and is due pe published within the next version.  
-
-- Some database keys have to migrate to 'email' for better performance.  
-
-  
-- An eronous comma "," will occur in the friends list sql database table. This does not affect the list data processing and should be fixed at some point. 
-
-- Clear messages function not yet implemented.
-
        
 //  
 //  
@@ -135,6 +101,6 @@ A solution has already been tested out and is due pe published within the next v
 For suggestions or comments please send a note to:  
   
 "rgb.trust@gmail.com"  
-
+  
     
   ...  
