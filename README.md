@@ -60,7 +60,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
 - Logging is only started with the "-log" program argument;  
   (Two distinct client classes are used to spare processing time)  
 
-  - In essence, the server is a bit cleaner and runs more smoothly -  
+  - In essence, the server is a bit cleaner and runs more smoothly;   
   
   
 It is still a new release, other errors are not excluded, but it does seem to be ok for now.  
