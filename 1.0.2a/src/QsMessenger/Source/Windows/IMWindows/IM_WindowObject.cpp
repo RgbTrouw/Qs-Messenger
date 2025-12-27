@@ -57,7 +57,7 @@ IM_WindowObject::IM_WindowObject(QWidget *parent) :
 
     this->layout()->setMenuBar(menuBar);
 
-    this->setWindowIcon(QIcon("./Resources/icons/smiley.png"));
+    this->setWindowIcon(QIcon("./Resources/icons/AppIcon.png"));
 
     setMyAvatar();
     setPeerAvatar();
