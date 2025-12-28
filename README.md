@@ -68,7 +68,9 @@ It is still a new release, other errors are not excluded, but it does seem to be
 Other changes may be included in the future...
     
   * Qt Windows is somehow missing openSSL support for me, soo it could be the reason for no connectivity on Windows.  
-Suggestions are welcome.  
+Suggestions are welcome.
+  
+** Update ** OpenSSL 3 should apparently be supported starting with qt 6.5;   
   
 
  
