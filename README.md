@@ -23,16 +23,15 @@
      - C++ open source program developed with qt5 / Qt Creator IDE -  
   
   
-             Windows binaries might be available soon        
-   
-
 <Introduction>  
 
-    
+  
 The program is supposed to be similar to/ replace an old, popular instant messaging application that has become unavailable.  
   
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  
+               Windows binaries might be available soon        
+   
+
  Thank you for your insterest in the application.    
   
 'The QsMessenger Team' wishes you a Merry Christmas and a Happy New Year!  
