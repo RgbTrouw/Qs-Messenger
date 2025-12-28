@@ -72,6 +72,8 @@ Suggestions are welcome.
   
 ** Update ** OpenSSL 3 should apparently be supported starting with qt 6.5;   
   
+** Update  ** It is indeed connecting now on Windows. Only the Mysql driver is missing for now. However, I suspect we will fix it and there will be a windows binary available soon.  
+  
 
  
 Client configuration:  
