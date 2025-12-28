@@ -14,7 +14,9 @@
      You should have received a copy of the GNU General Public License  
      along with this program. If not, see <https://www.gnu.org/licenses/>.  
   
-    
+     
+           Windows binaries might be available soon        
+   
 *New* QsMessenger Client and Server 1.0.2a Released    
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -44,9 +46,6 @@ The program is supposed to be similar to/ replace an old, popular instant messag
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
 
-  
-           Windows binaries might be available soon        
-  
   
   QsMessenger Client & Server 1.0.2a Release Main Changes:  
     
