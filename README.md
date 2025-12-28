@@ -76,7 +76,7 @@ Suggestions are welcome.
   
 ** Update ** OpenSSL 3 should apparently be supported starting with qt 6.5;   
   
-** Update  ** It is indeed connecting with qt 6 on Windows. However, the QMYSQL driver is missing for now.  
+** Update  ** It is indeed connecting with qt 6 on Windows. However, the QMYSQL database driver is missing for now.  
 This might get fixed and there might be a Windows binary available soon.  
   
 
