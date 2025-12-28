@@ -15,8 +15,6 @@
      along with this program. If not, see <https://www.gnu.org/licenses/>.  
   
      
-           Windows binaries might be available soon        
-   
 *New* QsMessenger Client and Server 1.0.2a Released    
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -24,6 +22,9 @@
       
      - C++ open source program developed with qt5 / Qt Creator IDE -  
   
+  
+             Windows binaries might be available soon        
+   
 
 <Introduction>  
 
