@@ -78,7 +78,7 @@ Suggestions are welcome.
 ** Update  ** It is indeed connecting with qt 6 on Windows. However, the QMYSQL database driver is missing for now.  
 This might get fixed and there might be a Windows binary available soon.  
 
-** Update ** Just saay... the client could thus run on Windows. Only the server might run on Linux for now.
+** Update ** The client could thus run on Windows. Only the server might run on Linux for now.
   
 
  
