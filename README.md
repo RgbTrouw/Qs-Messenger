@@ -45,7 +45,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
 
   
-  * Windows binaries might be available soon *  
+     -      Windows binaries might be available soon      -  
   
   
   QsMessenger Client & Server 1.0.2a Release Main Changes:  
