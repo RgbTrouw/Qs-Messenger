@@ -28,8 +28,8 @@
   
 The program is supposed to be similar to/ replace an old, popular instant messaging application that has become unavailable.  
   
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-               Windows binaries might be available soon        
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
+          QsMessenger Client binaries for Windows will be available soon        
    
 
  Thank you for your insterest in the application.    
