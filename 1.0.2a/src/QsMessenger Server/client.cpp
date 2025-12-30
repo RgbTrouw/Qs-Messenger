@@ -288,6 +288,7 @@ void client::process_text_message(QString message){
              pClient->flush();
              //qInfo() << response;
 
+              emit emit_statusUpdate(myEmail, myPeers); // TO DO // quick fix/ untested 
 
          }
 
