@@ -79,10 +79,12 @@ Suggestions are welcome.
 This might get fixed and there might be a Windows binary available soon.  
 
 ** Update ** The client could thus run on Windows. Only the server might have to run on Linux.
+
   
-** Issue: Status not updated upon login... source code updated with untested patch for now;  
-One of potentially two issues that will be fixed.. it is still a promising result.  
-( testing many users )  
+** Update ** Processing...  
+  
+** Update ** Processing...  
+  
  
 Client configuration:  
 --------------------------------------------------
