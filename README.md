@@ -31,7 +31,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
 
  Thank you for your insterest in the application.    
   
- * Note * A late update has to be done and binaries will be reuploaded.  
+ * Note:  A late update has to be done and binaries will be reuploaded.  
     
 Probably the one line that had to be commented out for the registration function.    
   
