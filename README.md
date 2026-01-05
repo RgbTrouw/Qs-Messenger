@@ -36,7 +36,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
 Probably the one line that had to be commented out for the registration function.    
 
   What is new:  
-  - fixed some of the functions.
+  - completed some of the functions.
   - only one login with option of logging out other session.
   
   
