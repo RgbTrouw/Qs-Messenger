@@ -19,7 +19,7 @@ QsMessenger 1.0.2b Rev Released / Linux & Windows Binaries Included
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
       
-     - C++ open source program developed with qt5 / Qt Creator IDE -  
+     - C++ open source program developed with qt5 & qt6 / Qt Creator IDE -  
   
   
 <Introduction>  
