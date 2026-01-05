@@ -1,4 +1,4 @@
-     QsMessenger v 1.0.2a Instant Messaging Client & Server Application  
+     QsMessenger v 1.0.2b Rev 4 Instant Messaging Client & Server Application  
      Copyright (C) 2026 Radu G. Balaban G.  
   
      This program is free software: you can redistribute it and/or modify  
@@ -15,9 +15,8 @@
      along with this program. If not, see <https://www.gnu.org/licenses/>.  
   
      
-*New* QsMessenger 1.0.2a Released    
+QsMessenger 1.0.2b Rev Released / Linux & Windows Binaries Included      
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
       
      - C++ open source program developed with qt5 / Qt Creator IDE -  
@@ -29,67 +28,16 @@
 The program is supposed to be similar to/ replace an old, popular instant messaging application that has become unavailable.  
   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
-          QsMessenger Client binaries for Windows will be available soon        
-   
 
  Thank you for your insterest in the application.    
-  
-'The QsMessenger Team' wishes you a Merry Christmas and a Happy New Year!  
-
-     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
-       
-     ** Note that windows portable binaries set up a windows startup registery key, making the application start on windows startup. Move the QsMessenger folder to a friendly location before starting.  
-       
-     
-     ** Stay tuned for the latest updates and developments.   
-
-
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
-
-  
-  QsMessenger Client & Server 1.0.2a Release Main Changes:  
-    
-
-- Host address setting added to client, along with other minor changes.  
-  
-- Relay functions have all been adapted for instant forwarding;  
-  
-- Almost all database queries use "email" as primary key;  
-  
-- ( The database also has some changes; )  
-  
-- Some unused variables and functions have been removed (including sessionId from all requests);  
-  
-- Logging is only started with the "-log" program argument;  
-  (Two distinct client classes are used to spare processing time)  
-
-  - In essence the server is a bit cleaner and it runs more smoothly;   
-  
-  
-It is still a new release, other errors are not excluded, but it does seem to be ok for now.  
-  
-Other changes may be included in the future...
-    
-  * Qt Windows is somehow missing openSSL support for me, soo it could be the reason for no connectivity on Windows.  
-Suggestions are welcome.
-  
-** Update ** OpenSSL 3 should apparently be supported starting with qt 6.5;   
-  
-** Update  ** It is indeed connecting with qt 6 on Windows. However, the QMYSQL database driver is missing for now.  
-This might get fixed and there might be a Windows binary available soon.  
-
-** Update ** The client could thus run on Windows. Only the server might have to run on Linux.
-
-  
-** Update ** Processing...  
-  
-** Update ** Processing...  
   
  
 Client configuration:  
 --------------------------------------------------
 Host address and port has to be assigned within the messenger settings menu.  
   
+ ** Note that windows portable binaries set up a windows startup registery key, making the application start on windows startup. Move the QsMessenger folder to a friendly location before starting.  
+        
 
 Server configuration:  
 --------------------------------------------------
