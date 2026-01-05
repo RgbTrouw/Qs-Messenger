@@ -31,7 +31,8 @@ The program is supposed to be similar to/ replace an old, popular instant messag
 
  Thank you for your insterest in the application.    
   
- 
+ * Note * some late update has to be done and bins reuploaded.   
+  
 Client configuration:  
 --------------------------------------------------
 Host address and port has to be assigned within the messenger settings menu.  
