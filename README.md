@@ -31,7 +31,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
 
  Thank you for your insterest in the application.    
   
- * Note * some late update has to be done and bins reuploaded.   
+ * Note * a late update has to be done and bins will be reuploaded.   
   
 Client configuration:  
 --------------------------------------------------
