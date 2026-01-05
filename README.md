@@ -33,7 +33,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
   
  * Note * A late update has to be done and bins will be reuploaded.  
     
-Probably one line had to be commented out for registration function.    
+Probably the one line that had to be commented out for the registration function.    
   
 Client configuration:  
 --------------------------------------------------
