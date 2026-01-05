@@ -238,7 +238,7 @@ void RegisterNewUserObject::validate_input(){
 
         request.append(hashed_password + ":");
         request.append("true");
-        request.append(":sessionId"); // TO DO ...
+        // request.append(":sessionId"); // TO DO ...
 
         ui->message_Label->setText("Processing...");
         ui->message_Label_2->setText(ui->message_Label->text());
