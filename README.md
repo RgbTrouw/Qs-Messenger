@@ -15,7 +15,7 @@
      along with this program. If not, see <https://www.gnu.org/licenses/>.  
   
      
-QsMessenger 1.0.2b Rev 4 Released / Linux & Windows Binaries Included      
+QsMessenger 1.0.2b Rev 4 Released / Linux & Windows Client Binaries Included      
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
       
