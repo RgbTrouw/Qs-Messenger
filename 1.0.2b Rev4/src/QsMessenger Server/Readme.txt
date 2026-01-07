@@ -13,3 +13,6 @@ Server configuration:
 
 
 Service Port is 7080;
+
+
+Use -v argument to display verbose messages;
