@@ -32,7 +32,7 @@
 
 
 
-client::client(QHostAddress ip_address, quint16 remote_port, QString session_id_code, int clients_id)
+client::client(QHostAddress ip_address, quint16 remote_port, QString session_id_code, int clients_id, bool verbose)
 {
 
     IPaddress = ip_address;
@@ -44,7 +44,9 @@ client::client(QHostAddress ip_address, quint16 remote_port, QString session_id_
 
     db.close();
 
-
+    if(verbose){
+        startVerbose = true;
+    }
 
     QString mysqlUsername;
     QString mysqlPassword;
@@ -87,7 +89,9 @@ void client::process_text_message(QString message){
 
     if (message != previousRequestBuffer ){
 
-
+        if(startVerbose){
+        qInfo() << message;
+        }
 
         if(message.indexOf("peer_avatar:") != 0){
 
@@ -519,8 +523,6 @@ void client::process_text_message(QString message){
 
              //qInfo() << message;
 
-
-
              QStringList register_params = message.split(":");
 
              QString fname = register_params.at(1);
@@ -534,7 +536,6 @@ void client::process_text_message(QString message){
 
              QByteArray hash = password.toUtf8();
              password = QCryptographicHash::hash(hash, QCryptographicHash::Sha256).toHex();
-
 
              QProcess process;
              process.start("openssl rand -hex 10");
@@ -551,7 +552,7 @@ void client::process_text_message(QString message){
              if ( query.size() == 0 ) {
 
 
-              if (query.exec("INSERT INTO `users` (`full_name`, `nickname`, `gender`, `country`,`email`, `password`, `hex`, `status`, `date_of_birth`, `lastLogin`) VALUES ('" + fname + "', '" + uname + "', '" + gender + "', '" + country + "', '" + email + "', '" + password + "', '" + scode + "', '0', '" + date_of_birth + "', '0');" )) {
+             if (query.exec("INSERT INTO `users` (`full_name`, `nickname`, `gender`, `country`,`email`, `password`, `hex`, `status`, `date_of_birth`, `lastLogin`) VALUES ('" + fname + "', '" + uname + "', '" + gender + "', '" + country + "', '" + email + "', '" + password + "', '" + scode + "', '0', '" + date_of_birth + "', '0');" )) {
 
               process.execute("php ./assets/mailToRegister.php " + email + " " + scode);
               process.waitForFinished(-1);
@@ -559,7 +560,7 @@ void client::process_text_message(QString message){
               response = "Registration success... Please activate your account...";
 
               } else { QSqlError err = query.lastError();
-                 // qInfo() << err;
+                  qInfo() << err;
               }
              } else { response = "Email already in use or not activated..."; }
 
