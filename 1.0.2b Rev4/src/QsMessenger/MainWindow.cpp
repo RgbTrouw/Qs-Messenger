@@ -1263,7 +1263,7 @@ void MainWindow::playAudio(QString path){
 
    // audioPlayer->setMedia(QUrl::fromLocalFile(path));  // or // audioPlayer->setSource(QUrl::fromLocalFile(path));
 
-    audioPlayer->setSource(QUrl::fromLocalFile(path));
+    audioPlayer->setMedia(QUrl::fromLocalFile(path));
 
     audioPlayer->play();
 }
