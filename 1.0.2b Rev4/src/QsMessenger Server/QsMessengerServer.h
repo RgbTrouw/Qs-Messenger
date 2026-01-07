@@ -32,7 +32,7 @@ class QsMessengerServer : public QObject
 {
     Q_OBJECT
 public:
-    explicit QsMessengerServer(quint16 port, bool log, QObject *parent = nullptr);
+    explicit QsMessengerServer(quint16 port, bool log, bool verbose, QObject *parent = nullptr);
     ~QsMessengerServer() override;
 
 
@@ -59,9 +59,11 @@ private Q_SLOTS:
 
 private:
 
+    bool startVerbose = false;
 
     bool startLogging = false;
     bool openLogOnce = false;
+
 
     int clients_id = 0;
 
@@ -85,4 +87,3 @@ private:
 
 
 };
-
