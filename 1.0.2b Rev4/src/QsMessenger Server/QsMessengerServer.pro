@@ -15,4 +15,3 @@ HEADERS += \
     QsMessengerServer.h \
     client.h
 
-
