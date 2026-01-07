@@ -24,18 +24,21 @@ int main(int argc, char *argv[])
     quint16 port = 7080;
 
     bool log = false;
+    bool verbose = false;
 
     for(int i=0; i< argc; i++){
 
         if( qstricmp(argv[i], "-log") == 0){
             log = true;
         }
+        if( qstricmp(argv[i], "-v") == 0){
+            verbose = true;
+        }
     }
 
-    QsMessengerServer server(port, log);
+    QsMessengerServer server(port, log, verbose);
 
     Q_UNUSED(server);
 
     return a.exec();
 }
-
