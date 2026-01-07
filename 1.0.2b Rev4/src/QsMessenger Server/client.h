@@ -36,7 +36,7 @@ class client : public QObject
 
 public:
     QString session_id;
-    client(QHostAddress ip_address, quint16 remote_port, QString session_id_code, int clients_id);
+    client(QHostAddress ip_address, quint16 remote_port, QString session_id_code, int clients_id, bool verbose);
 
 public slots:
     void process_text_message(QString message);
@@ -90,6 +90,8 @@ public:
 
 private:
 
+    bool startVerbose = false;
+
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", QString::number(QRandomGenerator::global()->bounded(1000000,10000000)));
     QWebSocket *pClient = qobject_cast<QWebSocket *>(sender());
 
@@ -106,44 +108,42 @@ private:
 
     QString loginQuery;
 
-    QString session_id_request="session_id";
-    //QString sql_request="sql:*:*:*";
-    QString loginRequest="login:*:*:[0,2]";
-    QString disconnectOther="disconnectOtherSession:*";
-    QString infoRequest="getMyInfo";
-    QString uploadAvatarRequest="upload_avatar:*";
-    QString retrieveAvatarRequest="retrieve_avatar";
-    QString getPeerAvatarRequest="peer_avatar:*";
-    QString imRequest="im:*:*";
-    QString clearArchiveRequest="clearArchive:*";
-    QString haveReadRequest="have_read:*";
-    QString loadPreviousRequest="previous:*:*";
+    QString respondAddNewUserRequest="respondAddNewUserRequest:*:*";
+    QString resendActivationCodeRequest="resendActivationCode:*:*";
     QString registerNewUserRequest="register:*:*:*:*:*:*:*:true";
+    QString activateNewUserRequest="activate_user_account:*:*";
+    QString getPeerGroupNameRequest="getPeerGroupName:*";
+    QString setAvailabilityRequest="set_availability:*";
+    QString disconnectOther="disconnectOtherSession:*";
+    QString recoverPasswordRequest="recoverPassword:*";
+    QString resetPasswordRequest="resetPassword:*:*";
+    QString retrieveAvatarRequest="retrieve_avatar";
+    QString uploadAvatarRequest="upload_avatar:*";
+    QString getPeerAvatarRequest="peer_avatar:*";
+    QString clearArchiveRequest="clearArchive:*";
+    QString moveToGroupRequest="moveToGroup:*:*";
+    QString loadPreviousRequest="previous:*:*";
     QString addNewUserRequest="addNewUser:*:*";
-    QString removeUserRequest="removeUser:*";
     QString removeGroupRequest="removeGroup:*";
     QString addNewGroupRequest="addNewGroup:*";
-    QString moveToGroupRequest="moveToGroup:*:*";
-    QString respondAddNewUserRequest="respondAddNewUserRequest:*:*";
-    QString setAvailabilityRequest="set_availability:*";
+    QString toggleListRequest="toggle_list:*";
+    QString removeUserRequest="removeUser:*";
+    QString session_id_request="session_id";
     QString setStatusRequest="set_status:*";
+    QString loginRequest="login:*:*:[0,2]";
+    QString haveReadRequest="have_read:*";
     QString signOutRequest="sign_out";
     QString getListRequest="getlist";
-    QString toggleListRequest="toggle_list:*";
-    QString activateNewUserRequest="activate_user_account:*:*";
-    QString resendActivationCodeRequest="resendActivationCode:*:*"; // !
-    QString recoverPasswordRequest="recoverPassword:*";
-    QString resetPasswordRequest="resetPassword:*:*:*";
-
-    QString getPeerGroupNameRequest="getPeerGroupName:*";
+    QString infoRequest="getMyInfo";
+    QString imRequest="im:*:*";
 
     QString sp;
     QString uname;
     QString userid = "unsigned";
 
-    QString loginAvailability; // dclient
+    QString loginAvailability;
 
-    bool updateStatusUponLogin = false; // dclient
+    bool updateStatusUponLogin = false;
     QString logInChallenge = "";
     int logInChallengeCount = 0;
 
