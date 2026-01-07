@@ -30,14 +30,15 @@ The program is supposed to be similar to/ replace an old, popular instant messag
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
 
  Thank you for your insterest in the application.    
-  
- * Note:  A late update has to be done and binaries will be reuploaded.  
-    
-Probably the one line that had to be commented out for the registration function.    
 
+     
   What is new:  
-  - completed some of the functions.
-  - only one login with option of logging out other session.
+    
+  - completed some of the list / friendship functions.
+  - only one login allowed with option of logging out other session.
+  - server verbose option "-v" added
+  - (removed server logging for now)
+      
   
   
 Client configuration:  
