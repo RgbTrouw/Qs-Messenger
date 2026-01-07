@@ -60,7 +60,7 @@ Server configuration:
 - configure credentials in 'assets' folder;
   (sql and smtp)  
 - import certificates to 'crt' folder
-- import 'messenger.sql' file to mysql database 'messenger'  
+- import 'messengerDataBase.sql' file to mysql database 'messenger'  
   
   
 
