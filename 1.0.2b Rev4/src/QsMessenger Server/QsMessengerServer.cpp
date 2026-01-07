@@ -32,7 +32,7 @@
     // #include <QDebug>
 
 
-QsMessengerServer::QsMessengerServer(quint16 port, bool log, QObject *parent) :
+QsMessengerServer::QsMessengerServer(quint16 port, bool log, bool verbose, QObject *parent) :
     QObject(parent),
     m_pWebSocketServer(nullptr)
 {
@@ -41,7 +41,9 @@ QsMessengerServer::QsMessengerServer(quint16 port, bool log, QObject *parent) :
         startLogging = true;
     }
 
-
+    if(verbose){
+        startVerbose = true;
+    }
 
     openDataBase();
 
@@ -156,7 +158,7 @@ void QsMessengerServer::onNewConnection()
 
 
 
-            clients.append(new client(pSocket->peerAddress(), pSocket->peerPort(), session_id_code, clients_id));
+            clients.append(new client(pSocket->peerAddress(), pSocket->peerPort(), session_id_code, clients_id, startVerbose));
 
             for(int i=0; i< clients.size(); i++){
 
