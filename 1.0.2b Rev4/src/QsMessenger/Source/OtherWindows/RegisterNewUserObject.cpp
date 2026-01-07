@@ -99,6 +99,8 @@ void RegisterNewUserObject::previousPage(){
     ui->date_of_birthPrompt->clear();
     ui->email_Prompt->clear();
     ui->female_radioButton->setChecked(false);
+    ui->password_2_Prompt->clear();
+    ui->password_Prompt->clear();
 
     ui->resendEmailButton->setEnabled(false);
 
@@ -238,7 +240,6 @@ void RegisterNewUserObject::validate_input(){
 
         request.append(hashed_password + ":");
         request.append("true");
-        // request.append(":sessionId"); // TO DO ...
 
         ui->message_Label->setText("Processing...");
         ui->message_Label_2->setText(ui->message_Label->text());
@@ -254,9 +255,10 @@ void RegisterNewUserObject::server_feedback(QString message){
     if (message == "Registration success... Please activate your account..." ){
        ui->resendEmailButton->setEnabled(true);
        nextPage();
+       ui->message_Label->setText(message);
+       ui->message_Label_2->setText(ui->message_Label->text());
     }
-    ui->message_Label->setText(message);
-    ui->message_Label_2->setText(ui->message_Label->text());
+
 
     if (message == "Activation success..."){
         QTimer::singleShot(3200, this, [=](){
