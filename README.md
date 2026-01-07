@@ -34,7 +34,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
      
   What is new:  
     
-  - completed some of the list / friendship functions.
+  - completed some of the list functions  
   - only one login allowed with option of logging out other session.
   - server verbose option "-v" added
   - (removed server logging for now)
