@@ -43,7 +43,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
   
 Client configuration:  
 --------------------------------------------------
-Host address and port has to be assigned within the messenger settings menu.  
+Host address and port have to be assigned within the messenger settings menu.  
 Once the setting is configured the client will connect to the server address.
   
  ** Note that windows portable binaries set up a windows startup registery key, making the application start on windows startup. Move the QsMessenger folder to a friendly location before starting.  
