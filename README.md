@@ -35,7 +35,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
     
 - registration  
 - password reset  
-- all friends list management features (except for ignore list)  
+- all friends list management features   
 - send msg  
 - send buzz  
 - load previous messages  
@@ -47,6 +47,7 @@ Not yet implemented:
 - webcam session  
 - configure start on OS Startup  
   (option is always active)  
+- block/ ignore list  
   
      
 What is new:  
