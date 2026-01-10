@@ -36,7 +36,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
 - registration  
 - password reset  
 - all friends list management features   
-- send msg  
+- send text message   
 - send buzz  
 - load previous messages  
 - clear archive. 
