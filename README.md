@@ -70,9 +70,9 @@ Once the setting is configured the client will connect to the server address.
 Server configuration:  
 --------------------------------------------------
 *require Php Pear (Mail)  
-*require Mysql Server  
+*require MySql Server  
 *require OpenSSL  
-*require Ssl certificate bundle  
+*require SSL certificate bundle  
   
 
 - configure credentials in 'assets' folder;
