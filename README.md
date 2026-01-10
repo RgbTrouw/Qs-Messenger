@@ -39,7 +39,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
 - send text message   
 - send buzz  
 - load previous messages  
-- clear archive. 
+- clear archived messages   
   
 Not yet implemented:  
    
