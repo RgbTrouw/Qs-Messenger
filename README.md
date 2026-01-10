@@ -43,7 +43,7 @@ This includes:
 - all friends list management features   
 - send text message   
 - send buzz  
-- load previous messages  
+- load archived messages  
 - clear archived messages   
   
 Not yet implemented:  
