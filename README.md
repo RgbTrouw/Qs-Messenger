@@ -31,7 +31,9 @@ The program is supposed to be similar to/ replace an old, popular instant messag
 
  Thank you for your insterest in the application.    
 
-** Note that only basic functions are implemented for now. This includes:  
+** Note that only basic functions are implemented for now.  
+  
+This includes:  
     
 - registration  
 - password reset  
