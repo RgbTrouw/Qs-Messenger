@@ -31,6 +31,8 @@ The program is supposed to be similar to/ replace an old, popular instant messag
 
  Thank you for your insterest in the application.    
 
+** Note that only basic functions are implemented for now. This includes registration, password reset, all friends list management features (except for ignore list), send msg, send buzz, load previous messages and clear archive.  
+Send smiley, file, picture or webcam session are not yet implemented.  
      
   What is new:  
     
