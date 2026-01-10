@@ -49,7 +49,7 @@ Not yet implemented:
   (option is always active)  
   
      
-  What is new:  
+What is new:  
     
   - completed some of the list functions  
   - only one login allowed with option of logging out other session.
