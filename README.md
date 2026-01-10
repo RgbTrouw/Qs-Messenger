@@ -47,7 +47,8 @@ This includes:
 - clear archived messages   
   
 Not yet implemented:  
-   
+  
+- peer login / logout notification   
 - send smiley, files, pictures 
 - webcam session  
 - configure start on OS Startup  
