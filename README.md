@@ -38,6 +38,8 @@ This includes:
 - configure host address  
 - registration  
 - password reset  
+- set status  
+- set avatar  
 - all friends list management features   
 - send text message   
 - send buzz  
