@@ -80,7 +80,9 @@ Server configuration:
 - import certificates to 'crt' folder
 - import 'messengerDataBase.sql' file to mysql database 'messenger'  
   
-The Gmail smtp service works well. Note that the password used is an "app password" and is different than the regular account password. One may se up a Gmail G Suite account with the desired host domain name. Ie. qsmessenger@yourdomain.com.  
+The Gmail smtp service works well. Note that the password used is an "app password" and is different than the regular account password. One may set up a Gmail G Suite Account with the desired host domain name. Ie.  
+qsmessenger@yourdomain.com or  
+no-reply@yourdomain.com.    
   
   
 
