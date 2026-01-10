@@ -35,6 +35,7 @@ The program is supposed to be similar to/ replace an old, popular instant messag
   
 This includes:  
     
+- configure host address  
 - registration  
 - password reset  
 - all friends list management features   
