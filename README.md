@@ -71,7 +71,7 @@ Client configuration:
 Host address and port have to be assigned within the messenger settings menu.  
 Once the setting is configured the client will connect to the server address.
   
- ** Note that windows portable binaries set up a Windows Startup Registery Key, making the application start on Windows startup. Move the QsMessenger folder to a friendly location before starting.  
+ ** Note that Windows portable binaries set up a Startup Registery Key, making the application start on Windows startup. Move the QsMessenger folder to a friendly location before starting.  
         
 
 Server configuration:  
