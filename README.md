@@ -59,7 +59,7 @@ Not yet implemented:
 What is new:  
     
   - completed some of the list functions  
-  - only one login allowed with option of logging out the other session.
+  - only one login allowed, with option of logging out the other session
   - server verbose option "-v" added
   - (removed server logging "-log" for now)
       
