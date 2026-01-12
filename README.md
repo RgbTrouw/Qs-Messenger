@@ -25,7 +25,7 @@ QsMessenger 1.0.2b Rev4 Released - Linux & Windows Client Binaries Included
 <Introduction>  
 
   
-The program is supposed to be similar to/ replace an old, popular instant messaging application that has become unavailable.  
+This program is supposed to be similar to/ replace an old, popular instant messaging application that has become unavailable.  
   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
 
