@@ -37,7 +37,8 @@ This includes:
     
 - configure host address  
 - registration  
-- password reset  
+- password reset
+- login  
 - set status  
 - set avatar  
 - all friends list management features   
