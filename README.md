@@ -95,7 +95,7 @@ no-reply@yourdomain.com.
   
 The code can be adapted to serve on multiple computers, hosting a larger number of clients.   
   
-This involves splitting the sql data by a certain function on multiple back-end sql servers (ie. letters abc s1, def s2, ghi s3, jkl s4, mno s1, pqr s2, etc. or something similar) and multiple front-end servers, communicating to each other and any of the sql servers, whilst balancing the nr. of clients between them.  
+This involves splitting the sql data by a certain function on multiple back-end sql servers (ie. letters abc s1, def s2, ghi s3, jkl s4, mno s1, pqr s2, etc. or something similar) and multiple front-end servers communicating to each other and any of the sql servers, whilst balancing the nr. of clients between them.  
 
 A single computer might also serve as a starting point, serving for a base of clients.  
   
