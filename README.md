@@ -93,7 +93,7 @@ qsmessenger@yourdomain.com or
 no-reply@yourdomain.com.    
   
   
-The code can be adapted to serve on multiple machines, hosting a larger number of clients.  
+The code can be adapted to serve on multiple computers, hosting a larger number of clients.  
   
 
       
