@@ -25,7 +25,8 @@ QsMessenger 1.0.2b Rev4 Released - Linux & Windows Client Binaries Included
     
   ![alt text](https://github.com/RgbTrouw/QsMessenger/blob/root/QsMessenger%20v1.0.2a%202026.png)  
   
-  ![alt text](<img width="1920" height="1080" alt="Screenshot (46)" src="https://github.com/user-attachments/assets/b616e5df-95ac-422e-9a47-c5c5fc034185" />)
+  ![alt text]()  
+  
 
     
 <Introduction>  
