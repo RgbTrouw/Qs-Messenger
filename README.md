@@ -37,7 +37,7 @@ This program is supposed to be similar to/ replace an old, popular instant messa
 
  Thank you for your insterest in the application.    
 
-** Note that only basic functions are implemented for now.  
+* Note that only basic functions are implemented for now.  
   
 This includes:  
     
@@ -77,7 +77,7 @@ Client configuration:
 Host address and port have to be assigned within the messenger settings menu.  
 Once the setting is configured the client will connect to the server address.
   
- ** Note that Windows portable binaries set up a Startup Registery Key, making the application start on Windows startup. Move the QsMessenger folder to a friendly location before starting.  
+ * Note that Windows portable binaries set up a Startup Registery Key, making the application start on Windows startup. Move the QsMessenger folder to a friendly location before starting.  
         
 
 Server configuration:  
