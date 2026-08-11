@@ -39,6 +39,8 @@ This program is supposed to be similar to/ replace an old, popular instant messa
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
 
  Thank you for your insterest in the application.    
+   
+If you have issues using the software you can always write an email at 'rgb.trust@gmail.com'.  
 
 * Note that only basic functions are implemented for now.  
   
