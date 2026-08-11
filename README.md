@@ -23,7 +23,7 @@ QsMessenger 1.0.2b Released - Windows & Linux Client Binaries Included
 
 Server Address: **qsmessenger.net 7080**  
   
-If you have connectivity problems you can always write an email at 'rgb.trust@gmail.com'.   
+*If you are having connectivity problems you can always write an email at 'rgb.trust@gmail.com'.*   
    
   ![alt text](https://github.com/RgbTrouw/QsMessenger/blob/root/QsMessenger%201.0.2a%20Windows.png)
     
