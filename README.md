@@ -21,7 +21,7 @@ QsMessenger 1.0.2b Released - Windows & Linux Client Binaries Included
       
      - C++ open source program developed with qt5 & qt6 / Qt Creator IDE -  
 
- *"the cute and small messenger"*  
+ *" the cute and small messenger "*  
   
 Server Address: **qsmessenger.net 7080**  
   
