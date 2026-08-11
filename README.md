@@ -23,7 +23,9 @@ QsMessenger 1.0.2b Released - Windows & Linux Client Binaries Included
 
  *" the cute and small messenger "*  
   
-Host Address: **qsmessenger.net 7080** <img src="https://github.com/RgbTrouw/QsMessenger/blob/root/Online.png" width="92" height="34">  
+Host Address: **qsmessenger.net 7080**  
+  
+<img src="https://github.com/RgbTrouw/QsMessenger/blob/root/Online.png" width="92" height="34">  
   
 *If you are having connectivity problems you can always write an email at 'rgb.trust@gmail.com' or try again later.*     
 
