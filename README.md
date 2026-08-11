@@ -38,7 +38,7 @@ Host Address: **qsmessenger.net 7080** <img src="https://github.com/RgbTrouw/QsM
 <Introduction>  
 
   
-This program is supposed to be similar to/ replace an old, popular instant messaging application that has become unavailable.  
+" This program is supposed to be similar to/ replace an old, popular instant messaging application that has become unavailable. "  
   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
 
