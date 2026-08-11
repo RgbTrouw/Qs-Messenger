@@ -20,6 +20,8 @@ QsMessenger 1.0.2b Released - Windows & Linux Client Binaries Included
 
       
      - C++ open source program developed with qt5 & qt6 / Qt Creator IDE -  
+
+Server Address: qsmessenger.net:7080  
    
   ![alt text](https://github.com/RgbTrouw/QsMessenger/blob/root/QsMessenger%201.0.2a%20Windows.png)
     
