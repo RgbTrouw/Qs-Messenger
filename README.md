@@ -50,7 +50,8 @@ This includes:
 - login / logout  
 - set status  
 - set avatar  
-- all friends list management features   
+- all friends list management features
+  (accessible by right click context menu)  
 - send text message   
 - send buzz  
 - load archived messages  
