@@ -22,6 +22,8 @@ QsMessenger 1.0.2b Released - Windows & Linux Client Binaries Included
      - C++ open source program developed with qt5 & qt6 / Qt Creator IDE -  
 
 Server Address: **qsmessenger.net 7080**  
+  
+If you have connectivity problems you can always write an email at 'rgb.trust@gmail.com'.   
    
   ![alt text](https://github.com/RgbTrouw/QsMessenger/blob/root/QsMessenger%201.0.2a%20Windows.png)
     
@@ -40,7 +42,6 @@ This program is supposed to be similar to/ replace an old, popular instant messa
 
  Thank you for your insterest in the application.    
    
-If you have issues using the software you can always write an email at 'rgb.trust@gmail.com'.  
 
 * Note that only basic functions are implemented for now.  
   
