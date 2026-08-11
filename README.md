@@ -29,7 +29,6 @@ Server Address: **qsmessenger.net 7080**
     
   ![alt text](https://github.com/RgbTrouw/QsMessenger/blob/root/QsMessenger%20v1.0.2a%202026.png)  
   
-  ![alt text](https://github.com/RgbTrouw/QsMessenger/blob/root/QsMessenger%20-%20Cascading%20Clients.png)
  
 * see "QsMessenger - Login Screen.png"
     
