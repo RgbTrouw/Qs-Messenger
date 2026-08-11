@@ -50,7 +50,7 @@ Host Address: **qsmessenger.net 7080** <img src="https://github.com/RgbTrouw/QsM
 This includes:  
     
 - configure host address  
-- registration  
+- user registration  
 - password reset
 - login / logout  
 - set status  
