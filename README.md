@@ -23,7 +23,7 @@ QsMessenger 1.0.2b Released - Windows & Linux Client Binaries Included
 
  *" the cute and small messenger "*  
   
-Host Address: **qsmessenger.net 7080**  - v1.0.2b (@ IPv4 100.71.15.9)  
+Host Address: **qsmessenger.net 7080**  - v1.0.2b (@IPv4 100.71.15.9)  
   
 <img src="https://github.com/RgbTrouw/QsMessenger/blob/root/Online.png" width="92" height="34">  
   
