@@ -1,3 +1,11 @@
 
   
 - project version under development with exciting, new features -
+
+
+Notes & To Do  
+  
+* send message to group has been added  
+* previous version will get an error is socket is not used at all for several hours. A simple sendTextMessage "ping" on a hourly basis will fix this.  
+  
+  
