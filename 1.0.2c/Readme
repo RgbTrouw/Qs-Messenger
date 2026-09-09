@@ -9,7 +9,7 @@ Notes & To Do
   
 * audio notifications have been added  
   
-* verbose server mode has been replaced, for the gDebug method inhibits the storing of messages to file    
+* verbose server mode has been replaced, for the gDebug() method inhibits the storing of messages to file    
   
 * previous version will get an error if socket is not used at all for several hours. A simple sendTextMessage "ping" on a hourly basis will fix this.  
   
