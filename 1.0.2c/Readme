@@ -7,6 +7,8 @@ Notes & To Do
   
 * send message to group has been added  
   
+* audio notifications have been added  
+  
 * previous version will get an error if socket is not used at all for several hours. A simple sendTextMessage "ping" on a hourly basis will fix this.  
   
   
