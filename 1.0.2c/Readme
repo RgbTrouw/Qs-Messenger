@@ -9,6 +9,8 @@ Notes & To Do
   
 * audio notifications have been added  
   
+* logging replaces verbose server mode  
+  
 * previous version will get an error if socket is not used at all for several hours. A simple sendTextMessage "ping" on a hourly basis will fix this.  
   
   
