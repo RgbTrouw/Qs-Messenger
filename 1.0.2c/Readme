@@ -12,6 +12,8 @@ Notes & To Do
 * verbose server mode has been replaced with a QFile method, for the gDebug() method inhibits the storing of messages to file    
   
 * previous version will get an error if socket is not used at all for several hours. A simple sendTextMessage "ping" on a hourly basis will fix this.  
+
+* server maintenance messages option has been added  
   
 * ip region filter option might be added  
   
