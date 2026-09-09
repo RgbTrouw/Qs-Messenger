@@ -13,4 +13,6 @@ Notes & To Do
   
 * previous version will get an error if socket is not used at all for several hours. A simple sendTextMessage "ping" on a hourly basis will fix this.  
   
+* ip region filter option might be added  
+  
   
