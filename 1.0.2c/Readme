@@ -13,7 +13,8 @@ Notes & To Do
   
 * previous version will get an error if socket is not used at all for several hours. A simple sendTextMessage "ping" on a hourly basis will fix this.  
 
-* server maintenance messages option has been added  
+* server maintenance messages have been added  
+(ie. Server is going offline for maintenance in 10 min)
   
 * ip region filter option might be added  
   
