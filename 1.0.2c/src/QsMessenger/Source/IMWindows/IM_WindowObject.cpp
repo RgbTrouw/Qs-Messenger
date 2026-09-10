@@ -727,18 +727,21 @@ void IM_WindowObject::receiveFilePayload(QString transferId, QByteArray data){
             ui->notification_label->setText(" Receiving file: \"" + fileTransferData.fileName + "\"");
 
             QFile file(fileTransferData.savePath);
-            if (file.open(QIODevice::WriteOnly)){
-                file.write(data);
+            if (file.open(QIODevice::WriteOnly | QIODevice::Truncate)){
+                qint64 bytesWritten = file.write(data);
                 file.close();
 
                 QString notification = " File saved: \"" + fileTransferData.fileName + "\"";
                 bool validFileSize = false;
                 qint64 expectedFileSize = fileTransferData.fileSize.toLongLong(&validFileSize);
-                if (validFileSize && expectedFileSize != data.size()){
+                if (bytesWritten != data.size()){
+                    ui->notification_label->setText(" Failed to save file: \"" + fileTransferData.fileName + "\"");
+                } else if (validFileSize && expectedFileSize != data.size()){
                     notification.append(" (" + QString::number(data.size()) + "/" + fileTransferData.fileSize + " bytes)");
+                    ui->notification_label->setText(notification);
+                } else {
+                    ui->notification_label->setText(notification);
                 }
-
-                ui->notification_label->setText(notification);
             } else {
                 ui->notification_label->setText(" Failed to save file: \"" + fileTransferData.fileName + "\"");
             }

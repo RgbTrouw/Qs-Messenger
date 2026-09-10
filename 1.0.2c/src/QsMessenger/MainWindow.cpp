@@ -1405,13 +1405,14 @@ void MainWindow::send_file_payload(QString peerEmail, QString transferId, QStrin
         return;
     }
 
-    QByteArray request = "file:";
-    request.append(peerEmail.toUtf8());
-    request.append(":");
-    request.append(transferId.toUtf8());
-    request.append(":");
-    request.append(file.readAll());
+    QByteArray request = file.readAll();
     file.close();
+
+    request.prepend(":");
+    request.prepend(transferId.toUtf8());
+    request.prepend(":");
+    request.prepend(peerEmail.toUtf8());
+    request.prepend("file:");
 
     m_webSocket->sendBinaryMessage(request);
     imWindow->completeOutgoingFileTransfer(transferId, true, "");
