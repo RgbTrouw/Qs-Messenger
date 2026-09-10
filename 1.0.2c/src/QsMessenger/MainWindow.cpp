@@ -252,7 +252,6 @@ void MainWindow::onConnected()
     connect(m_webSocket, SIGNAL(textMessageReceived(QString)), this, SLOT(onTextMessageReceived(QString)));
 
     connect(m_webSocket, SIGNAL(binaryMessageReceived(QByteArray)), this, SLOT(processBinaryMessage(QByteArray)));
-    connect(m_webSocket, SIGNAL(binaryFrameReceived(QByteArray,bool)), this, SLOT(processBinaryFrame(QByteArray,bool)));
     //hostnameAction->disconnect();
 
     m_webSocket->sendTextMessage(QStringLiteral("session_id"));
@@ -675,7 +674,7 @@ void MainWindow::onTextMessageReceived(QString message)
 
         //qInfo() << "new message received...";
         //qInfo() << message;
-        QStringList parameters = message.split(":", Qt::KeepEmptyParts);
+        QStringList parameters = message.split(':', QString::KeepEmptyParts);
 
         if (parameters.size() == 4){
             QString messageHex = parameters.at(2);
@@ -695,7 +694,7 @@ void MainWindow::onTextMessageReceived(QString message)
 
     if (QRegularExpression(QRegularExpression::wildcardToRegularExpression(searchPattern)).match(message).hasMatch()){
 
-        QStringList parameters = message.split(":", Qt::KeepEmptyParts);
+        QStringList parameters = message.split(':', QString::KeepEmptyParts);
         if (parameters.size() == 6){
             QString transferId = parameters.at(3);
             QString fileNameHex = parameters.at(4);
@@ -717,7 +716,7 @@ void MainWindow::onTextMessageReceived(QString message)
 
     if (QRegularExpression(QRegularExpression::wildcardToRegularExpression(searchPattern)).match(message).hasMatch()){
 
-        QStringList parameters = message.split(":", Qt::KeepEmptyParts);
+        QStringList parameters = message.split(':', QString::KeepEmptyParts);
         if (parameters.size() == 5){
             QString transferId = parameters.at(3);
             QString response = parameters.at(4);
@@ -889,6 +888,19 @@ void MainWindow::onTextMessageReceived(QString message)
 void MainWindow::processBinaryMessage(QByteArray data){
 
     if (data.left(5) == "file:"){
+        int firstColon = data.indexOf(':');
+        int secondColon = data.indexOf(':', firstColon + 1);
+        int thirdColon = data.indexOf(':', secondColon + 1);
+
+        if (firstColon != -1 && secondColon != -1 && thirdColon != -1){
+            QString peerEmail = QString::fromUtf8(data.mid(firstColon + 1, secondColon - firstColon - 1));
+            QString transferId = QString::fromUtf8(data.mid(secondColon + 1, thirdColon - secondColon - 1));
+            QByteArray payload = data.mid(thirdColon + 1);
+            IM_WindowObject *imWindow = prepareImWindow(peerEmail);
+            if (imWindow){
+                imWindow->receiveFilePayload(transferId, payload, false);
+            }
+        }
         return;
     }
 
@@ -1425,7 +1437,7 @@ void MainWindow::send_file_payload(QString peerEmail, QString transferId, QStrin
         frameData.append(":");
         frameData.append(transferId.toUtf8());
         frameData.append(":");
-        if (m_webSocket->sendBinaryFrame(frameData, true) == -1){
+        if (m_webSocket->sendBinaryMessage(frameData) == -1){
             failed = true;
         }
     } else {
@@ -1448,8 +1460,7 @@ void MainWindow::send_file_payload(QString peerEmail, QString transferId, QStrin
             }
             frameData.append(chunk);
 
-            bool lastFrame = file.atEnd();
-            if (m_webSocket->sendBinaryFrame(frameData, lastFrame) == -1){
+            if (m_webSocket->sendBinaryMessage(frameData) == -1){
                 failed = true;
                 break;
             }

@@ -187,7 +187,6 @@ void QsMessengerServer::onNewConnection()
 
                     connect(pSocket, &QWebSocket::textMessageReceived, clients.at(i), &client::process_text_message);
                     connect(pSocket, &QWebSocket::binaryMessageReceived, clients.at(i), &client::process_binary_message);
-                    connect(pSocket, &QWebSocket::binaryFrameReceived, clients.at(i), &client::process_binary_frame);
                     connect(pSocket, &QWebSocket::disconnected, clients.at(i), &client::socket_disconnected);
                     connect(clients.at(i), SIGNAL(emit_close(QString)), this, SLOT(close_client(QString)) );
                     connect(clients.at(i), SIGNAL(emit_logData(QString)), this, SLOT(logData(QString)));
