@@ -519,7 +519,7 @@ void MainWindow::onTextMessageReceived(QString message)
 
             for (int a =0; a < friendsWidget->groups.at(i)->peers.size(); a++){
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(send_message(QString, QString)), this, SLOT(send_im(QString, QString)));
-                connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(send_file_request(QString, QString, QString)), this, SLOT(send_file_request(QString, QString, QString)));
+                connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(send_file_request(QString, QString, QString, QString)), this, SLOT(send_file_request(QString, QString, QString, QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(respond_file_request(QString, QString, bool)), this, SLOT(respond_file_request(QString, QString, bool)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(get_prev_messages(QString, QString)), this, SLOT(get_prev_messages(QString, QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(have_read(QString)), this, SLOT(have_read(QString)));
@@ -672,50 +672,38 @@ void MainWindow::onTextMessageReceived(QString message)
 
         //qInfo() << "new message received...";
         //qInfo() << message;
-        QStringList parameters = message.split(":");
+        QStringList parameters = message.split(":", Qt::KeepEmptyParts);
 
-        for(int i =0; i< friendsWidget->groups.size(); i++){
-
-            for (int a = 0; a< friendsWidget->groups.at(i)->peers.size(); a++){
-            if( friendsWidget->groups.at(i)->peers.at(a)->email == parameters.at(1)){
-
-                //qInfo() << friendsWidget->groups.at(i)->peers.at(a)->imWidget;
-                //qInfo() << friendsWidget->groups.at(i)->peers.at(a)->imWidget;
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->show();
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->setMyAvatar();
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->setPeerAvatar();
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->setWindowTitle(friendsWidget->groups.at(i)->peers.at(a)->name);
-                QByteArray byteArray = QByteArray::fromHex(parameters.at(2).toUtf8());
-                QString message = byteArray.data();
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->append_message(message,  parameters.at(3));
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->myUsername = myUsername;
-                break;
+        if (parameters.size() == 4){
+            QString messageHex = parameters.at(2);
+            if (messageHex.size() > 0 && messageHex.size() % 2 == 0 && QRegularExpression("^[0-9A-Fa-f]+$").match(messageHex).hasMatch()){
+                IM_WindowObject *imWindow = prepareImWindow(parameters.at(1));
+                if (imWindow){
+                    QByteArray byteArray = QByteArray::fromHex(messageHex.toUtf8());
+                    QString message = QString::fromUtf8(byteArray);
+                    imWindow->append_message(message,  parameters.at(3));
                 }
             }
         }
 
     }
 
-    searchPattern = "file:request:*:*:*";
+    searchPattern = "file:request:*:*:*:*";
 
     if (QRegularExpression(QRegularExpression::wildcardToRegularExpression(searchPattern)).match(message).hasMatch()){
 
-        QStringList parameters = message.split(":");
-        QByteArray byteArray = QByteArray::fromHex(parameters.at(3).toUtf8());
-        QString fileName = byteArray.data();
+        QStringList parameters = message.split(":", Qt::KeepEmptyParts);
+        if (parameters.size() == 6){
+            QString transferId = parameters.at(3);
+            QString fileNameHex = parameters.at(4);
+            if (fileNameHex.size() > 0 && fileNameHex.size() % 2 == 0 && QRegularExpression("^[0-9A-Fa-f]+$").match(fileNameHex).hasMatch()){
+                QByteArray byteArray = QByteArray::fromHex(fileNameHex.toUtf8());
+                QString fileName = QString::fromUtf8(byteArray);
+                QString fileSize = parameters.at(5);
+                IM_WindowObject *imWindow = prepareImWindow(parameters.at(2));
 
-        for(int i =0; i< friendsWidget->groups.size(); i++){
-
-            for (int a = 0; a< friendsWidget->groups.at(i)->peers.size(); a++){
-            if( friendsWidget->groups.at(i)->peers.at(a)->email == parameters.at(2)){
-
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->show();
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->setMyAvatar();
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->setPeerAvatar();
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->setWindowTitle(friendsWidget->groups.at(i)->peers.at(a)->name);
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->receiveFileRequest(fileName);
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->myUsername = myUsername;
-                break;
+                if (imWindow){
+                    imWindow->receiveFileRequest(transferId, fileName, fileSize);
                 }
             }
         }
@@ -726,23 +714,16 @@ void MainWindow::onTextMessageReceived(QString message)
 
     if (QRegularExpression(QRegularExpression::wildcardToRegularExpression(searchPattern)).match(message).hasMatch()){
 
-        QStringList parameters = message.split(":");
-        QByteArray byteArray = QByteArray::fromHex(parameters.at(3).toUtf8());
-        QString fileName = byteArray.data();
-        bool accepted = parameters.at(4) == "accepted";
+        QStringList parameters = message.split(":", Qt::KeepEmptyParts);
+        if (parameters.size() == 5){
+            QString transferId = parameters.at(3);
+            QString response = parameters.at(4);
 
-        for(int i =0; i< friendsWidget->groups.size(); i++){
-
-            for (int a = 0; a< friendsWidget->groups.at(i)->peers.size(); a++){
-            if( friendsWidget->groups.at(i)->peers.at(a)->email == parameters.at(2)){
-
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->show();
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->setMyAvatar();
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->setPeerAvatar();
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->setWindowTitle(friendsWidget->groups.at(i)->peers.at(a)->name);
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->receiveFileResponse(fileName, accepted);
-                friendsWidget->groups.at(i)->peers.at(a)->imWidget->myUsername = myUsername;
-                break;
+            if (response == "accepted" || response == "declined"){
+                bool accepted = response == "accepted";
+                IM_WindowObject *imWindow = prepareImWindow(parameters.at(2));
+                if (imWindow){
+                    imWindow->receiveFileResponse(transferId, accepted);
                 }
             }
         }
@@ -1350,10 +1331,12 @@ void MainWindow::send_im(QString peerEmail, QString message){
 
 }
 
-void MainWindow::send_file_request(QString peerEmail, QString fileName, QString fileSize){
+void MainWindow::send_file_request(QString peerEmail, QString transferId, QString fileName, QString fileSize){
 
     QString request = "file:request:";
     request.append(peerEmail);
+    request.append(":");
+    request.append(transferId);
     request.append(":");
     request.append(fileName.toUtf8().toHex());
     request.append(":");
@@ -1362,12 +1345,12 @@ void MainWindow::send_file_request(QString peerEmail, QString fileName, QString 
 
 }
 
-void MainWindow::respond_file_request(QString peerEmail, QString fileName, bool accepted){
+void MainWindow::respond_file_request(QString peerEmail, QString transferId, bool accepted){
 
     QString request = "file:response:";
     request.append(peerEmail);
     request.append(":");
-    request.append(fileName.toUtf8().toHex());
+    request.append(transferId);
     request.append(":");
     if (accepted){
         request.append("accepted");
@@ -1401,6 +1384,26 @@ void MainWindow::playAudio(QString path){
     audioEffect->setLoopCount(1);
     audioEffect->setVolume(0.75f);
     audioEffect->play();
+}
+
+IM_WindowObject *MainWindow::prepareImWindow(QString peerEmail){
+
+    for(int i =0; i< friendsWidget->groups.size(); i++){
+
+        for (int a = 0; a< friendsWidget->groups.at(i)->peers.size(); a++){
+        if( friendsWidget->groups.at(i)->peers.at(a)->email == peerEmail){
+
+            friendsWidget->groups.at(i)->peers.at(a)->imWidget->show();
+            friendsWidget->groups.at(i)->peers.at(a)->imWidget->setMyAvatar();
+            friendsWidget->groups.at(i)->peers.at(a)->imWidget->setPeerAvatar();
+            friendsWidget->groups.at(i)->peers.at(a)->imWidget->setWindowTitle(friendsWidget->groups.at(i)->peers.at(a)->name);
+            friendsWidget->groups.at(i)->peers.at(a)->imWidget->myUsername = myUsername;
+            return friendsWidget->groups.at(i)->peers.at(a)->imWidget;
+            }
+        }
+    }
+
+    return nullptr;
 }
 
 void MainWindow::clearArchive(QString peerEmail){

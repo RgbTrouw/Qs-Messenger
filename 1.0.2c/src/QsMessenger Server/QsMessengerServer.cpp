@@ -191,7 +191,7 @@ void QsMessengerServer::onNewConnection()
                     connect(clients.at(i), SIGNAL(emit_close(QString)), this, SLOT(close_client(QString)) );
                     connect(clients.at(i), SIGNAL(emit_logData(QString)), this, SLOT(logData(QString)));
                     connect(clients.at(i), SIGNAL(emit_sendMsg(QString,QString,QString,QString)), this, SLOT(fwMessage(QString,QString,QString,QString)));
-                    connect(clients.at(i), SIGNAL(emit_sendFileRequest(QString,QString,QString,QString)), this, SLOT(fwFileRequest(QString,QString,QString,QString)));
+                    connect(clients.at(i), SIGNAL(emit_sendFileRequest(QString,QString,QString,QString,QString)), this, SLOT(fwFileRequest(QString,QString,QString,QString,QString)));
                     connect(clients.at(i), SIGNAL(emit_sendFileResponse(QString,QString,QString,QString)), this, SLOT(fwFileResponse(QString,QString,QString,QString)));
                     connect(clients.at(i), SIGNAL(emit_statusUpdate(QString, QStringList)), this, SLOT(updateStatus(QString, QStringList)));
                     connect(clients.at(i), SIGNAL(emit_friendRequest(QString,QString)), this, SLOT(fwFriendRequest(QString,QString)));
@@ -274,23 +274,23 @@ void QsMessengerServer::fwMessage(QString senderEmail, QString receiverEmail, QS
 
 }
 
-void QsMessengerServer::fwFileRequest(QString senderEmail, QString receiverEmail, QString fileName, QString fileSize){
+void QsMessengerServer::fwFileRequest(QString senderEmail, QString receiverEmail, QString transferId, QString fileName, QString fileSize){
 
     for (int i=0; i<clients.size(); i++){
 
         if(clients.at(i)->myEmail == receiverEmail){
-            clients.at(i)->receiveFileRequest(senderEmail, receiverEmail, fileName, fileSize);
+            clients.at(i)->receiveFileRequest(senderEmail, receiverEmail, transferId, fileName, fileSize);
         }
 
     }
 }
 
-void QsMessengerServer::fwFileResponse(QString senderEmail, QString receiverEmail, QString fileName, QString response){
+void QsMessengerServer::fwFileResponse(QString senderEmail, QString receiverEmail, QString transferId, QString response){
 
     for (int i=0; i<clients.size(); i++){
 
         if(clients.at(i)->myEmail == receiverEmail){
-            clients.at(i)->receiveFileResponse(senderEmail, receiverEmail, fileName, response);
+            clients.at(i)->receiveFileResponse(senderEmail, receiverEmail, transferId, response);
         }
 
     }

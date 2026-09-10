@@ -447,14 +447,16 @@ void client::process_text_message(QString message){
 
              if (userid != "unsigned"){
 
-                 QStringList parameters = message.split(":");
-                 QString toEmail = parameters.at(2);
+                 QStringList parameters = message.split(":", Qt::KeepEmptyParts);
+                 if (parameters.size() == 6){
+                     QString toEmail = parameters.at(2);
 
-                 for(int i=0; i< myPeers.size(); i++){
+                     for(int i=0; i< myPeers.size(); i++){
 
-                     if(toEmail == myPeers.at(i)){
-                         emit emit_sendFileRequest(myEmail, toEmail, parameters.at(3), parameters.at(4));
-                         i=myPeers.size();
+                         if(toEmail == myPeers.at(i)){
+                             emit emit_sendFileRequest(myEmail, toEmail, parameters.at(3), parameters.at(4), parameters.at(5));
+                             i=myPeers.size();
+                         }
                      }
                  }
              }
@@ -465,14 +467,19 @@ void client::process_text_message(QString message){
 
              if (userid != "unsigned"){
 
-                 QStringList parameters = message.split(":");
-                 QString peerEmail = parameters.at(2);
+                 QStringList parameters = message.split(":", Qt::KeepEmptyParts);
+                 if (parameters.size() == 5){
+                     QString peerEmail = parameters.at(2);
+                     QString response = parameters.at(4);
 
-                 for(int i=0; i< myPeers.size(); i++){
+                     if (response == "accepted" || response == "declined"){
+                         for(int i=0; i< myPeers.size(); i++){
 
-                     if(peerEmail == myPeers.at(i)){
-                         emit emit_sendFileResponse(myEmail, peerEmail, parameters.at(3), parameters.at(4));
-                         i=myPeers.size();
+                             if(peerEmail == myPeers.at(i)){
+                                 emit emit_sendFileResponse(myEmail, peerEmail, parameters.at(3), response);
+                                 i=myPeers.size();
+                             }
+                         }
                      }
                  }
              }
@@ -1537,13 +1544,15 @@ void client::receiveMessage(QString senderEmail, QString receiverEmail, QString 
 
 }
 
-void client::receiveFileRequest(QString senderEmail, QString receiverEmail, QString fileName, QString fileSize){
+void client::receiveFileRequest(QString senderEmail, QString receiverEmail, QString transferId, QString fileName, QString fileSize){
 
     Q_UNUSED(receiverEmail);
 
     QString qr;
     qr = "file:request:";
     qr.append(senderEmail);
+    qr.append(":");
+    qr.append(transferId);
     qr.append(":");
     qr.append(fileName);
     qr.append(":");
@@ -1553,7 +1562,7 @@ void client::receiveFileRequest(QString senderEmail, QString receiverEmail, QStr
     pClient->flush();
 }
 
-void client::receiveFileResponse(QString senderEmail, QString receiverEmail, QString fileName, QString response){
+void client::receiveFileResponse(QString senderEmail, QString receiverEmail, QString transferId, QString response){
 
     Q_UNUSED(receiverEmail);
 
@@ -1561,7 +1570,7 @@ void client::receiveFileResponse(QString senderEmail, QString receiverEmail, QSt
     qr = "file:response:";
     qr.append(senderEmail);
     qr.append(":");
-    qr.append(fileName);
+    qr.append(transferId);
     qr.append(":");
     qr.append(response);
 
