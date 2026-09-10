@@ -311,6 +311,7 @@ void QsMessengerServer::fwFilePayload(QString senderEmail, QString receiverEmail
                     }
                 }
             }
+            return;
         }
 
     }
