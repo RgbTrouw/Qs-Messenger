@@ -722,11 +722,10 @@ void MainWindow::onTextMessageReceived(QString message)
             QString transferId = parameters.at(3);
             QString response = parameters.at(4);
 
-            if (response == "accepted" || response == "declined"){
-                bool accepted = response == "accepted";
+            if (response == "accepted" || response == "declined" || response == "failed"){
                 IM_WindowObject *imWindow = prepareImWindow(parameters.at(2));
                 if (imWindow){
-                    imWindow->receiveFileResponse(transferId, accepted);
+                    imWindow->receiveFileResponse(transferId, response);
                 }
             }
         }
@@ -1436,7 +1435,18 @@ void MainWindow::send_file_payload(QString peerEmail, QString transferId, QStrin
             frameData.append(":");
             frameData.append(transferId.toUtf8());
             frameData.append(":");
-            frameData.append(file.read(chunkSize));
+            QByteArray chunk(chunkSize, '\0');
+            qint64 bytesRead = file.read(chunk.data(), chunk.size());
+            if (bytesRead < 0){
+                failed = true;
+                break;
+            }
+            chunk.truncate(bytesRead);
+            if (file.error() != QFileDevice::NoError){
+                failed = true;
+                break;
+            }
+            frameData.append(chunk);
 
             bool lastFrame = file.atEnd();
             if (m_webSocket->sendBinaryFrame(frameData, lastFrame) == -1){

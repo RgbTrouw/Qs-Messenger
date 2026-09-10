@@ -79,7 +79,7 @@ public slots:
     void append_message(QString message, QString time);
     void prepend_message(QString msgFrom, QString msgTo, QString message, QString time);
     void receiveFileRequest(QString transferId, QString fileName, QString fileSize);
-    void receiveFileResponse(QString transferId, bool accepted);
+    void receiveFileResponse(QString transferId, QString response);
     void receiveFilePayload(QString transferId, QByteArray data, bool isLastFrame);
     void completeOutgoingFileTransfer(QString transferId, bool success, QString message);
     void closeEvent(QCloseEvent *event);

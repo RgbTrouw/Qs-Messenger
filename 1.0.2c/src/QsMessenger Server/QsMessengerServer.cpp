@@ -194,7 +194,7 @@ void QsMessengerServer::onNewConnection()
                     connect(clients.at(i), SIGNAL(emit_sendMsg(QString,QString,QString,QString)), this, SLOT(fwMessage(QString,QString,QString,QString)));
                     connect(clients.at(i), SIGNAL(emit_sendFileRequest(QString,QString,QString,QString,QString)), this, SLOT(fwFileRequest(QString,QString,QString,QString,QString)));
                     connect(clients.at(i), SIGNAL(emit_sendFileResponse(QString,QString,QString,QString)), this, SLOT(fwFileResponse(QString,QString,QString,QString)));
-                    connect(clients.at(i), SIGNAL(emit_sendFilePayload(QString,QByteArray,bool)), this, SLOT(fwFilePayload(QString,QByteArray,bool)));
+                    connect(clients.at(i), SIGNAL(emit_sendFilePayload(QString,QString,QString,QByteArray,bool)), this, SLOT(fwFilePayload(QString,QString,QString,QByteArray,bool)));
                     connect(clients.at(i), SIGNAL(emit_statusUpdate(QString, QStringList)), this, SLOT(updateStatus(QString, QStringList)));
                     connect(clients.at(i), SIGNAL(emit_friendRequest(QString,QString)), this, SLOT(fwFriendRequest(QString,QString)));
                     connect(clients.at(i), SIGNAL(emit_checkSignedIn(QString, QString)), this, SLOT(checkSignedIn(QString,QString)));
@@ -298,12 +298,19 @@ void QsMessengerServer::fwFileResponse(QString senderEmail, QString receiverEmai
     }
 }
 
-void QsMessengerServer::fwFilePayload(QString receiverEmail, QByteArray data, bool isLastFrame){
+void QsMessengerServer::fwFilePayload(QString senderEmail, QString receiverEmail, QString transferId, QByteArray data, bool isLastFrame){
 
     for (int i=0; i<clients.size(); i++){
 
         if(clients.at(i)->myEmail == receiverEmail){
-            clients.at(i)->receiveFilePayload(receiverEmail, data, isLastFrame);
+            if (!clients.at(i)->receiveFilePayload(receiverEmail, data, isLastFrame)){
+                for (int a = 0; a < clients.size(); a++){
+                    if (clients.at(a)->myEmail == senderEmail){
+                        clients.at(a)->receiveFileResponse(receiverEmail, senderEmail, transferId, "failed");
+                        a = clients.size();
+                    }
+                }
+            }
         }
 
     }

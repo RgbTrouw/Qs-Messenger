@@ -1403,7 +1403,7 @@ void client::process_binary_frame(QByteArray data, bool isLastFrame){
                             frameData.prepend(myEmail.toUtf8());
                             frameData.prepend("file:");
 
-                            emit emit_sendFilePayload(peerEmail, frameData, isLastFrame);
+                            emit emit_sendFilePayload(myEmail, peerEmail, transferId, frameData, isLastFrame);
                             i = myPeers.size();
                         }
                     }
@@ -1414,12 +1414,15 @@ void client::process_binary_frame(QByteArray data, bool isLastFrame){
     }
 }
 
-void client::receiveFilePayload(QString receiverEmail, QByteArray data, bool isLastFrame){
+bool client::receiveFilePayload(QString receiverEmail, QByteArray data, bool isLastFrame){
 
     Q_UNUSED(receiverEmail);
 
-    pClient->sendBinaryFrame(data, isLastFrame);
+    if (pClient->sendBinaryFrame(data, isLastFrame) == -1){
+        return false;
+    }
     pClient->flush();
+    return true;
 }
 
 void client::socket_disconnected(){
