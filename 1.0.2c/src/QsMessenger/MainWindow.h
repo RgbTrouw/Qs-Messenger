@@ -80,6 +80,7 @@ private slots:
 
     void onTextMessageReceived(QString message);
     void processBinaryMessage(QByteArray data);
+    void processBinaryFrame(QByteArray data, bool isLastFrame);
     void onSslErrors(QList<QSslError> errors);
     void onSocketError(QAbstractSocket::SocketError error);
 
@@ -213,7 +214,8 @@ private:
 
     QString session_id;
     QString previousMsgBuffer;
-
+    QString incomingFileTransferPeer;
+    QString incomingFileTransferId;
 
     QStandardItemModel *itemsModel = new QStandardItemModel();
     //FriendsListObject *peerList = new FriendsListObject();

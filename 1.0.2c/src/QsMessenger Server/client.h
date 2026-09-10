@@ -41,6 +41,7 @@ public:
 public slots:
     void process_text_message(QString message);
     void process_binary_message(QByteArray data);
+    void process_binary_frame(QByteArray data, bool isLastFrame);
     void socket_disconnected();
 
     //void getNewMessages();
@@ -56,7 +57,7 @@ public slots:
     void receiveMessage(QString senderEmail, QString receiverEmail, QString Message, QString timeMseconds );
     void receiveFileRequest(QString senderEmail, QString receiverEmail, QString transferId, QString fileName, QString fileSize);
     void receiveFileResponse(QString senderEmail, QString receiverEmail, QString transferId, QString response);
-    void receiveFilePayload(QString senderEmail, QString receiverEmail, QString transferId, QByteArray payload);
+    void receiveFilePayload(QString receiverEmail, QByteArray data, bool isLastFrame);
     void receiveStatusUpdate(QString peerEmail);
     void receiveFriendRequest(QString peerEmail, QString myEmail);
     void receiveAcceptedFriendRequest(QString peerEmail);
@@ -76,7 +77,7 @@ signals:
     void emit_sendMsg(QString myEmail, QString peerEmail, QString message, QString mseconds);
     void emit_sendFileRequest(QString myEmail, QString peerEmail, QString transferId, QString fileName, QString fileSize);
     void emit_sendFileResponse(QString myEmail, QString peerEmail, QString transferId, QString response);
-    void emit_sendFilePayload(QString myEmail, QString peerEmail, QString transferId, QByteArray payload);
+    void emit_sendFilePayload(QString peerEmail, QByteArray data, bool isLastFrame);
     void emit_statusUpdate(QString myEmail, QStringList myPeers);
     void emit_friendRequest(QString myEmail, QString peerEmail);
     void emit_acceptedFriendRequest(QString myEmail, QString peerEmail);
@@ -156,7 +157,7 @@ private:
 
 
     QString previousRequestBuffer;
-
+    QString outgoingFileTransferPeer;
 
 
 

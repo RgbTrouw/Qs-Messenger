@@ -45,6 +45,8 @@ public:
         QString fileName;
         QString fileSize;
         QString savePath;
+        qint64 bytesReceived = 0;
+        bool writeInitialized = false;
     };
 
     explicit IM_WindowObject(QWidget *parent = nullptr);
@@ -78,7 +80,7 @@ public slots:
     void prepend_message(QString msgFrom, QString msgTo, QString message, QString time);
     void receiveFileRequest(QString transferId, QString fileName, QString fileSize);
     void receiveFileResponse(QString transferId, bool accepted);
-    void receiveFilePayload(QString transferId, QByteArray data);
+    void receiveFilePayload(QString transferId, QByteArray data, bool isLastFrame);
     void completeOutgoingFileTransfer(QString transferId, bool success, QString message);
     void closeEvent(QCloseEvent *event);
     void showHideNotice(bool value);

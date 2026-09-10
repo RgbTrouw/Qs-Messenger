@@ -611,6 +611,8 @@ void IM_WindowObject::sendFile(){
             fileTransferData.fileName = fileInfo.fileName();
             fileTransferData.fileSize = QString::number(fileInfo.size());
             fileTransferData.savePath = "";
+            fileTransferData.bytesReceived = 0;
+            fileTransferData.writeInitialized = false;
             outgoingFileRequests.append(fileTransferData);
 
             emit send_file_request(email, fileTransferData.transferId, fileTransferData.fileName, fileTransferData.fileSize);
@@ -627,6 +629,8 @@ void IM_WindowObject::receiveFileRequest(QString transferId, QString fileName, Q
     fileTransferData.fileName = fileName;
     fileTransferData.fileSize = fileSize;
     fileTransferData.savePath = "";
+    fileTransferData.bytesReceived = 0;
+    fileTransferData.writeInitialized = false;
 
     if (pendingFileRequest.transferId.size() > 0){
         incomingFileRequests.append(fileTransferData);
@@ -680,6 +684,8 @@ void IM_WindowObject::acceptFile(){
         }
 
         pendingFileRequest.savePath = savePath;
+        pendingFileRequest.bytesReceived = 0;
+        pendingFileRequest.writeInitialized = false;
         acceptedIncomingFileRequests.append(pendingFileRequest);
         emit respond_file_request(email, pendingFileRequest.transferId, true);
         ui->notification_label->setText(" Waiting for file: \"" + pendingFileRequest.fileName + "\"");
@@ -717,36 +723,61 @@ void IM_WindowObject::updatePendingFileRequest(){
     }
 }
 
-void IM_WindowObject::receiveFilePayload(QString transferId, QByteArray data){
+void IM_WindowObject::receiveFilePayload(QString transferId, QByteArray data, bool isLastFrame){
 
     this->show();
 
     for (int i = 0; i < acceptedIncomingFileRequests.size(); i++){
         if (acceptedIncomingFileRequests.at(i).transferId == transferId){
-            FileTransferData fileTransferData = acceptedIncomingFileRequests.at(i);
-            ui->notification_label->setText(" Receiving file: \"" + fileTransferData.fileName + "\"");
+            FileTransferData &fileTransferData = acceptedIncomingFileRequests[i];
+            QString progressText = " Receiving file: \"" + fileTransferData.fileName + "\"";
+            if (fileTransferData.fileSize.size() > 0){
+                progressText.append(" (" + QString::number(fileTransferData.bytesReceived) + "/" + fileTransferData.fileSize + " bytes)");
+            }
+            ui->notification_label->setText(progressText);
+
+            QIODevice::OpenMode openMode = QIODevice::WriteOnly;
+            if (fileTransferData.writeInitialized){
+                openMode |= QIODevice::Append;
+            } else {
+                openMode |= QIODevice::Truncate;
+            }
 
             QFile file(fileTransferData.savePath);
-            if (file.open(QIODevice::WriteOnly | QIODevice::Truncate)){
+            if (file.open(openMode)){
                 qint64 bytesWritten = file.write(data);
                 file.close();
 
-                QString notification = " File saved: \"" + fileTransferData.fileName + "\"";
-                bool validFileSize = false;
-                qint64 expectedFileSize = fileTransferData.fileSize.toLongLong(&validFileSize);
                 if (bytesWritten != data.size()){
                     ui->notification_label->setText(" Failed to save file: \"" + fileTransferData.fileName + "\"");
-                } else if (validFileSize && expectedFileSize != data.size()){
-                    notification.append(" (" + QString::number(data.size()) + "/" + fileTransferData.fileSize + " bytes)");
-                    ui->notification_label->setText(notification);
+                    QFile::remove(fileTransferData.savePath);
+                    acceptedIncomingFileRequests.removeAt(i);
                 } else {
-                    ui->notification_label->setText(notification);
+                    fileTransferData.bytesReceived += bytesWritten;
+                    fileTransferData.writeInitialized = true;
+
+                    bool validFileSize = false;
+                    qint64 expectedFileSize = fileTransferData.fileSize.toLongLong(&validFileSize);
+                    QString currentProgress = " Receiving file: \"" + fileTransferData.fileName + "\"";
+                    if (fileTransferData.fileSize.size() > 0){
+                        currentProgress.append(" (" + QString::number(fileTransferData.bytesReceived) + "/" + fileTransferData.fileSize + " bytes)");
+                    }
+                    ui->notification_label->setText(currentProgress);
+
+                    if (isLastFrame){
+                        if (validFileSize && expectedFileSize != fileTransferData.bytesReceived){
+                            QFile::remove(fileTransferData.savePath);
+                            ui->notification_label->setText(" Failed to save file: \"" + fileTransferData.fileName + "\"");
+                        } else {
+                            ui->notification_label->setText(" File saved: \"" + fileTransferData.fileName + "\"");
+                        }
+                        acceptedIncomingFileRequests.removeAt(i);
+                    }
                 }
             } else {
                 ui->notification_label->setText(" Failed to save file: \"" + fileTransferData.fileName + "\"");
+                acceptedIncomingFileRequests.removeAt(i);
             }
-
-            acceptedIncomingFileRequests.removeAt(i);
             break;
         }
     }
@@ -757,7 +788,11 @@ void IM_WindowObject::completeOutgoingFileTransfer(QString transferId, bool succ
     for (int i = 0; i < outgoingFileRequests.size(); i++){
         if (outgoingFileRequests.at(i).transferId == transferId){
             if (success){
-                ui->notification_label->setText(" File sent: \"" + outgoingFileRequests.at(i).fileName + "\"");
+                if (message.size() > 0){
+                    ui->notification_label->setText(message);
+                } else {
+                    ui->notification_label->setText(" File sent: \"" + outgoingFileRequests.at(i).fileName + "\"");
+                }
                 outgoingFileRequests.removeAt(i);
             } else {
                 ui->notification_label->setText(message);

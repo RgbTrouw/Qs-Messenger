@@ -52,7 +52,7 @@ private Q_SLOTS:
     void fwMessage(QString senderEmail, QString recipientEmail, QString message, QString timeMseconds);
     void fwFileRequest(QString senderEmail, QString recipientEmail, QString transferId, QString fileName, QString fileSize);
     void fwFileResponse(QString senderEmail, QString recipientEmail, QString transferId, QString response);
-    void fwFilePayload(QString senderEmail, QString recipientEmail, QString transferId, QByteArray payload);
+    void fwFilePayload(QString recipientEmail, QByteArray data, bool isLastFrame);
     void updateStatus(QString email, QStringList peersList);
     void fwFriendRequest(QString myEmail, QString peerEmail);
     void fwAcceptedFriendRequest(QString myEmail, QString peerEmail);
