@@ -50,6 +50,8 @@ private Q_SLOTS:
     void disconnectOther(QString otherEmail, QString myLoginToken);
 
     void fwMessage(QString senderEmail, QString recipientEmail, QString message, QString timeMseconds);
+    void fwFileRequest(QString senderEmail, QString recipientEmail, QString fileName, QString fileSize);
+    void fwFileResponse(QString senderEmail, QString recipientEmail, QString fileName, QString response);
     void updateStatus(QString email, QStringList peersList);
     void fwFriendRequest(QString myEmail, QString peerEmail);
     void fwAcceptedFriendRequest(QString myEmail, QString peerEmail);

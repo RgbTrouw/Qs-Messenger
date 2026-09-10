@@ -146,6 +146,8 @@ private slots:
     void retrieve_avatar();
     void refreshPeerAvatar(QString email);
     void send_im(QString peerEmail, QString message);
+    void send_file_request(QString peerEmail, QString fileName, QString fileSize);
+    void respond_file_request(QString peerEmail, QString fileName, bool accepted);
     void have_read(QString peerEmail);
     void get_prev_messages(QString peerEmail, QString index);
     void clearArchive(QString peerEmail);
@@ -222,5 +224,4 @@ private:
 
 
 };
-
 

@@ -519,6 +519,8 @@ void MainWindow::onTextMessageReceived(QString message)
 
             for (int a =0; a < friendsWidget->groups.at(i)->peers.size(); a++){
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(send_message(QString, QString)), this, SLOT(send_im(QString, QString)));
+                connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(send_file_request(QString, QString, QString)), this, SLOT(send_file_request(QString, QString, QString)));
+                connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(respond_file_request(QString, QString, bool)), this, SLOT(respond_file_request(QString, QString, bool)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(get_prev_messages(QString, QString)), this, SLOT(get_prev_messages(QString, QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(have_read(QString)), this, SLOT(have_read(QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(playAudio(QString)), this, SLOT(playAudio(QString)));
@@ -686,6 +688,59 @@ void MainWindow::onTextMessageReceived(QString message)
                 QByteArray byteArray = QByteArray::fromHex(parameters.at(2).toUtf8());
                 QString message = byteArray.data();
                 friendsWidget->groups.at(i)->peers.at(a)->imWidget->append_message(message,  parameters.at(3));
+                friendsWidget->groups.at(i)->peers.at(a)->imWidget->myUsername = myUsername;
+                break;
+                }
+            }
+        }
+
+    }
+
+    searchPattern = "file:request:*:*:*";
+
+    if (QRegularExpression(QRegularExpression::wildcardToRegularExpression(searchPattern)).match(message).hasMatch()){
+
+        QStringList parameters = message.split(":");
+        QByteArray byteArray = QByteArray::fromHex(parameters.at(3).toUtf8());
+        QString fileName = byteArray.data();
+
+        for(int i =0; i< friendsWidget->groups.size(); i++){
+
+            for (int a = 0; a< friendsWidget->groups.at(i)->peers.size(); a++){
+            if( friendsWidget->groups.at(i)->peers.at(a)->email == parameters.at(2)){
+
+                friendsWidget->groups.at(i)->peers.at(a)->imWidget->show();
+                friendsWidget->groups.at(i)->peers.at(a)->imWidget->setMyAvatar();
+                friendsWidget->groups.at(i)->peers.at(a)->imWidget->setPeerAvatar();
+                friendsWidget->groups.at(i)->peers.at(a)->imWidget->setWindowTitle(friendsWidget->groups.at(i)->peers.at(a)->name);
+                friendsWidget->groups.at(i)->peers.at(a)->imWidget->receiveFileRequest(fileName);
+                friendsWidget->groups.at(i)->peers.at(a)->imWidget->myUsername = myUsername;
+                break;
+                }
+            }
+        }
+
+    }
+
+    searchPattern = "file:response:*:*:*";
+
+    if (QRegularExpression(QRegularExpression::wildcardToRegularExpression(searchPattern)).match(message).hasMatch()){
+
+        QStringList parameters = message.split(":");
+        QByteArray byteArray = QByteArray::fromHex(parameters.at(3).toUtf8());
+        QString fileName = byteArray.data();
+        bool accepted = parameters.at(4) == "accepted";
+
+        for(int i =0; i< friendsWidget->groups.size(); i++){
+
+            for (int a = 0; a< friendsWidget->groups.at(i)->peers.size(); a++){
+            if( friendsWidget->groups.at(i)->peers.at(a)->email == parameters.at(2)){
+
+                friendsWidget->groups.at(i)->peers.at(a)->imWidget->show();
+                friendsWidget->groups.at(i)->peers.at(a)->imWidget->setMyAvatar();
+                friendsWidget->groups.at(i)->peers.at(a)->imWidget->setPeerAvatar();
+                friendsWidget->groups.at(i)->peers.at(a)->imWidget->setWindowTitle(friendsWidget->groups.at(i)->peers.at(a)->name);
+                friendsWidget->groups.at(i)->peers.at(a)->imWidget->receiveFileResponse(fileName, accepted);
                 friendsWidget->groups.at(i)->peers.at(a)->imWidget->myUsername = myUsername;
                 break;
                 }
@@ -1291,6 +1346,34 @@ void MainWindow::send_im(QString peerEmail, QString message){
     request.append(":");
     QByteArray byteArray = message.toUtf8();
     request.append(byteArray.toHex());
+    m_webSocket->sendTextMessage(request);
+
+}
+
+void MainWindow::send_file_request(QString peerEmail, QString fileName, QString fileSize){
+
+    QString request = "file:request:";
+    request.append(peerEmail);
+    request.append(":");
+    request.append(fileName.toUtf8().toHex());
+    request.append(":");
+    request.append(fileSize);
+    m_webSocket->sendTextMessage(request);
+
+}
+
+void MainWindow::respond_file_request(QString peerEmail, QString fileName, bool accepted){
+
+    QString request = "file:response:";
+    request.append(peerEmail);
+    request.append(":");
+    request.append(fileName.toUtf8().toHex());
+    request.append(":");
+    if (accepted){
+        request.append("accepted");
+    } else {
+        request.append("declined");
+    }
     m_webSocket->sendTextMessage(request);
 
 }

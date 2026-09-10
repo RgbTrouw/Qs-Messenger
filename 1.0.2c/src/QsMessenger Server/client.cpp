@@ -442,6 +442,42 @@ void client::process_text_message(QString message){
 
          }
 
+         challenge.setPattern(QRegularExpression::wildcardToRegularExpression(sendFileRequest));
+         if (challenge.match(message).hasMatch()){
+
+             if (userid != "unsigned"){
+
+                 QStringList parameters = message.split(":");
+                 QString toEmail = parameters.at(2);
+
+                 for(int i=0; i< myPeers.size(); i++){
+
+                     if(toEmail == myPeers.at(i)){
+                         emit emit_sendFileRequest(myEmail, toEmail, parameters.at(3), parameters.at(4));
+                         i=myPeers.size();
+                     }
+                 }
+             }
+         }
+
+         challenge.setPattern(QRegularExpression::wildcardToRegularExpression(sendFileResponseRequest));
+         if (challenge.match(message).hasMatch()){
+
+             if (userid != "unsigned"){
+
+                 QStringList parameters = message.split(":");
+                 QString peerEmail = parameters.at(2);
+
+                 for(int i=0; i< myPeers.size(); i++){
+
+                     if(peerEmail == myPeers.at(i)){
+                         emit emit_sendFileResponse(myEmail, peerEmail, parameters.at(3), parameters.at(4));
+                         i=myPeers.size();
+                     }
+                 }
+             }
+         }
+
          challenge.setPattern(QRegularExpression::wildcardToRegularExpression(haveReadRequest));
          if (challenge.match(message).hasMatch()){
 
@@ -1499,6 +1535,38 @@ void client::receiveMessage(QString senderEmail, QString receiverEmail, QString 
     pClient->sendTextMessage(qr.toUtf8());
     pClient->flush();
 
+}
+
+void client::receiveFileRequest(QString senderEmail, QString receiverEmail, QString fileName, QString fileSize){
+
+    Q_UNUSED(receiverEmail);
+
+    QString qr;
+    qr = "file:request:";
+    qr.append(senderEmail);
+    qr.append(":");
+    qr.append(fileName);
+    qr.append(":");
+    qr.append(fileSize);
+
+    pClient->sendTextMessage(qr.toUtf8());
+    pClient->flush();
+}
+
+void client::receiveFileResponse(QString senderEmail, QString receiverEmail, QString fileName, QString response){
+
+    Q_UNUSED(receiverEmail);
+
+    QString qr;
+    qr = "file:response:";
+    qr.append(senderEmail);
+    qr.append(":");
+    qr.append(fileName);
+    qr.append(":");
+    qr.append(response);
+
+    pClient->sendTextMessage(qr.toUtf8());
+    pClient->flush();
 }
 
 

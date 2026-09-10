@@ -22,6 +22,7 @@
 #include <QTextBrowser>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QFileInfo>
 #include <QCloseEvent>
 #include <QSizePolicy>
 #include <QScrollBar>
@@ -598,38 +599,21 @@ void IM_WindowObject::sendFile(){
     dialog.setNameFilter("*.*");
     dialog.exec();
 
-    QByteArray fileByteArray;
     QStringList path = dialog.selectedFiles();
 
-
-
-    QFile selectedFile(path.at(0));
-    if (selectedFile.open(QIODevice::ReadOnly)){;
-        fileByteArray = selectedFile.readAll();
-
-        int fileSize = fileByteArray.size();
-
-        qInfo() << path.at(0);
-
-//        fileByteArray.prepend("sendFile:" + myEmail + ":" + email + ":" + path.at(0));
-
-//        ui->MainAvatar->setIcon(QPixmap(path.at(0)));
-//        //m_webSocket.sendTextMessage("upload_avatar:" );
-//        m_webSocket->sendBinaryMessage(picByteArray);
-//        QString path2 = "./Resources/users/" + myEmail + "/";
-
-//        path2.append(myUsername);
-//        QFile::remove(path2);
-//        QFile::copy(path.at(0), path2);
-
+    if (!path.isEmpty()){
+        QFileInfo fileInfo(path.at(0));
+        if (fileInfo.exists() && fileInfo.isFile()){
+            emit send_file_request(email, fileInfo.fileName(), QString::number(fileInfo.size()));
+            ui->notification_label->setText(" File transfer request sent: \"" + fileInfo.fileName() + "\"");
+        }
     }
-
-
 }
 
 void IM_WindowObject::receiveFileRequest(QString fileName){
 
 
+    pendingFileName = fileName;
     ui->receiveFileWidget->setVisible(true);
     ui->acceptButton->setVisible(true);
     ui->declineButton->setVisible(true);
@@ -640,10 +624,35 @@ void IM_WindowObject::receiveFileRequest(QString fileName){
 
 }
 
-void IM_WindowObject::acceptFile(){
+void IM_WindowObject::receiveFileResponse(QString fileName, bool accepted){
 
+    this->show();
+
+    if (accepted){
+        ui->notification_label->setText(" " + peer_name + " accepted file transfer: \"" + fileName + "\"");
+    } else {
+        ui->notification_label->setText(" " + peer_name + " declined file transfer: \"" + fileName + "\"");
+    }
+}
+
+void IM_WindowObject::acceptFile(){
+    if (pendingFileName.size() > 0){
+        emit respond_file_request(email, pendingFileName, true);
+        ui->notification_label->setText(" You accepted file transfer: \"" + pendingFileName + "\"");
+    }
+    pendingFileName = "";
+    ui->receiveFileWidget->setVisible(false);
+    ui->acceptButton->setVisible(false);
+    ui->declineButton->setVisible(false);
 }
 
 void IM_WindowObject::declineFile(){
-
+    if (pendingFileName.size() > 0){
+        emit respond_file_request(email, pendingFileName, false);
+        ui->notification_label->setText(" You declined file transfer: \"" + pendingFileName + "\"");
+    }
+    pendingFileName = "";
+    ui->receiveFileWidget->setVisible(false);
+    ui->acceptButton->setVisible(false);
+    ui->declineButton->setVisible(false);
 }
