@@ -157,7 +157,6 @@ private:
 
 
     QString previousRequestBuffer;
-    QString outgoingFileTransferPeer;
 
 
 

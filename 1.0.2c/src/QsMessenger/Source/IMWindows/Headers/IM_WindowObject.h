@@ -134,6 +134,7 @@ private:
 
     QSoundEffect *audioEffect = new QSoundEffect();
     QList<FileTransferData> outgoingFileRequests;
+    QList<FileTransferData> activeOutgoingFileRequests;
     QList<FileTransferData> incomingFileRequests;
     QList<FileTransferData> acceptedIncomingFileRequests;
     FileTransferData pendingFileRequest;

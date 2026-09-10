@@ -934,33 +934,14 @@ void MainWindow::processBinaryFrame(QByteArray data, bool isLastFrame){
         int thirdColon = data.indexOf(':', secondColon + 1);
 
         if (firstColon != -1 && secondColon != -1 && thirdColon != -1){
-            incomingFileTransferPeer = QString::fromUtf8(data.mid(firstColon + 1, secondColon - firstColon - 1));
-            incomingFileTransferId = QString::fromUtf8(data.mid(secondColon + 1, thirdColon - secondColon - 1));
+            QString peerEmail = QString::fromUtf8(data.mid(firstColon + 1, secondColon - firstColon - 1));
+            QString transferId = QString::fromUtf8(data.mid(secondColon + 1, thirdColon - secondColon - 1));
 
             QByteArray payload = data.mid(thirdColon + 1);
-            IM_WindowObject *imWindow = prepareImWindow(incomingFileTransferPeer);
+            IM_WindowObject *imWindow = prepareImWindow(peerEmail);
             if (imWindow){
-                imWindow->receiveFilePayload(incomingFileTransferId, payload, isLastFrame);
+                imWindow->receiveFilePayload(transferId, payload, isLastFrame);
             }
-        }
-
-        if (isLastFrame){
-            incomingFileTransferPeer = "";
-            incomingFileTransferId = "";
-        }
-
-        return;
-    }
-
-    if (incomingFileTransferPeer.size() > 0 && incomingFileTransferId.size() > 0){
-        IM_WindowObject *imWindow = prepareImWindow(incomingFileTransferPeer);
-        if (imWindow){
-            imWindow->receiveFilePayload(incomingFileTransferId, data, isLastFrame);
-        }
-
-        if (isLastFrame){
-            incomingFileTransferPeer = "";
-            incomingFileTransferId = "";
         }
     }
 }
@@ -1437,26 +1418,31 @@ void MainWindow::send_file_payload(QString peerEmail, QString transferId, QStrin
         return;
     }
 
-    QByteArray header = "file:";
-    header.append(peerEmail.toUtf8());
-    header.append(":");
-    header.append(transferId.toUtf8());
-    header.append(":");
-
-    if (m_webSocket->sendBinaryFrame(header, file.size() == 0) == -1){
-        file.close();
-        imWindow->completeOutgoingFileTransfer(transferId, false, " Failed to queue file transfer");
-        return;
-    }
-
     const qint64 chunkSize = 65536;
     bool failed = false;
-    while (!file.atEnd()){
-        QByteArray chunk = file.read(chunkSize);
-        bool lastFrame = file.atEnd();
-        if (m_webSocket->sendBinaryFrame(chunk, lastFrame) == -1){
+    if (file.size() == 0){
+        QByteArray frameData = "file:";
+        frameData.append(peerEmail.toUtf8());
+        frameData.append(":");
+        frameData.append(transferId.toUtf8());
+        frameData.append(":");
+        if (m_webSocket->sendBinaryFrame(frameData, true) == -1){
             failed = true;
-            break;
+        }
+    } else {
+        while (!file.atEnd()){
+            QByteArray frameData = "file:";
+            frameData.append(peerEmail.toUtf8());
+            frameData.append(":");
+            frameData.append(transferId.toUtf8());
+            frameData.append(":");
+            frameData.append(file.read(chunkSize));
+
+            bool lastFrame = file.atEnd();
+            if (m_webSocket->sendBinaryFrame(frameData, lastFrame) == -1){
+                failed = true;
+                break;
+            }
         }
     }
     file.close();

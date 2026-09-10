@@ -214,8 +214,6 @@ private:
 
     QString session_id;
     QString previousMsgBuffer;
-    QString incomingFileTransferPeer;
-    QString incomingFileTransferId;
 
     QStandardItemModel *itemsModel = new QStandardItemModel();
     //FriendsListObject *peerList = new FriendsListObject();

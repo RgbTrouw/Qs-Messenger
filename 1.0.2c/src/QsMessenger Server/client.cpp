@@ -1396,8 +1396,6 @@ void client::process_binary_frame(QByteArray data, bool isLastFrame){
 
                     for (int i = 0; i < myPeers.size(); i++){
                         if (peerEmail == myPeers.at(i)){
-                            outgoingFileTransferPeer = peerEmail;
-
                             QByteArray frameData = data.mid(thirdColon + 1);
                             frameData.prepend(":");
                             frameData.prepend(transferId.toUtf8());
@@ -1406,21 +1404,9 @@ void client::process_binary_frame(QByteArray data, bool isLastFrame){
                             frameData.prepend("file:");
 
                             emit emit_sendFilePayload(peerEmail, frameData, isLastFrame);
-                            if (isLastFrame){
-                                outgoingFileTransferPeer = "";
-                            }
                             i = myPeers.size();
                         }
                     }
-                }
-
-                return;
-            }
-
-            if (outgoingFileTransferPeer.size() > 0){
-                emit emit_sendFilePayload(outgoingFileTransferPeer, data, isLastFrame);
-                if (isLastFrame){
-                    outgoingFileTransferPeer = "";
                 }
             }
         }
