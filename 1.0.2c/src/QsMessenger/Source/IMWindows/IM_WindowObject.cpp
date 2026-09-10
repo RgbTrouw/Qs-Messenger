@@ -782,7 +782,10 @@ void IM_WindowObject::receiveFilePayload(QString transferId, QByteArray data, bo
                     }
                     ui->notification_label->setText(currentProgress);
 
-                    if (isLastFrame){
+                    if (validFileSize && fileTransferData.bytesReceived == expectedFileSize){
+                        ui->notification_label->setText(" File saved: \"" + fileTransferData.fileName + "\"");
+                        acceptedIncomingFileRequests.removeAt(i);
+                    } else if (isLastFrame){
                         if (!validFileSize || expectedFileSize != fileTransferData.bytesReceived){
                             if (fileTransferData.writeInitialized){
                                 QFile::remove(fileTransferData.savePath);

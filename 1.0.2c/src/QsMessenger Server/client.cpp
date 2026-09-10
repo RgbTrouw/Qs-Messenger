@@ -447,7 +447,7 @@ void client::process_text_message(QString message){
 
              if (userid != "unsigned"){
 
-                 QStringList parameters = message.split(":", Qt::KeepEmptyParts);
+                 QStringList parameters = message.split(':');
                  if (parameters.size() == 6){
                      QString toEmail = parameters.at(2);
 
@@ -467,7 +467,7 @@ void client::process_text_message(QString message){
 
              if (userid != "unsigned"){
 
-                 QStringList parameters = message.split(":", Qt::KeepEmptyParts);
+                 QStringList parameters = message.split(':');
                  if (parameters.size() == 5){
                      QString peerEmail = parameters.at(2);
                      QString response = parameters.at(4);
@@ -1352,6 +1352,28 @@ void client::process_binary_message(QByteArray data){
 
         if(userid != "unsigned"){
             if (data.left(5) == "file:"){
+                int firstColon = data.indexOf(':');
+                int secondColon = data.indexOf(':', firstColon + 1);
+                int thirdColon = data.indexOf(':', secondColon + 1);
+
+                if (firstColon != -1 && secondColon != -1 && thirdColon != -1){
+                    QString peerEmail = QString::fromUtf8(data.mid(firstColon + 1, secondColon - firstColon - 1));
+                    QString transferId = QString::fromUtf8(data.mid(secondColon + 1, thirdColon - secondColon - 1));
+
+                    for (int i = 0; i < myPeers.size(); i++){
+                        if (peerEmail == myPeers.at(i)){
+                            QByteArray frameData = data.mid(thirdColon + 1);
+                            frameData.prepend(":");
+                            frameData.prepend(transferId.toUtf8());
+                            frameData.prepend(":");
+                            frameData.prepend(myEmail.toUtf8());
+                            frameData.prepend("file:");
+
+                            emit emit_sendFilePayload(myEmail, peerEmail, transferId, frameData, false);
+                            i = myPeers.size();
+                        }
+                    }
+                }
                 return;
             }
 
@@ -1418,7 +1440,9 @@ bool client::receiveFilePayload(QString receiverEmail, QByteArray data, bool isL
 
     Q_UNUSED(receiverEmail);
 
-    if (pClient->sendBinaryFrame(data, isLastFrame) == -1){
+    Q_UNUSED(isLastFrame);
+
+    if (pClient->sendBinaryMessage(data) == -1){
         return false;
     }
     pClient->flush();
