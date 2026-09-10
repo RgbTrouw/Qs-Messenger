@@ -1,4 +1,4 @@
-/*   QsMessenger Client v 1.0.2b Rev 4 Instant Messaging Application
+/*   QsMessenger Client v 1.0.2c Instant Messaging Application
      Copyright (C) 2026  Radu G. Balaban G.
 
      This program is free software: you can redistribute it and/or modify
