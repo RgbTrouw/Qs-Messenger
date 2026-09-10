@@ -1351,6 +1351,9 @@ void client::process_binary_message(QByteArray data){
     {
 
         if(userid != "unsigned"){
+            if (data.left(5) == "file:"){
+                return;
+            }
 
             QString header = data.left(9);
 
@@ -1373,6 +1376,53 @@ void client::process_binary_message(QByteArray data){
     }
 
 
+}
+
+void client::process_binary_frame(QByteArray data, bool isLastFrame){
+
+    if (pClient)
+    {
+
+        if(userid != "unsigned"){
+
+            if (data.left(5) == "file:"){
+                int firstColon = data.indexOf(':');
+                int secondColon = data.indexOf(':', firstColon + 1);
+                int thirdColon = data.indexOf(':', secondColon + 1);
+
+                if (firstColon != -1 && secondColon != -1 && thirdColon != -1){
+                    QString peerEmail = QString::fromUtf8(data.mid(firstColon + 1, secondColon - firstColon - 1));
+                    QString transferId = QString::fromUtf8(data.mid(secondColon + 1, thirdColon - secondColon - 1));
+
+                    for (int i = 0; i < myPeers.size(); i++){
+                        if (peerEmail == myPeers.at(i)){
+                            QByteArray frameData = data.mid(thirdColon + 1);
+                            frameData.prepend(":");
+                            frameData.prepend(transferId.toUtf8());
+                            frameData.prepend(":");
+                            frameData.prepend(myEmail.toUtf8());
+                            frameData.prepend("file:");
+
+                            emit emit_sendFilePayload(myEmail, peerEmail, transferId, frameData, isLastFrame);
+                            i = myPeers.size();
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+bool client::receiveFilePayload(QString receiverEmail, QByteArray data, bool isLastFrame){
+
+    Q_UNUSED(receiverEmail);
+
+    if (pClient->sendBinaryFrame(data, isLastFrame) == -1){
+        return false;
+    }
+    pClient->flush();
+    return true;
 }
 
 void client::socket_disconnected(){

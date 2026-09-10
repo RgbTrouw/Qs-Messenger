@@ -187,12 +187,14 @@ void QsMessengerServer::onNewConnection()
 
                     connect(pSocket, &QWebSocket::textMessageReceived, clients.at(i), &client::process_text_message);
                     connect(pSocket, &QWebSocket::binaryMessageReceived, clients.at(i), &client::process_binary_message);
+                    connect(pSocket, &QWebSocket::binaryFrameReceived, clients.at(i), &client::process_binary_frame);
                     connect(pSocket, &QWebSocket::disconnected, clients.at(i), &client::socket_disconnected);
                     connect(clients.at(i), SIGNAL(emit_close(QString)), this, SLOT(close_client(QString)) );
                     connect(clients.at(i), SIGNAL(emit_logData(QString)), this, SLOT(logData(QString)));
                     connect(clients.at(i), SIGNAL(emit_sendMsg(QString,QString,QString,QString)), this, SLOT(fwMessage(QString,QString,QString,QString)));
                     connect(clients.at(i), SIGNAL(emit_sendFileRequest(QString,QString,QString,QString,QString)), this, SLOT(fwFileRequest(QString,QString,QString,QString,QString)));
                     connect(clients.at(i), SIGNAL(emit_sendFileResponse(QString,QString,QString,QString)), this, SLOT(fwFileResponse(QString,QString,QString,QString)));
+                    connect(clients.at(i), SIGNAL(emit_sendFilePayload(QString,QString,QString,QByteArray,bool)), this, SLOT(fwFilePayload(QString,QString,QString,QByteArray,bool)));
                     connect(clients.at(i), SIGNAL(emit_statusUpdate(QString, QStringList)), this, SLOT(updateStatus(QString, QStringList)));
                     connect(clients.at(i), SIGNAL(emit_friendRequest(QString,QString)), this, SLOT(fwFriendRequest(QString,QString)));
                     connect(clients.at(i), SIGNAL(emit_checkSignedIn(QString, QString)), this, SLOT(checkSignedIn(QString,QString)));
@@ -291,6 +293,25 @@ void QsMessengerServer::fwFileResponse(QString senderEmail, QString receiverEmai
 
         if(clients.at(i)->myEmail == receiverEmail){
             clients.at(i)->receiveFileResponse(senderEmail, receiverEmail, transferId, response);
+        }
+
+    }
+}
+
+void QsMessengerServer::fwFilePayload(QString senderEmail, QString receiverEmail, QString transferId, QByteArray data, bool isLastFrame){
+
+    for (int i=0; i<clients.size(); i++){
+
+        if(clients.at(i)->myEmail == receiverEmail){
+            if (!clients.at(i)->receiveFilePayload(receiverEmail, data, isLastFrame)){
+                for (int a = 0; a < clients.size(); a++){
+                    if (clients.at(a)->myEmail == senderEmail){
+                        clients.at(a)->receiveFileResponse(receiverEmail, senderEmail, transferId, "failed");
+                        a = clients.size();
+                    }
+                }
+            }
+            return;
         }
 
     }

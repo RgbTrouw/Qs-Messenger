@@ -80,6 +80,7 @@ private slots:
 
     void onTextMessageReceived(QString message);
     void processBinaryMessage(QByteArray data);
+    void processBinaryFrame(QByteArray data, bool isLastFrame);
     void onSslErrors(QList<QSslError> errors);
     void onSocketError(QAbstractSocket::SocketError error);
 
@@ -148,6 +149,7 @@ private slots:
     void send_im(QString peerEmail, QString message);
     void send_file_request(QString peerEmail, QString transferId, QString fileName, QString fileSize);
     void respond_file_request(QString peerEmail, QString transferId, bool accepted);
+    void send_file_payload(QString peerEmail, QString transferId, QString filePath);
     void have_read(QString peerEmail);
     void get_prev_messages(QString peerEmail, QString index);
     void clearArchive(QString peerEmail);
@@ -212,7 +214,6 @@ private:
 
     QString session_id;
     QString previousMsgBuffer;
-
 
     QStandardItemModel *itemsModel = new QStandardItemModel();
     //FriendsListObject *peerList = new FriendsListObject();

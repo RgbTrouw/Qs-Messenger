@@ -31,6 +31,7 @@
 #include <QWidget>
 #include <QObject>
 #include <QFile>
+#include <QFileInfo>
 #include <QFont>
 
 
@@ -251,6 +252,7 @@ void MainWindow::onConnected()
     connect(m_webSocket, SIGNAL(textMessageReceived(QString)), this, SLOT(onTextMessageReceived(QString)));
 
     connect(m_webSocket, SIGNAL(binaryMessageReceived(QByteArray)), this, SLOT(processBinaryMessage(QByteArray)));
+    connect(m_webSocket, SIGNAL(binaryFrameReceived(QByteArray,bool)), this, SLOT(processBinaryFrame(QByteArray,bool)));
     //hostnameAction->disconnect();
 
     m_webSocket->sendTextMessage(QStringLiteral("session_id"));
@@ -521,6 +523,7 @@ void MainWindow::onTextMessageReceived(QString message)
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(send_message(QString, QString)), this, SLOT(send_im(QString, QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(send_file_request(QString, QString, QString, QString)), this, SLOT(send_file_request(QString, QString, QString, QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(respond_file_request(QString, QString, bool)), this, SLOT(respond_file_request(QString, QString, bool)));
+                connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(send_file_payload(QString, QString, QString)), this, SLOT(send_file_payload(QString, QString, QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(get_prev_messages(QString, QString)), this, SLOT(get_prev_messages(QString, QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(have_read(QString)), this, SLOT(have_read(QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(playAudio(QString)), this, SLOT(playAudio(QString)));
@@ -719,11 +722,10 @@ void MainWindow::onTextMessageReceived(QString message)
             QString transferId = parameters.at(3);
             QString response = parameters.at(4);
 
-            if (response == "accepted" || response == "declined"){
-                bool accepted = response == "accepted";
+            if (response == "accepted" || response == "declined" || response == "failed"){
                 IM_WindowObject *imWindow = prepareImWindow(parameters.at(2));
                 if (imWindow){
-                    imWindow->receiveFileResponse(transferId, accepted);
+                    imWindow->receiveFileResponse(transferId, response);
                 }
             }
         }
@@ -886,6 +888,10 @@ void MainWindow::onTextMessageReceived(QString message)
 
 void MainWindow::processBinaryMessage(QByteArray data){
 
+    if (data.left(5) == "file:"){
+        return;
+    }
+
     if (data.left(12) == "your_avatar:"){
 
         QString path = "./Resources/users/" + myEmail + "/" + myUsername;
@@ -916,6 +922,27 @@ void MainWindow::processBinaryMessage(QByteArray data){
 
     }
 
+}
+
+void MainWindow::processBinaryFrame(QByteArray data, bool isLastFrame){
+
+    if (data.left(5) == "file:"){
+
+        int firstColon = data.indexOf(':');
+        int secondColon = data.indexOf(':', firstColon + 1);
+        int thirdColon = data.indexOf(':', secondColon + 1);
+
+        if (firstColon != -1 && secondColon != -1 && thirdColon != -1){
+            QString peerEmail = QString::fromUtf8(data.mid(firstColon + 1, secondColon - firstColon - 1));
+            QString transferId = QString::fromUtf8(data.mid(secondColon + 1, thirdColon - secondColon - 1));
+
+            QByteArray payload = data.mid(thirdColon + 1);
+            IM_WindowObject *imWindow = prepareImWindow(peerEmail);
+            if (imWindow){
+                imWindow->receiveFilePayload(transferId, payload, isLastFrame);
+            }
+        }
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1368,6 +1395,74 @@ void MainWindow::get_prev_messages(QString peerEmail, QString index){
     request.append(":");
     request.append(index);
     m_webSocket->sendTextMessage(request);
+
+}
+
+void MainWindow::send_file_payload(QString peerEmail, QString transferId, QString filePath){
+
+    IM_WindowObject *imWindow = prepareImWindow(peerEmail);
+    if (!imWindow){
+        return;
+    }
+
+    QFile file(filePath);
+    if (!file.exists() || !file.open(QIODevice::ReadOnly)){
+        imWindow->completeOutgoingFileTransfer(transferId, false, " Failed to open file for sending");
+        return;
+    }
+
+    if (m_webSocket->state() != QAbstractSocket::ConnectedState){
+        file.close();
+        imWindow->completeOutgoingFileTransfer(transferId, false, " Connection lost while sending file");
+        return;
+    }
+
+    const qint64 chunkSize = 65536;
+    bool failed = false;
+    if (file.size() == 0){
+        QByteArray frameData = "file:";
+        frameData.append(peerEmail.toUtf8());
+        frameData.append(":");
+        frameData.append(transferId.toUtf8());
+        frameData.append(":");
+        if (m_webSocket->sendBinaryFrame(frameData, true) == -1){
+            failed = true;
+        }
+    } else {
+        while (!file.atEnd()){
+            QByteArray frameData = "file:";
+            frameData.append(peerEmail.toUtf8());
+            frameData.append(":");
+            frameData.append(transferId.toUtf8());
+            frameData.append(":");
+            QByteArray chunk(chunkSize, '\0');
+            qint64 bytesRead = file.read(chunk.data(), chunk.size());
+            if (bytesRead < 0){
+                failed = true;
+                break;
+            }
+            chunk.truncate(bytesRead);
+            if (file.error() != QFileDevice::NoError){
+                failed = true;
+                break;
+            }
+            frameData.append(chunk);
+
+            bool lastFrame = file.atEnd();
+            if (m_webSocket->sendBinaryFrame(frameData, lastFrame) == -1){
+                failed = true;
+                break;
+            }
+        }
+    }
+    file.close();
+
+    if (failed){
+        imWindow->completeOutgoingFileTransfer(transferId, false, " Failed to queue file transfer");
+        return;
+    }
+
+    imWindow->completeOutgoingFileTransfer(transferId, true, " File transfer queued: \"" + QFileInfo(filePath).fileName() + "\"");
 
 }
 
