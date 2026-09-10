@@ -1,21 +1,20 @@
-**Pre-release**
-  
-- project version under development with exciting, new features -
+ QsMessenger v 1.0.2c Instant Messaging Client & Server Application  
+ Copyright (C) 2026 Radu G. Balaban G.  
+
+ This program is free software: you can redistribute it and/or modify  
+ it under the terms of the GNU General Public License as published by  
+ the Free Software Foundation, either version 3 of the License, or  
+ (at your option) any later version.  
+
+ This program is distributed in the hope that it will be useful,  
+ but WITHOUT ANY WARRANTY; without even the implied warranty of  
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  
+ GNU General Public License for more details.  
+
+ You should have received a copy of the GNU General Public License  
+ along with this program. If not, see <https://www.gnu.org/licenses/>.  
 
 
-Notes & To Do  
-  
-* send message to group has been added  
-  
-* audio notifications have been added  
-  
-* verbose server mode has been replaced with a QFile method, for the gDebug() method inhibits the storing of messages to file    
-  
-* previous version will get an error if socket is not used at all for several hours. A simple sendTextMessage "ping" on a hourly basis will fix this.*  
+	- This Program is developed using qt5 & qt6 IDE -
 
-* server maintenance messages have been added  
-(ie. "Server is going offline for maintenance in 10 min")
-  
-* (ip region filter option might be added)  
-  
-  
+Contact: rgb.trust@gmail.com

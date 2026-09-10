@@ -1,4 +1,4 @@
-/*   QsMessenger Server v 1.0.2b Rev 4 Instant Messaging Application
+/*   QsMessenger Server v 1.0.2c Instant Messaging Application
      Copyright (C) 2026  Radu G. Balaban G.
 
      This program is free software: you can redistribute it and/or modify
@@ -85,7 +85,7 @@ QsMessengerServer::QsMessengerServer(quint16 port, bool log, bool verbose, QObje
         QTextStream out(&log);
 
         qInfo() << "QsMessenger Server listening on port SSL:" << QString::number(port);
-        out << QDateTime::currentDateTimeUtc().toString() + " QsMessenger Server listening on port SSL:" << QString::number(port) << endl;
+        out << QDateTime::currentDateTimeUtc().toString() + " QsMessenger Server listening on port SSL:" + QString::number(port) << endl;
 
         log.close();
 
