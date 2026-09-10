@@ -193,6 +193,7 @@ void QsMessengerServer::onNewConnection()
                     connect(clients.at(i), SIGNAL(emit_sendMsg(QString,QString,QString,QString)), this, SLOT(fwMessage(QString,QString,QString,QString)));
                     connect(clients.at(i), SIGNAL(emit_sendFileRequest(QString,QString,QString,QString,QString)), this, SLOT(fwFileRequest(QString,QString,QString,QString,QString)));
                     connect(clients.at(i), SIGNAL(emit_sendFileResponse(QString,QString,QString,QString)), this, SLOT(fwFileResponse(QString,QString,QString,QString)));
+                    connect(clients.at(i), SIGNAL(emit_sendFilePayload(QString,QString,QString,QByteArray)), this, SLOT(fwFilePayload(QString,QString,QString,QByteArray)));
                     connect(clients.at(i), SIGNAL(emit_statusUpdate(QString, QStringList)), this, SLOT(updateStatus(QString, QStringList)));
                     connect(clients.at(i), SIGNAL(emit_friendRequest(QString,QString)), this, SLOT(fwFriendRequest(QString,QString)));
                     connect(clients.at(i), SIGNAL(emit_checkSignedIn(QString, QString)), this, SLOT(checkSignedIn(QString,QString)));
@@ -291,6 +292,17 @@ void QsMessengerServer::fwFileResponse(QString senderEmail, QString receiverEmai
 
         if(clients.at(i)->myEmail == receiverEmail){
             clients.at(i)->receiveFileResponse(senderEmail, receiverEmail, transferId, response);
+        }
+
+    }
+}
+
+void QsMessengerServer::fwFilePayload(QString senderEmail, QString receiverEmail, QString transferId, QByteArray payload){
+
+    for (int i=0; i<clients.size(); i++){
+
+        if(clients.at(i)->myEmail == receiverEmail){
+            clients.at(i)->receiveFilePayload(senderEmail, receiverEmail, transferId, payload);
         }
 
     }

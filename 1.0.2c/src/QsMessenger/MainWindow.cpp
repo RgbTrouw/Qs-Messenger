@@ -521,6 +521,7 @@ void MainWindow::onTextMessageReceived(QString message)
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(send_message(QString, QString)), this, SLOT(send_im(QString, QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(send_file_request(QString, QString, QString, QString)), this, SLOT(send_file_request(QString, QString, QString, QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(respond_file_request(QString, QString, bool)), this, SLOT(respond_file_request(QString, QString, bool)));
+                connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(send_file_payload(QString, QString, QString)), this, SLOT(send_file_payload(QString, QString, QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(get_prev_messages(QString, QString)), this, SLOT(get_prev_messages(QString, QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(have_read(QString)), this, SLOT(have_read(QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(playAudio(QString)), this, SLOT(playAudio(QString)));
@@ -885,6 +886,26 @@ void MainWindow::onTextMessageReceived(QString message)
 }
 
 void MainWindow::processBinaryMessage(QByteArray data){
+
+    if (data.left(5) == "file:"){
+
+        int firstColon = data.indexOf(':');
+        int secondColon = data.indexOf(':', firstColon + 1);
+        int thirdColon = data.indexOf(':', secondColon + 1);
+
+        if (firstColon != -1 && secondColon != -1 && thirdColon != -1){
+            QString peerEmail = QString::fromUtf8(data.mid(firstColon + 1, secondColon - firstColon - 1));
+            QString transferId = QString::fromUtf8(data.mid(secondColon + 1, thirdColon - secondColon - 1));
+            QByteArray payload = data.mid(thirdColon + 1);
+
+            IM_WindowObject *imWindow = prepareImWindow(peerEmail);
+            if (imWindow){
+                imWindow->receiveFilePayload(transferId, payload);
+            }
+        }
+
+        return;
+    }
 
     if (data.left(12) == "your_avatar:"){
 
@@ -1368,6 +1389,32 @@ void MainWindow::get_prev_messages(QString peerEmail, QString index){
     request.append(":");
     request.append(index);
     m_webSocket->sendTextMessage(request);
+
+}
+
+void MainWindow::send_file_payload(QString peerEmail, QString transferId, QString filePath){
+
+    IM_WindowObject *imWindow = prepareImWindow(peerEmail);
+    if (!imWindow){
+        return;
+    }
+
+    QFile file(filePath);
+    if (!file.exists() || !file.open(QIODevice::ReadOnly)){
+        imWindow->completeOutgoingFileTransfer(transferId, false, " Failed to open file for sending");
+        return;
+    }
+
+    QByteArray request = "file:";
+    request.append(peerEmail.toUtf8());
+    request.append(":");
+    request.append(transferId.toUtf8());
+    request.append(":");
+    request.append(file.readAll());
+    file.close();
+
+    m_webSocket->sendBinaryMessage(request);
+    imWindow->completeOutgoingFileTransfer(transferId, true, "");
 
 }
 

@@ -44,6 +44,7 @@ public:
         QString filePath;
         QString fileName;
         QString fileSize;
+        QString savePath;
     };
 
     explicit IM_WindowObject(QWidget *parent = nullptr);
@@ -77,6 +78,8 @@ public slots:
     void prepend_message(QString msgFrom, QString msgTo, QString message, QString time);
     void receiveFileRequest(QString transferId, QString fileName, QString fileSize);
     void receiveFileResponse(QString transferId, bool accepted);
+    void receiveFilePayload(QString transferId, QByteArray data);
+    void completeOutgoingFileTransfer(QString transferId, bool success, QString message);
     void closeEvent(QCloseEvent *event);
     void showHideNotice(bool value);
 
@@ -104,6 +107,7 @@ signals:
     void send_message(QString peer, QString message);
     void send_file_request(QString peer, QString transferId, QString fileName, QString fileSize);
     void respond_file_request(QString peer, QString transferId, bool accepted);
+    void send_file_payload(QString peer, QString transferId, QString filePath);
     void get_prev_messages(QString peer, QString index);
     void have_read(QString peer);
     void playAudio(QString path);
@@ -129,6 +133,7 @@ private:
     QSoundEffect *audioEffect = new QSoundEffect();
     QList<FileTransferData> outgoingFileRequests;
     QList<FileTransferData> incomingFileRequests;
+    QList<FileTransferData> acceptedIncomingFileRequests;
     FileTransferData pendingFileRequest;
 
 

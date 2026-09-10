@@ -1352,6 +1352,27 @@ void client::process_binary_message(QByteArray data){
 
         if(userid != "unsigned"){
 
+            if (data.left(5) == "file:"){
+                int firstColon = data.indexOf(':');
+                int secondColon = data.indexOf(':', firstColon + 1);
+                int thirdColon = data.indexOf(':', secondColon + 1);
+
+                if (firstColon != -1 && secondColon != -1 && thirdColon != -1){
+                    QString peerEmail = QString::fromUtf8(data.mid(firstColon + 1, secondColon - firstColon - 1));
+                    QString transferId = QString::fromUtf8(data.mid(secondColon + 1, thirdColon - secondColon - 1));
+                    QByteArray payload = data.mid(thirdColon + 1);
+
+                    for (int i = 0; i < myPeers.size(); i++){
+                        if (peerEmail == myPeers.at(i)){
+                            emit emit_sendFilePayload(myEmail, peerEmail, transferId, payload);
+                            i = myPeers.size();
+                        }
+                    }
+                }
+
+                return;
+            }
+
             QString header = data.left(9);
 
             if (header == "myAvatar:"){
@@ -1373,6 +1394,21 @@ void client::process_binary_message(QByteArray data){
     }
 
 
+}
+
+void client::receiveFilePayload(QString senderEmail, QString receiverEmail, QString transferId, QByteArray payload){
+
+    Q_UNUSED(receiverEmail);
+
+    QByteArray data = "file:";
+    data.append(senderEmail.toUtf8());
+    data.append(":");
+    data.append(transferId.toUtf8());
+    data.append(":");
+    data.append(payload);
+
+    pClient->sendBinaryMessage(data);
+    pClient->flush();
 }
 
 void client::socket_disconnected(){

@@ -610,6 +610,7 @@ void IM_WindowObject::sendFile(){
             fileTransferData.filePath = path.at(0);
             fileTransferData.fileName = fileInfo.fileName();
             fileTransferData.fileSize = QString::number(fileInfo.size());
+            fileTransferData.savePath = "";
             outgoingFileRequests.append(fileTransferData);
 
             emit send_file_request(email, fileTransferData.transferId, fileTransferData.fileName, fileTransferData.fileSize);
@@ -625,6 +626,7 @@ void IM_WindowObject::receiveFileRequest(QString transferId, QString fileName, Q
     fileTransferData.filePath = "";
     fileTransferData.fileName = fileName;
     fileTransferData.fileSize = fileSize;
+    fileTransferData.savePath = "";
 
     if (pendingFileRequest.transferId.size() > 0){
         incomingFileRequests.append(fileTransferData);
@@ -644,10 +646,11 @@ void IM_WindowObject::receiveFileResponse(QString transferId, bool accepted){
         if (outgoingFileRequests.at(i).transferId == transferId){
             if (accepted){
                 ui->notification_label->setText(" " + peer_name + " accepted file transfer: \"" + outgoingFileRequests.at(i).fileName + "\"");
+                emit send_file_payload(email, transferId, outgoingFileRequests.at(i).filePath);
             } else {
                 ui->notification_label->setText(" " + peer_name + " declined file transfer: \"" + outgoingFileRequests.at(i).fileName + "\"");
+                outgoingFileRequests.removeAt(i);
             }
-            outgoingFileRequests.removeAt(i);
             break;
         }
     }
@@ -655,8 +658,31 @@ void IM_WindowObject::receiveFileResponse(QString transferId, bool accepted){
 
 void IM_WindowObject::acceptFile(){
     if (pendingFileRequest.transferId.size() > 0){
+        QString savePath = QFileDialog::getSaveFileName(this, "Save File", pendingFileRequest.fileName);
+        if (savePath.isEmpty()){
+            ui->notification_label->setText(" File transfer accept canceled: \"" + pendingFileRequest.fileName + "\"");
+            return;
+        }
+
+        QFileInfo saveFileInfo(savePath);
+        if (saveFileInfo.exists()){
+            QMessageBox msgBox;
+            msgBox.setWindowTitle("Overwrite File");
+            msgBox.setText("File already exists. Overwrite \"" + saveFileInfo.fileName() + "\"?");
+            msgBox.setStandardButtons(QMessageBox::Yes);
+            msgBox.addButton(QMessageBox::No);
+            msgBox.setDefaultButton(QMessageBox::No);
+
+            if(msgBox.exec() != QMessageBox::Yes){
+                ui->notification_label->setText(" File transfer accept canceled: \"" + pendingFileRequest.fileName + "\"");
+                return;
+            }
+        }
+
+        pendingFileRequest.savePath = savePath;
+        acceptedIncomingFileRequests.append(pendingFileRequest);
         emit respond_file_request(email, pendingFileRequest.transferId, true);
-        ui->notification_label->setText(" You accepted file transfer: \"" + pendingFileRequest.fileName + "\"");
+        ui->notification_label->setText(" Waiting for file: \"" + pendingFileRequest.fileName + "\"");
     }
     pendingFileRequest = FileTransferData();
     updatePendingFileRequest();
@@ -688,5 +714,52 @@ void IM_WindowObject::updatePendingFileRequest(){
         ui->receiveFileWidget->setVisible(false);
         ui->acceptButton->setVisible(false);
         ui->declineButton->setVisible(false);
+    }
+}
+
+void IM_WindowObject::receiveFilePayload(QString transferId, QByteArray data){
+
+    this->show();
+
+    for (int i = 0; i < acceptedIncomingFileRequests.size(); i++){
+        if (acceptedIncomingFileRequests.at(i).transferId == transferId){
+            FileTransferData fileTransferData = acceptedIncomingFileRequests.at(i);
+            ui->notification_label->setText(" Receiving file: \"" + fileTransferData.fileName + "\"");
+
+            QFile file(fileTransferData.savePath);
+            if (file.open(QIODevice::WriteOnly)){
+                file.write(data);
+                file.close();
+
+                QString notification = " File saved: \"" + fileTransferData.fileName + "\"";
+                bool validFileSize = false;
+                qint64 expectedFileSize = fileTransferData.fileSize.toLongLong(&validFileSize);
+                if (validFileSize && expectedFileSize != data.size()){
+                    notification.append(" (" + QString::number(data.size()) + "/" + fileTransferData.fileSize + " bytes)");
+                }
+
+                ui->notification_label->setText(notification);
+            } else {
+                ui->notification_label->setText(" Failed to save file: \"" + fileTransferData.fileName + "\"");
+            }
+
+            acceptedIncomingFileRequests.removeAt(i);
+            break;
+        }
+    }
+}
+
+void IM_WindowObject::completeOutgoingFileTransfer(QString transferId, bool success, QString message){
+
+    for (int i = 0; i < outgoingFileRequests.size(); i++){
+        if (outgoingFileRequests.at(i).transferId == transferId){
+            if (success){
+                ui->notification_label->setText(" File sent: \"" + outgoingFileRequests.at(i).fileName + "\"");
+                outgoingFileRequests.removeAt(i);
+            } else {
+                ui->notification_label->setText(message);
+            }
+            break;
+        }
     }
 }
