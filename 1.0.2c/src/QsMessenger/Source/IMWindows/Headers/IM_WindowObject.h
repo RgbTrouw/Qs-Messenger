@@ -47,6 +47,8 @@ public:
         QString savePath;
         qint64 bytesReceived = 0;
         bool writeInitialized = false;
+        QString transferType = "file";
+        bool displayInline = false;
     };
 
     explicit IM_WindowObject(QWidget *parent = nullptr);
@@ -79,6 +81,7 @@ public slots:
     void append_message(QString message, QString time);
     void prepend_message(QString msgFrom, QString msgTo, QString message, QString time);
     void receiveFileRequest(QString transferId, QString fileName, QString fileSize);
+    void receivePictureRequest(QString transferId, QString fileName, QString fileSize);
     void receiveFileResponse(QString transferId, QString response);
     void receiveFilePayload(QString transferId, QByteArray data, bool isLastFrame);
     void completeOutgoingFileTransfer(QString transferId, bool success, QString message);
@@ -91,6 +94,7 @@ private slots:
     void sendMsg();
     void sendBuzz();
     void sendFile();
+    void sendPicture();
     void loadPreviousMessages();
     void showSmileys();
     void appendSmiley(QString characters);
@@ -108,8 +112,11 @@ private slots:
 signals:
     void send_message(QString peer, QString message);
     void send_file_request(QString peer, QString transferId, QString fileName, QString fileSize);
+    void send_picture_request(QString peer, QString transferId, QString fileName, QString fileSize);
     void respond_file_request(QString peer, QString transferId, bool accepted);
+    void respond_picture_request(QString peer, QString transferId, bool accepted);
     void send_file_payload(QString peer, QString transferId, QString filePath);
+    void send_picture_payload(QString peer, QString transferId, QString filePath);
     void get_prev_messages(QString peer, QString index);
     void have_read(QString peer);
     void playAudio(QString path);
@@ -118,6 +125,9 @@ signals:
     void receiveFile(QString peer, QString file, bool value);
 
 private:
+    void appendPictureMessage(QString senderName, QString picturePath, bool outgoing);
+    bool canRenderInlinePicture(QString picturePath) const;
+    QString createPictureSavePath(QString transferId, QString fileName) const;
     void updatePendingFileRequest();
 
     Ui::IM_WindowObject *ui;
