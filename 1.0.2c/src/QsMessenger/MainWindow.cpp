@@ -674,7 +674,7 @@ void MainWindow::onTextMessageReceived(QString message)
 
         //qInfo() << "new message received...";
         //qInfo() << message;
-        QStringList parameters = message.split(':');
+        QStringList parameters = message.split(':', QString::KeepEmptyParts);
 
         if (parameters.size() == 4){
             QString messageHex = parameters.at(2);
@@ -694,7 +694,7 @@ void MainWindow::onTextMessageReceived(QString message)
 
     if (QRegularExpression(QRegularExpression::wildcardToRegularExpression(searchPattern)).match(message).hasMatch()){
 
-        QStringList parameters = message.split(':');
+        QStringList parameters = message.split(':', QString::KeepEmptyParts);
         if (parameters.size() == 6){
             QString transferId = parameters.at(3);
             QString fileNameHex = parameters.at(4);
@@ -716,7 +716,7 @@ void MainWindow::onTextMessageReceived(QString message)
 
     if (QRegularExpression(QRegularExpression::wildcardToRegularExpression(searchPattern)).match(message).hasMatch()){
 
-        QStringList parameters = message.split(':');
+        QStringList parameters = message.split(':', QString::KeepEmptyParts);
         if (parameters.size() == 5){
             QString transferId = parameters.at(3);
             QString response = parameters.at(4);

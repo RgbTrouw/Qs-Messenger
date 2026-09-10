@@ -447,7 +447,7 @@ void client::process_text_message(QString message){
 
              if (userid != "unsigned"){
 
-                 QStringList parameters = message.split(':');
+                 QStringList parameters = message.split(':', QString::KeepEmptyParts);
                  if (parameters.size() == 6){
                      QString toEmail = parameters.at(2);
 
@@ -467,7 +467,7 @@ void client::process_text_message(QString message){
 
              if (userid != "unsigned"){
 
-                 QStringList parameters = message.split(':');
+                 QStringList parameters = message.split(':', QString::KeepEmptyParts);
                  if (parameters.size() == 5){
                      QString peerEmail = parameters.at(2);
                      QString response = parameters.at(4);
