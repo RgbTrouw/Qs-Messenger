@@ -1,6 +1,6 @@
 QT += websockets gui core widgets multimedia
 
-TARGET = "QsMessenger"
+TARGET = "Qs Messenger"
 CONFIG   -= app_bundle
 
 RC_ICONS = Resources/AppIcon.ico
