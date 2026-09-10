@@ -39,6 +39,13 @@ class IM_WindowObject : public QWidget
     Q_OBJECT
 
 public:
+    struct FileTransferData {
+        QString transferId;
+        QString filePath;
+        QString fileName;
+        QString fileSize;
+    };
+
     explicit IM_WindowObject(QWidget *parent = nullptr);
     ~IM_WindowObject();
     QString myUsername;
@@ -68,6 +75,8 @@ public slots:
     void setPeerAvatar();
     void append_message(QString message, QString time);
     void prepend_message(QString msgFrom, QString msgTo, QString message, QString time);
+    void receiveFileRequest(QString transferId, QString fileName, QString fileSize);
+    void receiveFileResponse(QString transferId, bool accepted);
     void closeEvent(QCloseEvent *event);
     void showHideNotice(bool value);
 
@@ -86,7 +95,6 @@ private slots:
 
     void clearArchive();
 
-    void receiveFileRequest(QString fileName);
     void acceptFile();
     void declineFile();
 
@@ -94,6 +102,8 @@ private slots:
 
 signals:
     void send_message(QString peer, QString message);
+    void send_file_request(QString peer, QString transferId, QString fileName, QString fileSize);
+    void respond_file_request(QString peer, QString transferId, bool accepted);
     void get_prev_messages(QString peer, QString index);
     void have_read(QString peer);
     void playAudio(QString path);
@@ -102,6 +112,8 @@ signals:
     void receiveFile(QString peer, QString file, bool value);
 
 private:
+    void updatePendingFileRequest();
+
     Ui::IM_WindowObject *ui;
     int previousMsgIndex = 0;
     bool alternate = false;
@@ -115,6 +127,9 @@ private:
 
 
     QSoundEffect *audioEffect = new QSoundEffect();
+    QList<FileTransferData> outgoingFileRequests;
+    QList<FileTransferData> incomingFileRequests;
+    FileTransferData pendingFileRequest;
 
 
 };

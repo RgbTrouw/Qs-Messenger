@@ -54,6 +54,8 @@ public slots:
 
 
     void receiveMessage(QString senderEmail, QString receiverEmail, QString Message, QString timeMseconds );
+    void receiveFileRequest(QString senderEmail, QString receiverEmail, QString transferId, QString fileName, QString fileSize);
+    void receiveFileResponse(QString senderEmail, QString receiverEmail, QString transferId, QString response);
     void receiveStatusUpdate(QString peerEmail);
     void receiveFriendRequest(QString peerEmail, QString myEmail);
     void receiveAcceptedFriendRequest(QString peerEmail);
@@ -71,6 +73,8 @@ signals:
     void emit_logData(QString data);
 
     void emit_sendMsg(QString myEmail, QString peerEmail, QString message, QString mseconds);
+    void emit_sendFileRequest(QString myEmail, QString peerEmail, QString transferId, QString fileName, QString fileSize);
+    void emit_sendFileResponse(QString myEmail, QString peerEmail, QString transferId, QString response);
     void emit_statusUpdate(QString myEmail, QStringList myPeers);
     void emit_friendRequest(QString myEmail, QString peerEmail);
     void emit_acceptedFriendRequest(QString myEmail, QString peerEmail);
@@ -132,7 +136,8 @@ private:
     QString setStatusRequest="set_status:*";
     QString loginRequest="login:*:*:[0,2]";
     QString haveReadRequest="have_read:*";
-    QString sendFileRequest="file:*:*";
+    QString sendFileRequest="file:request:*:*:*:*";
+    QString sendFileResponseRequest="file:response:*:*:*";
     QString signOutRequest="sign_out";
     QString getListRequest="getlist";
     QString infoRequest="getMyInfo";
