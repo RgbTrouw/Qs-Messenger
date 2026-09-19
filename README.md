@@ -46,7 +46,6 @@ Host Address: **qsmessenger.net 7080**  - v1.0.2b (@IPv4 100.71.15.9)
 
  Thank you for your insterest in the application.    
    
-* Note that mysql connections normally last for 8 hours - so a configuration suggestion has been added, extending the period to several days.  
   
 * Note that only basic functions are implemented for now.  
   
