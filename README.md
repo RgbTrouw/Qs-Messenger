@@ -104,7 +104,8 @@ Server configuration:
 - import certificates to 'crt' folder
 - import 'messengerDataBase.sql' file to mysql database 'messenger'
 - *suggested mysql configuration:
-
+  "/etc/mysql/my.cnf"
+    
   `[mysqld]`  
   `wait_timeout = 604800`  
   `interactive_timeout = 604800`  
