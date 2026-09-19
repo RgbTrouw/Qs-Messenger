@@ -103,7 +103,7 @@ Server configuration:
   (sql and smtp)  
 - import certificates to 'crt' folder
 - import 'messengerDataBase.sql' file to mysql database 'messenger'
-- *suggested mysql configuration:
+- suggested mysql configuration:
   /etc/mysql/my.cnf
     
   `[mysqld]`  
