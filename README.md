@@ -102,7 +102,12 @@ Server configuration:
 - configure credentials in 'assets' folder;
   (sql and smtp)  
 - import certificates to 'crt' folder
-- import 'messengerDataBase.sql' file to mysql database 'messenger'  
+- import 'messengerDataBase.sql' file to mysql database 'messenger'
+- suggested mysql configuration:
+
+  `[mysqld]
+  wait_timeout = 604800
+  interactive_timeout = 604800`
   
   
 The code can be adapted to serve on multiple computers, hosting a larger number of clients.   
