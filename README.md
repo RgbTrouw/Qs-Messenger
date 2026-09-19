@@ -103,7 +103,7 @@ Server configuration:
   (sql and smtp)  
 - import certificates to 'crt' folder
 - import 'messengerDataBase.sql' file to mysql database 'messenger'
-- *suggested mysql configuration (keeping mysql connection on for up to 7 days):
+- *suggested mysql configuration:
 
   `[mysqld]`  
   `wait_timeout = 604800`  
