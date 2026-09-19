@@ -105,9 +105,9 @@ Server configuration:
 - import 'messengerDataBase.sql' file to mysql database 'messenger'
 - suggested mysql configuration:
 
-  `[mysqld]  
-  wait_timeout = 604800  
-  interactive_timeout = 604800`  
+  `[mysqld]`  
+  `wait_timeout = 604800`  
+  `interactive_timeout = 604800`  
   
   
 The code can be adapted to serve on multiple computers, hosting a larger number of clients.   
