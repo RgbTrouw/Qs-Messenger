@@ -32,13 +32,13 @@ Host Address: **qsmessenger.net 7080**
 
 Release Notes:  
 
-Most changes come with the server. The client contains minor improvements and some new icons.
-Send IM to Group and Audio Notifications are an addition.
-  
+Both server and client have minor, overall improvements, but most changes come with the server with this version.  
+The client contains some new Icons, send IM to Group and Audio Notifications, which are an addition.  
+   
 Server provides a more thorough syntax, better logging and display of messages, plus an added option of filtering out IP clients
-by country code.
+by country code.  
 
-Both server and client have minor, overall improvements.  
+
   
 
 
