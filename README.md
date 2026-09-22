@@ -9,18 +9,7 @@ Qs-Messenger 1.0.2d Source Released
   
 Host Address: **qsmessenger.net 7080** 
   
-<img src="https://github.com/RgbTrouw/QsMessenger/blob/root/Offline.png" width="92" height="34">  
-  
-*If you are having connectivity problems you can always write an email at 'rgb.trust@gmail.com' or try again later.*     
 
-  
-  ![alt text](https://github.com/RgbTrouw/QsMessenger/blob/root/QsMessenger%201.0.2a%20Windows.png)
-    
-  ![alt text](https://github.com/RgbTrouw/QsMessenger/blob/root/QsMessenger%20v1.0.2a%202026.png)  
-  
- 
-* see "QsMessenger - Login Screen.png"
-    
 <Introduction>  
 
   
