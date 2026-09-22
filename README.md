@@ -34,7 +34,8 @@ Host Address: **qsmessenger.net 7080**
 
      
    
-```Qs-MessengerServer v1.0.2d - Copyright 2026 Rgb-Trust
+```
+Qs-MessengerServer v1.0.2d - Copyright 2026 Rgb-Trust
 Usage: ./QsMessengerServer [-h] [-v] [-l] [-f <CountryCode>] [ipLookupApiKey]
  
 Options: 
