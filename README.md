@@ -1,7 +1,6 @@
 Qs-Messenger 1.0.2d Source Released  
 -----------------------------------------------------------------------------------------
        
-     *binaries pending release    
       
      - C++ open source program developed with qt5 & qt6 / Qt Creator IDE -  
 
