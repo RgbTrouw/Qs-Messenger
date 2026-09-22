@@ -30,6 +30,18 @@ Host Address: **qsmessenger.net 7080**
 
  Thank you for your insterest in the application.  
 
+Release Notes:  
+
+Most changes come with the server. The client contains minor improvements and some new icons.
+Send IM to Group and Audio Notifications are an addition.
+  
+Server provides a more thorough syntax, better logging and display of messages, plus an added option of filtering out IP clients
+by country code.
+
+Both server and client have minor, overall improvements.  
+  
+
+
  Qs-Messenger Server Synopsis  
 
      
