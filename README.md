@@ -27,7 +27,7 @@ Release Notes:
 - The server provides a more thorough syntax with better logging and debugging / display of messages, plus an added option of filtering out IP clients
 by country code.
 
-Log Format: ```<dateTime> <clientIp> <sessionId> <email> <server-client-Message>```
+Log Format: ```<dateTime> <clientIp> <sessionId> <email> <server-client-message>```
 
 
   
