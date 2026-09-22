@@ -15,15 +15,16 @@
      along with this program. If not, see <https://www.gnu.org/licenses/>.  
   
      
-QsMessenger 1.0.2b Released - Windows & Linux Client Binaries Included      
+Qs-Messenger 1.0.2d Source Released  
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+       
+     *binaries pending release    
       
      - C++ open source program developed with qt5 & qt6 / Qt Creator IDE -  
 
  *" the cute and small messenger "*  
   
-Host Address: **qsmessenger.net 7080**  - v1.0.2b (@IPv4 *.*.*.*)  
+Host Address: **qsmessenger.net 7080** 
   
 <img src="https://github.com/RgbTrouw/QsMessenger/blob/root/Offline.png" width="92" height="34">  
   
@@ -44,80 +45,36 @@ Host Address: **qsmessenger.net 7080**  - v1.0.2b (@IPv4 *.*.*.*)
   
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
 
- Thank you for your insterest in the application.    
-   
-  
-* Note that only basic functions are implemented for now.  
-  
-This includes:  
-    
-- configure host address  
-- user registration  
-- password reset
-- login / logout  
-- set status  
-- set avatar  
-- all friends list management features
-  (accessible by right click context menu)  
-- send text message   
-- send buzz  
-- load archived messages  
-- clear archived messages   
-  
-Not yet implemented:  
-  
-- peer login / logout notification   
-- send smiley, files, pictures 
-- webcam session  
-- configure start on OS Startup  
-  (option is always active)  
-- block/ ignore list  
-  
+ Thank you for your insterest in the application.  
+
+ Qs-Messenger Server Synopsis  
+
      
-What is new:  
+   
+```Qs-MessengerServer v1.0.2d - Copyright 2026 Rgb-Trust
+Usage: ./QsMessengerServer [-h] [-v] [-l] [-f <CountryCode>] [ipLookupApiKey]
+ 
+Options: 
+  -h                 display usage information
+  -v                 display server-client messages
+  -l                 log server-client messages (recommended)
+  -f <NN> <apiKey>   allow only IPs from <NN> region - use https://ip2location.io <apiKey>
+ 
+Service Port SSL: 7080
+ 
+Configuration:
+ 
+MYSQL Database Template               - assets/messenger.sql
+MYSQL Service Username and Password   - assets/mysql_credentials
+ 
+(PHP) SMTP Username and Password      - assets/mailToRegister.php
+(PHP) SMTP Username and Password      - assets/mailToRecover.php
+ 
+SSL CA Root Certificate               - crt/ca_certificate.crt
+SSL Certificate                       - crt/certificate.crt
+SSL Private Key                       - crt/private.key
+```
     
-  - completed some of the list functions  
-  - only one login allowed, with option of logging out the other session
-  - server verbose option "-v" added
-  - (removed server logging "-log" for now)
-      
-  
-  
-Client configuration:  
---------------------------------------------------
-Host address and port have to be assigned within the messenger settings menu.  
-Once the setting is configured the client will connect to the server address.
-  
- * Note that Windows portable binaries set up a Startup Registery Key, making the application start on Windows startup. Move the QsMessenger folder to a friendly location before starting.  
-        
-
-Server configuration:  
---------------------------------------------------
-*require Php Pear (Mail)  
-*require MySql Server  
-*require OpenSSL  
-*require SSL certificate bundle  
-  
-
-- configure credentials in 'assets' folder;
-  (sql and smtp)  
-- import certificates to 'crt' folder
-- import 'messengerDataBase.sql' file to mysql database 'messenger'
-- suggested mysql configuration:
-  /etc/mysql/my.cnf
-    
-  `[mysqld]`  
-  `wait_timeout = 604800`  
-  `interactive_timeout = 604800`  
-  
-  
-The code can be adapted to serve on multiple computers, hosting a larger number of clients.   
-  
-This involves splitting the sql data by a certain function on multiple back-end sql servers (ie. letters abc s1, def s2, ghi s3, jkl s4, mno s1, pqr s2, etc. or something similar) and multiple front-end servers communicating to each other and any of the sql servers, whilst balancing the nr. of clients between them.  
-
-A single computer might also be a starting point, serving for a base of clients.  
-  
-  
 
       
        
