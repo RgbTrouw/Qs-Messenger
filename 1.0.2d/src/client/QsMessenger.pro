@@ -8,7 +8,7 @@ RC_ICONS = Resources/AppIcon.ico
 TEMPLATE = app
 
 SOURCES += \
-    Source/IMWindows/im_group.cpp \
+    Source/IMWindows/IM2Group.cpp \
     main.cpp \
     MainWindow.cpp \     
     Source/FriendsList/CreateNewGroupObject.cpp \
@@ -34,7 +34,7 @@ HEADERS += \
     Source/FriendsList/Headers/FriendshipResponseObject.h \
     Source/FriendsList/Headers/CreateNewGroupObject.h \
     Source/IMWindows/Headers/IM_WindowObject.h \
-    Source/IMWindows/im_group.h \
+    Source/IMWindows/Headers/IM2Group.h \
     Source/OtherWindows/Headers/About.h \
     Source/OtherWindows/Headers/RecoverPasswordObject.h \
     Source/OtherWindows/Headers/RegisterNewUserObject.h \
@@ -50,7 +50,7 @@ FORMS += \
     Source/FriendsList/Headers/FriendshipResponseObject.ui \
     Source/FriendsList/Headers/CreateNewGroupObject.ui \
     Source/IMWindows/Headers/IM_WindowObject.ui \
-    Source/IMWindows/im_group.ui \
+    Source/IMWindows/Headers/IM2Group.ui \
     Source/OtherWindows/Headers/About.ui \
     Source/OtherWindows/Headers/RecoverPasswordObject.ui \
     Source/OtherWindows/Headers/RegisterNewUserObject.ui \
