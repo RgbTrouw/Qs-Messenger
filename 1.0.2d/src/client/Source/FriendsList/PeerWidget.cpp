@@ -34,10 +34,10 @@ PeerWidget::PeerWidget(QWidget *parent) :
 
     ui->setupUi(this);
 
-    ui->Icon->setVisible(false);
-    ui->Icon->setPixmap(QPixmap("./Resources/icons/smiley.png"));
-    ui->Icon->setAttribute(Qt::WA_StyledBackground, true);
-    ui->Icon->setAttribute(Qt::WA_Hover, true);
+    //ui->Icon->setVisible(false);
+    //ui->Icon->setPixmap(QPixmap("./Resources/icons/smiley.png"));
+    //ui->Icon->setAttribute(Qt::WA_StyledBackground, true);
+    //ui->Icon->setAttribute(Qt::WA_Hover, true);
 
     this->setMouseTracking(true);
     this->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -96,21 +96,21 @@ void PeerWidget::set_plain_data(QString plain_peer_data){
 
     if (availability == "0"){
         availability = "available";
-        ui->Icon->setPixmap(QPixmap("./Resources/icons/smiley.png"));
+        //ui->Icon->setPixmap(QPixmap("./Resources/icons/smiley.png"));
         ui->icon0->setPixmap(QPixmap("./Resources/icons/connected.png"));
         if (status_message.size() > 0){
             ui->statusLabel->setText("- " + status_message);
         } else {ui->statusLabel->setText("");}
     } else if (availability == "1"){
         availability = "busy";
-        ui->Icon->setPixmap(QPixmap("./Resources/icons/smiley_busy.png"));
+        //ui->Icon->setPixmap(QPixmap("./Resources/icons/smiley_busy.png"));
         ui->icon0->setPixmap(QPixmap("./Resources/icons/busy.png"));
         if (status_message.size() > 0){
             ui->statusLabel->setText("- " + status_message);
         } else {ui->statusLabel->setText("");}
     } else if (availability == "3"){
         availability = "offline";
-        ui->Icon->setPixmap(QPixmap("./Resources/icons/smiley_offline.png"));
+        //ui->Icon->setPixmap(QPixmap("./Resources/icons/smiley_offline.png"));
         ui->icon0->setPixmap(QPixmap("./Resources/icons/offline.png"));
         ui->statusLabel->setText("");
     }
