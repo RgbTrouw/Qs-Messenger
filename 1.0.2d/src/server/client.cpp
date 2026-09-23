@@ -407,6 +407,8 @@ void client::process_text_message(QString message){
                      pClient->flush();
                      //qInfo() << ba.left(34);
 
+                     sendLogData("peer_avatar:" + peerEmail + ":<data>");
+
                      } // end of if (ba.size() > 0)
                  } // end of if (check_file.exists() && check_file.isFile())
              } // end of if (userid != "unsigned")
