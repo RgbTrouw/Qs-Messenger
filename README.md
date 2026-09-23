@@ -6,7 +6,7 @@ Qs-Messenger 1.0.2d Source Released
 
  *" the cute and small messenger "*  
   
-Host Address: **qsmessenger.net 7080** 
+Host Address: **qsmessenger.net 7080** (offline)
   
 
 <Introduction>  
