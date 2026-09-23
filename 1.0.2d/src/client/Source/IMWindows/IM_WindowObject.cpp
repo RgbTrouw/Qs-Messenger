@@ -67,7 +67,7 @@ IM_WindowObject::IM_WindowObject(QWidget *parent) :
     setMyAvatar();
     setPeerAvatar();
 
-    ui->smileysButton->setIcon(QIcon("./Resources/icons/smiley.png"));
+    ui->smileysButton->setIcon(QIcon("./Resources/icons/AppIcon.png"));
     ui->buzzButton->setIcon(QIcon("./Resources/icons/buzz.png"));
     ui->sendFileButton->setIcon(QIcon("./Resources/icons/paperclip.png"));
     ui->imagesButton->setIcon(QIcon("./Resources/icons/images.png"));
