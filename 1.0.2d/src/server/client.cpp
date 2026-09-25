@@ -31,7 +31,7 @@
 
     //#include <QDebug>
 
-
+/// TO DO hide status update when invisible 
 
 
 client::client(QHostAddress ip_address, quint16 remote_port, QString session_id_code, int clients_id, bool logging, bool verbose)
