@@ -267,7 +267,7 @@ void client::process_text_message(QString message){
 
                      //qInfo() << list;
 
-                     response.append(":|" + group_name  + "/3///");
+                     response.append(":|" + group_name  + "////");
                      response.append(list);
 
                      } // end of while(query.next())
