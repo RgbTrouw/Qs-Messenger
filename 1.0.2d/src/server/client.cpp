@@ -1169,19 +1169,21 @@ void client::process_text_message(QString message){
 
              QProcess process;
 
-             process.start("openssl rand -hex 10");
-             process.waitForFinished(-1);
+             QString scode = QString::number(QRandomGenerator64::global()->bounded(100000000,999999999));
 
-             QString scode=process.readAllStandardOutput();
-             scode = scode.trimmed();
 
              query.exec("UPDATE `users` SET `hex` = '" + scode + "' WHERE `email` = '" + email + "' AND `status` != '0';");
 
+             QStringList args;
+             args << "./assets/mailToRecover.php" << email << scode;
 
-             process.start("php ./assets/mailToRecover.php " + email + " " + scode);
+             process.execute("php", args);
              process.waitForFinished(-1);
 
+             args.clear();
              response = "Reset code sent...";
+
+             sendLogData("[ email sent to:" + email + " with security code - " + scode + " ]");
 
 
 
