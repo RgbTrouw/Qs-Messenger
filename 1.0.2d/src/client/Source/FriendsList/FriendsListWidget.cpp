@@ -61,7 +61,7 @@ void FriendsListWidget::set_data(QString plain_data){
 
     for (int i=0; i < nr_of_groups; i++){
 
-        buffer.append(plain_groups.at(i).split("/").at(0));
+        buffer.append(plain_groups.at(i).split(":").at(0));
     }
 
     for (int i=0; i < nr_of_groups; i++){
