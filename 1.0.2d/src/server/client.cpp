@@ -132,20 +132,21 @@ void client::process_text_message(QString message){
          QString response;
          response = "";
 
-         QRegularExpression challenge(QRegularExpression::wildcardToRegularExpression(session_id_request));
 
-         if ( challenge.match(message).hasMatch()){
+
+         if ( QRegularExpression challenge(QRegularExpression::wildcardToRegularExpression(session_id_request)); challenge.match(message).hasMatch()){
 
              response = "session_id:" + session_id;
              pClient->sendTextMessage(response.toUtf8());
              pClient->flush();
 
              //qInfo() << response;
+             return;
 
          } // end of if ( challenge.match(message).hasMatch())
 
 
-         if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(loginRequest)); challenge.match(message).hasMatch()){
+         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(loginRequest)); challenge.match(message).hasMatch()){
 
              //qInfo() << "login request...";
              //qInfo() << message;
@@ -193,6 +194,7 @@ void client::process_text_message(QString message){
               pClient->flush();
 
 
+              return;
 
          } // end of if (challenge.match(message).hasMatch())
 
@@ -206,7 +208,10 @@ void client::process_text_message(QString message){
 
               emit emit_disconnectOther(loginQuery.split(":").at(1), loginTokenValue);
 
+
              } // end of if(loginTokenValue == loginToken && userid != "unsigned")
+
+              return;
          } // end of if (challenge.match(message).hasMatch())
 
 
@@ -296,6 +301,7 @@ void client::process_text_message(QString message){
              } // end of if(updateStatusUponLogin)
 
 
+             return;
          } // end of if (challenge.match(message).hasMatch())
 
 
@@ -338,6 +344,7 @@ void client::process_text_message(QString message){
              //qInfo() << response;
 
              } // end of if (userid != "unsigned")
+             return;
          } // end of if (challenge.match(message).hasMatch())
 
 
@@ -372,6 +379,7 @@ void client::process_text_message(QString message){
 
                 } // end of if (check_file.exists() && check_file.isFile())
              } // end of if (userid != "unsigned")
+            return;
          } // end of if ( challenge.match(message).hasMatch())
 
 
@@ -413,6 +421,8 @@ void client::process_text_message(QString message){
                  } // end of if (check_file.exists() && check_file.isFile())
              } // end of if (userid != "unsigned")
 
+             return;
+
          } // end of if ( challenge.match(message).hasMatch())
 
 
@@ -453,6 +463,8 @@ void client::process_text_message(QString message){
 
              } // end of if (userid != "unsigned")
 
+             return;
+
          } // end of if (challenge.match(message).hasMatch())
 
 
@@ -477,6 +489,8 @@ void client::process_text_message(QString message){
                    } // end of for(int i=0; i< myPeers.size(); i++)
 
              } // end of if (userid != "unsigned")
+
+             return;
          } // end of if (challenge.match(message).hasMatch())
 
 
@@ -491,6 +505,8 @@ void client::process_text_message(QString message){
                  query.exec("DELETE FROM `messages` WHERE ((`toEmail` = '" + myEmail + "' AND `fromEmail` = '" + peerEmail + "') OR (`toEmail` = '" + peerEmail + "' AND `fromEmail` = '" + myEmail + "')) AND `ownerEmail` = '" + myEmail + "';");
 
              } // end of if (userid != "unsigned")
+
+             return;
          } // end of if (challenge.match(message).hasMatch())
 
 
@@ -537,7 +553,10 @@ void client::process_text_message(QString message){
 
                         } // end of while (query.next())
                  } // end of if (userid != "unsigned")
+
+             return;
          } // end of if (challenge.match(message).hasMatch())
+
 
 
 
@@ -602,8 +621,12 @@ void client::process_text_message(QString message){
              //qInfo() << response;
              pClient->flush();
 
+             return;
+
 
          } // end of if ( challenge.match(message).hasMatch())
+
+
 
 
          else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(resendActivationCodeRequest)); challenge.match(message).hasMatch()){
@@ -656,6 +679,7 @@ void client::process_text_message(QString message){
                 } // end of } else
 
 
+                return;
 
          } // end of if (challenge.match(message).hasMatch())
 
@@ -723,6 +747,7 @@ void client::process_text_message(QString message){
 
                  } // end of if (userid != "unsigned")
 
+             return;
          } // end of if (challenge.match(message).hasMatch())
 
 
@@ -831,6 +856,8 @@ void client::process_text_message(QString message){
                  pClient->flush();
 
              } // end of if (userid != "unsigned")
+
+             return;
          } // end of if (challenge.match(message).hasMatch())
 
 
@@ -908,6 +935,8 @@ void client::process_text_message(QString message){
 
                  } // end of if(x != 0 )
              } // end of if (userid != "unsigned")
+
+             return;
 
          } // end of if (challenge.match(message).hasMatch())
 
@@ -1001,6 +1030,7 @@ void client::process_text_message(QString message){
 
              } // end of if (userid != "unsigned")
 
+             return;
 
          } // end of if (challenge.match(message).hasMatch())
 
@@ -1029,6 +1059,8 @@ void client::process_text_message(QString message){
              emit emit_statusUpdate(myEmail, myPeers);
 
              } // end of if (userid != "unsigned")
+
+             return;
 
          } // end of if (challenge.match(message).hasMatch())
 
@@ -1062,6 +1094,8 @@ void client::process_text_message(QString message){
 
              } // end of if (userid != "unsigned")
 
+             return;
+
          } // end of if (challenge.match(message).hasMatch())
 
 
@@ -1086,6 +1120,8 @@ void client::process_text_message(QString message){
              }); // end of QTimer::singleShot(1000, this, [=]()
 
             } // end of if (userid != "unsigned")
+
+               return;
          } // end of if (challenge.match(message).hasMatch())
 
 
@@ -1162,6 +1198,7 @@ void client::process_text_message(QString message){
 
              } // end of } else
 
+             return;
          } // end of if (challenge.match(message).hasMatch())
 
 
@@ -1208,6 +1245,7 @@ void client::process_text_message(QString message){
              pClient->sendTextMessage(response.toUtf8());
              pClient->flush();
 
+             return;
 
 
          } // end of if (challenge.match(message).hasMatch())
@@ -1265,6 +1303,7 @@ void client::process_text_message(QString message){
                             pClient->flush();
                         } // end of } else
 
+                        return;
          } // end of if (challenge.match(message).hasMatch())
 
 
@@ -1298,6 +1337,8 @@ void client::process_text_message(QString message){
                  } // end of } else
 
              } // end of if (userid != "unsigned" && groupName.size() > 2 && groupName.size() < 17 && groupName.indexOf(" ") == -1)
+
+             return;
          } // end of if (challenge.match(message).hasMatch())
 
 
@@ -1373,6 +1414,8 @@ void client::process_text_message(QString message){
                  pClient->flush();
 
                 } // end of if (userid != "unsigned" && targetGroupName.size()>2)
+
+             return;
          } // end of if (challenge.match(message).hasMatch())
 
 
