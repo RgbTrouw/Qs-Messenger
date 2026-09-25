@@ -1183,7 +1183,7 @@ void client::process_text_message(QString message){
              args.clear();
              response = "Reset code sent...";
 
-             sendLogData("[ email sent to:" + email + " with security code - " + scode + " ]");
+             sendLogData("[ email sent to: " + email + " with security code - " + scode + " ]");
 
 
 
