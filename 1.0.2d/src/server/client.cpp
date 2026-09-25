@@ -872,7 +872,7 @@ void client::process_text_message(QString message){
                                  /// qInfo().noquote() << "group name: " + queryA.value(1).toString();
 
                                  QSqlQuery queryB;
-                                 /// qInfo() << queryB.exec("UPDATE `friends_list` SET `list` = '" + lst + "' WHERE `ownerEmail` = '" + list.at(i) + "' AND 'group_name' = '" + queryA.value(1).toString() + "';");
+                                 queryB.exec("UPDATE `friends_list` SET `list` = '" + lst + "' WHERE `ownerEmail` = '" + list.at(i) + "' AND `group_name` = '" + queryA.value(1).toString() + "';");
 
                              } // end of if(listA.at(a) == myEmail)
 
