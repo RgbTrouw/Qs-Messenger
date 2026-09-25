@@ -1270,7 +1270,16 @@ void MainWindow::changeAvailability(int index)
 
 
 void MainWindow::closeEvent (QCloseEvent *event) { event->ignore(); this->hide(); showHideAction->setText("Show"); }
-void MainWindow::showHideMainWindow() { if (this->isVisible()){ this->hide(); showHideAction->setText("Show"); } else if (!this->isVisible()){ int x=1642; int y=42; this->setGeometry(x,y,280,900); this->show(); this->activateWindow(); showHideAction->setText("Hide"); } }
+
+void MainWindow::showHideMainWindow() { if (this->isVisible()){ this->hide(); showHideAction->setText("Show"); } else if (!this->isVisible()){
+        auto const rec = QGuiApplication::primaryScreen()->geometry();
+        auto const sHeight = rec.height();
+        auto const sWidth = rec.width();
+
+        this->setGeometry(sWidth - 256, 0, 256, sHeight);
+        this->show(); this->activateWindow();
+        showHideAction->setText("Hide"); } }
+
 void MainWindow::closeApplication() {
 
     QMessageBox msgBox;
