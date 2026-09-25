@@ -147,7 +147,7 @@ void RecoverPasswordObject::resetPassword(){
     QByteArray hash = password.toUtf8();
     password = QCryptographicHash::hash(hash, QCryptographicHash::Sha256).toHex();
 
-    if (scode.size() == 20){
+    if (scode.size() == 9){
 
     if (ui->passwordPrompt->text() == ui->passwordConfirmPrompt->text()){
         if(ui->passwordPrompt->text().size() > 7){
