@@ -540,13 +540,14 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
+
          else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(registerNewUserRequest)); challenge.match(message).hasMatch()){
 
-             //qInfo() << "registration request...";
 
-             //qInfo() << message;
+             qInfo() << "register";
 
              QStringList register_params = message.split(":");
+
 
              QString fname = register_params.at(1);
              QString uname =  register_params.at(2);
@@ -560,13 +561,19 @@ void client::process_text_message(QString message){
              QByteArray hash = password.toUtf8();
              password = QCryptographicHash::hash(hash, QCryptographicHash::Sha256).toHex();
 
+
              QProcess process;
-             process.start("openssl rand -hex 10");
+             QStringList args;
+             args <<  "rand" << "-hex" << "10";
+             process.start("openssl", args,QIODevice::ReadOnly);
+
              process.waitForFinished(-1);
              QString scode=process.readAllStandardOutput();
              scode = scode.trimmed();
 
+
              //qInfo() << "registration request...";
+
 
              QSqlQuery query;
 
@@ -577,7 +584,11 @@ void client::process_text_message(QString message){
 
              if (query.exec("INSERT INTO `users` (`full_name`, `nickname`, `gender`, `country`,`email`, `password`, `hex`, `status`, `date_of_birth`, `lastLogin`) VALUES ('" + fname + "', '" + uname + "', '" + gender + "', '" + country + "', '" + email + "', '" + password + "', '" + scode + "', '0', '" + date_of_birth + "', '0');" )) {
 
-              process.execute("php ./assets/mailToRegister.php " + email + " " + scode);
+                 QStringList arg;
+                 arg << email << scode;
+
+
+              process.execute("php ./assets/mailToRegister.php", arg);
               process.waitForFinished(-1);
 
               response = "Registration success... Please activate your account...";
@@ -616,7 +627,11 @@ void client::process_text_message(QString message){
 
                     if(query.exec("UPDATE `users` SET `hex` = '" + scode + "' WHERE `email` = '" + email + "' AND `status` != '1';")){
 
-                    process.start("php ./assets/mailToRegister.php " + email + " " + scode);
+                        QStringList arg;
+                        arg << email << scode;
+                        qInfo() << arg;
+
+                    process.start("php ./assets/mailToRegister.php", arg);
                     process.waitForFinished(-1);
 
                     pClient->sendTextMessage("Activation code resent...");
@@ -838,7 +853,7 @@ void client::process_text_message(QString message){
                  QStringList list = query.value(0).toString().split(",");
                  list.removeAll({}); /// ? // end of list.removeAll(
 
-                 /// qInfo() << list;
+                  qInfo() << list;
 
                  QSqlQuery queryA;
                  for(int i=0; i<list.size(); i++){
@@ -850,8 +865,8 @@ void client::process_text_message(QString message){
                          QStringList listA = queryA.value(0).toString().split(",");
                          listA.removeAll({}); // end of listA.removeAll(
 
-                         /// qInfo().noquote() << "list of " + list.at(i) + ": ";
-                         /// qInfo().noquote() << listA;
+                          //qInfo().noquote() << "list of " + list.at(i) + ": ";
+                          //qInfo().noquote() << listA;
 
                          for(int a=0; a<listA.size(); a++){
 
@@ -867,9 +882,9 @@ void client::process_text_message(QString message){
                                      } // end of if(b != listA.size() -1)
                                  } // end of for(int b=0; b<listA.size(); b++)
 
-                                 /// qInfo().noquote() << "list of " + list.at(i) + " after remove self: " + lst;
-                                 /// qInfo().noquote() << "owner email: " + list.at(i);
-                                 /// qInfo().noquote() << "group name: " + queryA.value(1).toString();
+                                  //qInfo().noquote() << "list of " + list.at(i) + " after remove self: " + lst;
+                                  //qInfo().noquote() << "owner email: " + list.at(i);
+                                  //qInfo().noquote() << "group name: " + queryA.value(1).toString();
 
                                  QSqlQuery queryB;
                                  queryB.exec("UPDATE `friends_list` SET `list` = '" + lst + "' WHERE `ownerEmail` = '" + list.at(i) + "' AND `group_name` = '" + queryA.value(1).toString() + "';");
@@ -1183,9 +1198,9 @@ void client::process_text_message(QString message){
              args.clear();
              response = "Reset code sent...";
 
-             sendLogData("[ email sent to: " + email + " with security code - " + scode + " ]");
+             sendLogData("-> [ email sent to: " + email + " with security code - " + scode + " ]");
 
-
+             sendLogData("Reset code sent...");
 
              } else { response = "Email is not registered or activated..."; } // end of if (query.size() == 1) // end of } else
 
@@ -1226,13 +1241,9 @@ void client::process_text_message(QString message){
 
                         if (query.size() == 1) {
 
-                            QProcess process;
-
-                            process.start("openssl rand -hex 20");
-                            process.waitForFinished(-1);
-
-                            QString scode2=process.readAllStandardOutput();
-                            scode2 = scode2.trimmed();
+                            QString scode0 = QString::number(QRandomGenerator64::global()->bounded(100000000,999999999));
+                            QString scode4 = QString::number(QRandomGenerator64::global()->bounded(100000000,999999999));
+                            QString scode2 = scode0 + scode4;
 
                             query.exec("UPDATE `users` SET `password` = '" + rpasswordh + "', `hex` = '" + scode2 + "' WHERE `hex` = '" + scode + "';");
 
@@ -1764,6 +1775,7 @@ void client::receiveStatusUpdate(QString peerEmail){
 
 void client::sendLogData(QString message){
     if(startLogging){
+
      emit emit_logData(QDateTime::currentDateTimeUtc().toString() + " " + IPaddress.toString().split(":").last() + " " + session_id + " " + myEmail + " <-  " + message);
     }
     if(startVerbose){
