@@ -261,13 +261,13 @@ void client::process_text_message(QString message){
                          while (qs.next()) {
                             QString availability = qs.value(1).toString();
                             if (availability == "2"){availability = "3";} // end of if (availability == "2")
-                             list.append(":" + qs.value(0).toString() + "/" +  availability + "/" +  qs.value(2).toString() + "/picture/" + qs.value(4).toString());
-                             myPeers.append(qs.value(0).toString() + "/" +  availability + "/" +  qs.value(2).toString() + "/picture/" + qs.value(4).toString());
+                             list.append(":" + qs.value(0).toString() + "/" +  availability + "/" +  qs.value(2).toString() + "//" + qs.value(4).toString());
+                             myPeers.append(qs.value(0).toString() + "/" +  availability + "/" +  qs.value(2).toString() + "//" + qs.value(4).toString());
                          } // end of while (qs.next())
 
                      //qInfo() << list;
 
-                     response.append(":|" + group_name  + "/3//picture/");
+                     response.append(":|" + group_name  + "/3///");
                      response.append(list);
 
                      } // end of while(query.next())
@@ -1749,7 +1749,7 @@ void client::receiveStatusUpdate(QString peerEmail){
     availability = query.value(1).toString();
     if (availability == "2") { availability = "3";} // end of if (availability == "2")
 
-    updateString.append(query.value(0).toString() + "/" +  availability + "/" +  query.value(2).toString() + "/picture/" + query.value(4).toString());
+    updateString.append(query.value(0).toString() + "/" +  availability + "/" +  query.value(2).toString() + "//" + query.value(4).toString());
 
     sendLogData(updateString.toUtf8());
     pClient->sendTextMessage(updateString.toUtf8());
