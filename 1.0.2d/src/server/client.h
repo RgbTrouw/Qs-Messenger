@@ -91,6 +91,8 @@ private:
 
     bool startLogging = false;
     bool startVerbose = false;
+    bool justLoggedIn0 = true;
+    bool justLoggedIn2 = true;
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", QString::number(QRandomGenerator::global()->bounded(1000000,10000000)));
     QWebSocket *pClient = qobject_cast<QWebSocket *>(sender());
@@ -142,6 +144,7 @@ private:
     QString userid = "unsigned";
 
     QString loginAvailability;
+    QString availabilityValue = "3";
 
     bool updateStatusUponLogin = false;
     QString logInChallenge = "";
