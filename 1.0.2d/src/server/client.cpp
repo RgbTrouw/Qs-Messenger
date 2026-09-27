@@ -151,7 +151,7 @@ void client::process_text_message(QString message){
              //qInfo() << "login request...";
              //qInfo() << message;
 
-             QStringList login_params = message.split(":");       
+             QStringList login_params = message.split(":");
              QString username = login_params.at(1);
              QString password = login_params.at(2);
              QString visibility = login_params.at(3);
@@ -293,12 +293,13 @@ void client::process_text_message(QString message){
              pClient->flush();
              //qInfo() << response;
 
-             if(updateStatusUponLogin){
+             /*if(updateStatusUponLogin){
 
+                 availabilityValue = availability;
                  emit emit_statusUpdate(myEmail, myPeers);
                  updateStatusUponLogin = false;
 
-             } // end of if(updateStatusUponLogin)
+             }*/ // end of if(updateStatusUponLogin)
 
 
              return;
@@ -472,9 +473,9 @@ void client::process_text_message(QString message){
 
 
              if (userid != "unsigned"){
-                 
+
                  QString peerEmail = message.split(":").at(1);
-                 
+
                  for(int i=0; i< myPeers.size(); i++){
 
                      if(peerEmail == myPeers.at(i)){
@@ -1056,8 +1057,15 @@ void client::process_text_message(QString message){
 
              } // end of if (parameters.at(1) == "2")
 
-             emit emit_statusUpdate(myEmail, myPeers);
-
+             availabilityValue = availability;
+                 if(!justLoggedIn0){
+                   emit emit_statusUpdate(myEmail, myPeers);
+                 } else {
+                     justLoggedIn0 = false;
+                     if(availabilityValue != "3" && availability != "2"){
+                         emit emit_statusUpdate(myEmail, myPeers);
+                     }
+                 }
              } // end of if (userid != "unsigned")
 
              return;
@@ -1090,8 +1098,15 @@ void client::process_text_message(QString message){
              } // end of } else
 
 
-             emit emit_statusUpdate(myEmail, myPeers);
-
+             availabilityValue = availability;
+                 if(!justLoggedIn2){
+                   emit emit_statusUpdate(myEmail, myPeers);
+                 } else {
+                     justLoggedIn2 = false;
+                     if(availabilityValue != "3" && availability != "2"){
+                         emit emit_statusUpdate(myEmail, myPeers);
+                     }
+                 }
              } // end of if (userid != "unsigned")
 
              return;
@@ -1109,7 +1124,10 @@ void client::process_text_message(QString message){
              query.exec("UPDATE `users` SET `availability` = '3' WHERE `email` = '" + myEmail + "';");
              query.exec("UPDATE `users` SET `status_message` = '' WHERE `email` = '" + myEmail + "';");
 
+             if(availabilityValue != "3"){
              emit emit_statusUpdate(myEmail, myPeers);
+
+             }
 
              QTimer::singleShot(1000, this, [=](){
 
@@ -1476,8 +1494,9 @@ void client::socket_disconnected(){
     query.exec("UPDATE `users` SET `availability` = '3' WHERE `email` = '" + myEmail + "';");
     query.exec("UPDATE `users` SET `status_message` = '' WHERE `email` = '" + myEmail + "';");
 
+    if(availabilityValue != "3"){
      emit emit_statusUpdate(myEmail, myPeers);
-    
+    }
 
     QTimer::singleShot(1000, this, [=](){emit emit_close(session_id, IPaddress.toString().split(":").last());}); // end of QTimer::singleShot(1000, this, [=]()
 
@@ -1498,8 +1517,9 @@ void client::receiveDisconnectFromOther(){
   query.exec("UPDATE `users` SET `availability` = '3' WHERE `email` = '" + myEmail + "';");
   query.exec("UPDATE `users` SET `status_message` = '' WHERE `email` = '" + myEmail + "';");
 
-  emit emit_statusUpdate(myEmail, myPeers);
-
+      if(availabilityValue != "3"){
+          emit emit_statusUpdate(myEmail, myPeers);
+      }
         QTimer::singleShot(1000, this, [=](){
 
         pClient->close();
