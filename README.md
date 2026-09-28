@@ -63,7 +63,7 @@ SSL Certificate                       - crt/certificate.crt
 SSL Private Key                       - crt/private.key
 ```
     
-Suggested mysql configuration:
+Suggested mysql configuration (extend allowed active session time):
 
   `[mysqld]`  
   `wait_timeout = 604800`  
