@@ -25,10 +25,10 @@ Release Notes:
    
 - The client contains some minor changes, new Icons, send IM to Group and Audio Notifications - which are an addition.
      
-- The server provides a more thorough syntax with better logging and debugging / display of messages, plus an added option of filtering out IP clients
+- The server provides a more thorough syntax with better logging and debugging / display of messages and performance,  plus an added option of filtering out IP clients
 by country code.
 
-  - OpenSsl binary dependency removed
+- OpenSsl binary dependency removed
       
 
 Log Format: ```<dateTime> <clientIp> <sessionId> <email> <server-client-message>```
