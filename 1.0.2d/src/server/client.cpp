@@ -32,7 +32,7 @@
     //#include <QDebug>
 
 /// HotFix 27.09.2026 -> hide server messages for invisible user
-/// HotFix 28.09.2026 -> registration and activation tweaking (client side changes*) (remove openssl dependency)
+/// HotFix 28.09.2026 -> registration and activation tweaking (client side changes*) (removed openssl dependency)
 /// HotFix 28.09.2026 -> RegularExpressionMatches tweak
 
 
