@@ -30,13 +30,10 @@
 #include <QFile>
 
     //#include <QDebug>
-
-/// HotFix --         -> trailing "," erroneous separators for sql friends list fixed
-/// HotFix 27.09.2026 -> return added to nested statements
+/// HotFix ...        -> fix sql "," extra erroneous separators
 /// HotFix 27.09.2026 -> hide server messages for invisible user
-/// HotFix 28.09.2026 -> registration and activation tweaking (client side changes for RegisterNewUserObject*) (removed openssl dependency)
-/// HotFix 28.09.2026 -> RegularExpressionMatching changes
-/// HotFix 28.09.2026 -> Header activationRequest extra erroneous variable removed  
+/// HotFix 28.09.2026 -> registration and activation tweaking (client side changes*) (removed openssl dependency)
+/// HotFix 28.09.2026 -> RegularExpressionMatches tweak
 
 
 client::client(QHostAddress ip_address, quint16 remote_port, QString session_id_code, int clients_id, bool logging, bool verbose)
@@ -138,7 +135,6 @@ void client::process_text_message(QString message){
          response = "";
 
 
-
          if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(session_id_request)).match(message).hasMatch() ){
 
              response = "session_id:" + session_id;
@@ -204,7 +200,6 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-
          else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(disconnectOther)).match(message).hasMatch() ){
 
              QString loginTokenValue = message.split(":").at(1);
@@ -218,7 +213,6 @@ void client::process_text_message(QString message){
 
               return;
          } // end of if (challenge.match(message).hasMatch())
-
 
 
          else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(getListRequest)).match(message).hasMatch() ){
@@ -309,7 +303,6 @@ void client::process_text_message(QString message){
 
              return;
          } // end of if (challenge.match(message).hasMatch())
-
 
 
          else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(infoRequest)).match(message).hasMatch() ){
@@ -564,8 +557,6 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-
-
          else if ( message.split(":").first() == "register" && message.split(":").last() == "true" && message.split(":").size() == 9 ){
 
 
@@ -633,8 +624,6 @@ void client::process_text_message(QString message){
 
 
          } // end of if ( challenge.match(message).hasMatch())
-
-
 
 
          else if ( message.split(":").at(0) == "resendActivationCode" && message.split(":").size() == 2 ){
@@ -764,7 +753,6 @@ void client::process_text_message(QString message){
 
              if (userid != "unsigned"){
 
-                 QString response;
 
                  QStringList parameters = message.split(":");
 
@@ -874,7 +862,6 @@ void client::process_text_message(QString message){
 
              if (userid != "unsigned"){
 
-                 QString response;
 
                  QStringList parameters = message.split(":");
 
@@ -961,7 +948,6 @@ void client::process_text_message(QString message){
              QStringList parameters = message.split(":");
              QString peerEmail = parameters.at(1);
 
-             QString response;
 
              if (parameters.at(2) == "yes"){
 
@@ -1157,7 +1143,7 @@ void client::process_text_message(QString message){
              //qInfo() << "activation";
 
              QStringList activate_params = message.split(":");
-             QString response;
+
 
              if(activate_params.at(1).size() == 9){
 
@@ -1236,7 +1222,6 @@ void client::process_text_message(QString message){
 
              //qInfo() << "recover password request...";
              QStringList reset_params = message.split(":");
-             QString response;
 
              QString email;
 
@@ -1283,7 +1268,6 @@ void client::process_text_message(QString message){
 
          else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(resetPasswordRequest)).match(message).hasMatch() ){
 
-             QString response;
 
              //qInfo() << "reset password request...";
              //qInfo() << "new password request";
@@ -1339,7 +1323,6 @@ void client::process_text_message(QString message){
 
          else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(addNewGroupRequest)).match(message).hasMatch() ){
 
-             QString response;
 
              QString groupName = message.split(":").at(1);
 
@@ -1374,8 +1357,6 @@ void client::process_text_message(QString message){
 
          else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(moveToGroupRequest)).match(message).hasMatch() ){
 
-
-             QString response;
 
              QString peerEmail = message.split(":").at(1);
              QString targetGroupName = message.split(":").at(2);
@@ -1451,6 +1432,7 @@ void client::process_text_message(QString message){
 
         previousRequestBuffer = message;
 
+        //qInfo() << response;
 
             /// log server reply...
 
