@@ -264,6 +264,10 @@ void RegisterNewUserObject::server_feedback(QString message){
 
 
     if (message == "Activation success..."){
+
+        ui->message_Label->setText(message);
+        ui->message_Label_2->setText(ui->message_Label->text());
+
         QTimer::singleShot(3200, this, [=](){
 
             nextPage();
@@ -271,11 +275,30 @@ void RegisterNewUserObject::server_feedback(QString message){
             this->close();
         });
     }
+    if (message == "Activation failed..."){
+
+        ui->message_Label->setText(message);
+        ui->message_Label_2->setText(ui->message_Label->text());
+    }
+    if (message == "Email already in use or not activated..."){
+        ui->resendEmailButton->setEnabled(true);
+        nextPage();
+        ui->message_Label->setText(message);
+        ui->message_Label_2->setText(ui->message_Label->text());
+    }
+
+    if (message == "Activation code resent..."){
+        ui->resendEmailButton->setEnabled(true);
+        //nextPage();
+        ui->message_Label->setText(message);
+        ui->message_Label_2->setText(ui->message_Label->text());
+    }
+
 }
 
 void RegisterNewUserObject::activateNewAccount(){
 
-    if(ui->activation_code_Prompt->text().size() == 20){
+    if(ui->activation_code_Prompt->text().size() == 9){
     QString request;
     request = "activate_user_account:";
     request.append(ui->activation_code_Prompt->text());
