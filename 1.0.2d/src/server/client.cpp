@@ -31,7 +31,7 @@
 
     //#include <QDebug>
 
-/// HotFix 27.09.2026 - hide server messages for invisible users applied... 
+
 
 
 client::client(QHostAddress ip_address, quint16 remote_port, QString session_id_code, int clients_id, bool logging, bool verbose)
@@ -134,7 +134,7 @@ void client::process_text_message(QString message){
 
 
 
-         if ( QRegularExpression challenge(QRegularExpression::wildcardToRegularExpression(session_id_request)); challenge.match(message).hasMatch()){
+         if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(session_id_request)).match(message).hasMatch() ){
 
              response = "session_id:" + session_id;
              pClient->sendTextMessage(response.toUtf8());
@@ -146,7 +146,7 @@ void client::process_text_message(QString message){
          } // end of if ( challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(loginRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(loginRequest)).match(message).hasMatch() ){
 
              //qInfo() << "login request...";
              //qInfo() << message;
@@ -200,7 +200,7 @@ void client::process_text_message(QString message){
 
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(disconnectOther)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(disconnectOther)).match(message).hasMatch() ){
 
              QString loginTokenValue = message.split(":").at(1);
 
@@ -216,7 +216,7 @@ void client::process_text_message(QString message){
 
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(getListRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(getListRequest)).match(message).hasMatch() ){
 
 
              if (userid != "unsigned"){
@@ -307,7 +307,7 @@ void client::process_text_message(QString message){
 
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(infoRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(infoRequest)).match(message).hasMatch() ){
 
 
 
@@ -349,7 +349,7 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(retrieveAvatarRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(retrieveAvatarRequest)).match(message).hasMatch() ){
 
 
 
@@ -384,7 +384,7 @@ void client::process_text_message(QString message){
          } // end of if ( challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(getPeerAvatarRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(getPeerAvatarRequest)).match(message).hasMatch() ){
 
 
 
@@ -427,7 +427,7 @@ void client::process_text_message(QString message){
          } // end of if ( challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(imRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(imRequest)).match(message).hasMatch() ){
 
              //qInfo() << "im request...";
              //qInfo() << message;
@@ -469,7 +469,7 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(haveReadRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(haveReadRequest)).match(message).hasMatch() ){
 
 
              if (userid != "unsigned"){
@@ -495,7 +495,7 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(clearArchiveRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(clearArchiveRequest)).match(message).hasMatch() ){
 
 
              if (userid != "unsigned"){
@@ -511,7 +511,7 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(loadPreviousRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(loadPreviousRequest)).match(message).hasMatch() ){
 
 
 
@@ -561,10 +561,10 @@ void client::process_text_message(QString message){
 
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(registerNewUserRequest)); challenge.match(message).hasMatch()){
+         else if ( message.split(":").first() == "register" && message.split(":").last() == "true" && message.split(":").size() == 9 ){
 
 
-             qInfo() << "register";
+             //qInfo() << "register";
 
              QStringList register_params = message.split(":");
 
@@ -582,14 +582,10 @@ void client::process_text_message(QString message){
              password = QCryptographicHash::hash(hash, QCryptographicHash::Sha256).toHex();
 
 
-             QProcess process;
-             QStringList args;
-             args <<  "rand" << "-hex" << "10";
-             process.start("openssl", args,QIODevice::ReadOnly);
 
-             process.waitForFinished(-1);
-             QString scode=process.readAllStandardOutput();
-             scode = scode.trimmed();
+
+             QString scode = QString::number(QRandomGenerator64::global()->bounded(100000000,999999999));
+
 
 
              //qInfo() << "registration request...";
@@ -604,14 +600,18 @@ void client::process_text_message(QString message){
 
              if (query.exec("INSERT INTO `users` (`full_name`, `nickname`, `gender`, `country`,`email`, `password`, `hex`, `status`, `date_of_birth`, `lastLogin`) VALUES ('" + fname + "', '" + uname + "', '" + gender + "', '" + country + "', '" + email + "', '" + password + "', '" + scode + "', '0', '" + date_of_birth + "', '0');" )) {
 
-                 QStringList arg;
-                 arg << email << scode;
+                 QProcess process;
+                 QStringList args;
+
+                 args << "./assets/mailToRegister.php" << email << scode;
 
 
-              process.execute("php ./assets/mailToRegister.php", arg);
+              process.execute("php", args);
               process.waitForFinished(-1);
 
               response = "Registration success... Please activate your account...";
+              sendLogData("-> [ email sent to: " + email + " with security code - " + scode + " ]");
+
 
               } else { QSqlError err = query.lastError(); // end of if (query.exec("INSERT INTO `users` (`full_name`, `nickname`, `gender`, `country`,`email`, `password`, `hex`, `status`, `date_of_birth`, `lastLogin`) VALUES ('" + fname + "', '" + uname + "', '" + gender + "', '" + country + "', '" + email + "', '" + password + "', '" + scode + "', '0', '" + date_of_birth + "', '0');" ))
                    qInfo() << err.text() << endl;
@@ -622,6 +622,8 @@ void client::process_text_message(QString message){
              //qInfo() << response;
              pClient->flush();
 
+             //sendLogData(response);
+
              return;
 
 
@@ -630,8 +632,9 @@ void client::process_text_message(QString message){
 
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(resendActivationCodeRequest)); challenge.match(message).hasMatch()){
+         else if ( message.split(":").at(0) == "resendActivationCode" && message.split(":").size() == 2 ){
 
+             //qInfo() << "activation";
 
 
              QString email = message.split(":").at(1);
@@ -641,26 +644,25 @@ void client::process_text_message(QString message){
                 query.next();
                 if(query.size() == 1){
 
-                    QProcess process;
 
-                    process.start("openssl rand -hex 10");
-                    process.waitForFinished(-1);
+                    QString scode = QString::number(QRandomGenerator64::global()->bounded(100000000,999999999));
 
-                    QString scode=process.readAllStandardOutput();
-                    scode = scode.trimmed();
 
                     if(query.exec("UPDATE `users` SET `hex` = '" + scode + "' WHERE `email` = '" + email + "' AND `status` != '1';")){
 
-                        QStringList arg;
-                        arg << email << scode;
-                        qInfo() << arg;
+                        QStringList args;
+                        args << "./assets/mailToRegister.php" << email << scode;
 
-                    process.start("php ./assets/mailToRegister.php", arg);
+
+                    QProcess process;
+                    process.execute("php", args);
                     process.waitForFinished(-1);
 
+                    response = "Activation code resent...";
                     pClient->sendTextMessage("Activation code resent...");
                     pClient->flush();
 
+                    sendLogData("-> [email sent to " + email + " with security code " + scode + " ]");
 
                 } else { // end of if(query.exec("UPDATE `users` SET `hex` = '" + scode + "' WHERE `email` = '" + email + "' AND `status` != '1';"))
 
@@ -680,12 +682,13 @@ void client::process_text_message(QString message){
                 } // end of } else
 
 
+
                 return;
 
          } // end of if (challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(addNewUserRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(addNewUserRequest)).match(message).hasMatch() ){
 
 
 
@@ -752,7 +755,7 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(removeUserRequest));challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(removeUserRequest)).match(message).hasMatch() ){
 
              if (userid != "unsigned"){
 
@@ -862,7 +865,7 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(removeGroupRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(removeGroupRequest)).match(message).hasMatch() ){
 
              if (userid != "unsigned"){
 
@@ -942,7 +945,7 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(respondAddNewUserRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(respondAddNewUserRequest)).match(message).hasMatch() ){
 
 
 
@@ -1036,7 +1039,7 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(setAvailabilityRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(setAvailabilityRequest)).match(message).hasMatch() ){
 
 
 
@@ -1073,7 +1076,7 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(setStatusRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(setStatusRequest)).match(message).hasMatch() ){
 
 
 
@@ -1114,7 +1117,7 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(signOutRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(signOutRequest)).match(message).hasMatch()){
 
                if (userid != "unsigned"){
 
@@ -1143,35 +1146,39 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(activateNewUserRequest)); challenge.match(message).hasMatch()){
+         else if ( message.split(":").size() == 2 && message.split(":").first() == "activate_user_account" && message.split(":").at(1).size() == 9){
 
 
+             //qInfo() << "activation";
 
              QStringList activate_params = message.split(":");
              QString response;
 
-             if(activate_params.at(1).size() == 20){
+             if(activate_params.at(1).size() == 9){
 
              QSqlQuery query;
              //qInfo() <<
-             if(query.exec("UPDATE `users` SET `status` = '1' WHERE `hex` = '" + activate_params.at(1) + "';")){
+             if(query.exec("SELECT `email` FROM `users` WHERE `hex` = '" + activate_params.at(1) + "';")){
+
+                 query.next();
 
                  QString email;
-                 query.exec("SELECT `email` FROM `users` WHERE `hex` = '" + activate_params.at(1) + "';");
-                 query.next();
+                 email = query.value(0).toString();
+
+
+                 query.exec("UPDATE `users` SET `status` = '1' WHERE `hex` = '" + activate_params.at(1) + "';");
+
 
                 // qInfo() << query.size();
 
-                 email = query.value(0).toString();
 
-                 QProcess process;
-                 process.start("openssl rand -hex 40");
-                 process.waitForFinished(-1);
 
-                 QString scode=process.readAllStandardOutput();
-                 scode = scode.trimmed();
 
-                 if (query.exec("UPDATE `users` SET `hex` = '" + scode +"' WHERE `hex` = '" + activate_params.at(1) + "';")){
+                 QString scode2 = QString::number(QRandomGenerator64::global()->bounded(100000000,999999999));
+                 QString scode = scode2 + QString::number(QRandomGenerator64::global()->bounded(100000000,999999999));
+
+
+                 if (query.exec("UPDATE `users` SET `hex` = '" + scode + "' WHERE `hex` = '" + activate_params.at(1) + "';")){
 
                  if(query.exec("INSERT INTO `friends_list` (`ownerEmail`, `group_name`) VALUES ('" + email + "', 'Friends')")){
 
@@ -1220,7 +1227,7 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(recoverPasswordRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(recoverPasswordRequest)).match(message).hasMatch() ){
 
              //qInfo() << "recover password request...";
              QStringList reset_params = message.split(":");
@@ -1269,7 +1276,7 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(resetPasswordRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(resetPasswordRequest)).match(message).hasMatch() ){
 
              QString response;
 
@@ -1325,7 +1332,7 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(addNewGroupRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(addNewGroupRequest)).match(message).hasMatch() ){
 
              QString response;
 
@@ -1360,7 +1367,7 @@ void client::process_text_message(QString message){
          } // end of if (challenge.match(message).hasMatch())
 
 
-         else if (challenge.setPattern(QRegularExpression::wildcardToRegularExpression(moveToGroupRequest)); challenge.match(message).hasMatch()){
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(moveToGroupRequest)).match(message).hasMatch() ){
 
 
              QString response;
