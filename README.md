@@ -63,7 +63,11 @@ SSL Certificate                       - crt/certificate.crt
 SSL Private Key                       - crt/private.key
 ```
     
+Suggested mysql configuration:
 
+  `[mysqld]`  
+  `wait_timeout = 604800`  
+  `interactive_timeout = 604800`  
       
        
 ------------------------------------------------------------------------------------------------------------------------------
