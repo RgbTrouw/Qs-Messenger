@@ -23,6 +23,7 @@
 #include <QTimer>
 
     //#include <QDebug>
+/// HotFix 28.09.2026 -> Missing Response Conditions Added
 
 RegisterNewUserObject::RegisterNewUserObject(QWidget *parent) :
     QWidget(parent),
