@@ -30,6 +30,7 @@
 #include <QFile>
 
     //#include <QDebug>
+
 /// HotFix ...        -> fix sql "," extra erroneous separators
 /// HotFix 27.09.2026 -> hide server messages for invisible user
 /// HotFix 28.09.2026 -> registration and activation tweaking (client side changes*) (removed openssl dependency)
