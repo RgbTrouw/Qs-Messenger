@@ -28,6 +28,9 @@ Release Notes:
 - The server provides a more thorough syntax with better logging and debugging / display of messages, plus an added option of filtering out IP clients
 by country code.
 
+  - OpenSsl binary dependency removed
+      
+
 Log Format: ```<dateTime> <clientIp> <sessionId> <email> <server-client-message>```
 
 
