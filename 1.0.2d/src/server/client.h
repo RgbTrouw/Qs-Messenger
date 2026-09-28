@@ -42,7 +42,9 @@ public:
     QString loginToken = "";
     QString session_id;
 
+
 public slots:
+
     void process_text_message(QString message);
     void process_binary_message(QByteArray data);
     void socket_disconnected();
@@ -69,6 +71,7 @@ public slots:
 
 
 signals:
+
     void emit_text_msg(QString message);
     void emit_binary_data(QByteArray data);
     void emit_close(QString session_id, QString ipAddress);
@@ -91,6 +94,7 @@ private:
 
     bool startLogging = false;
     bool startVerbose = false;
+
     bool justLoggedIn0 = true;
     bool justLoggedIn2 = true;
 
@@ -104,23 +108,18 @@ private:
     QString RemotePortString;
 
 
-
     QList<QString> myPeers;
-
-
     QString loginQuery;
 
     QString respondAddNewUserRequest="respondAddNewUserRequest:*:*";
     QString resendActivationCodeRequest="resendActivationCode:*";
     QString registerNewUserRequest="register:*:*:*:*:*:*:*:true";
     QString activateNewUserRequest="activate_user_account:*:*";
-    QString getPeerGroupNameRequest="getPeerGroupName:*";
     QString setAvailabilityRequest="set_availability:*";
     QString disconnectOther="disconnectOtherSession:*";
     QString recoverPasswordRequest="recoverPassword:*";
     QString resetPasswordRequest="resetPassword:*:*";
     QString retrieveAvatarRequest="retrieve_avatar";
-    QString uploadAvatarRequest="upload_avatar:*";
     QString getPeerAvatarRequest="peer_avatar:*";
     QString clearArchiveRequest="clearArchive:*";
     QString moveToGroupRequest="moveToGroup:*:*";
@@ -128,13 +127,11 @@ private:
     QString addNewUserRequest="addNewUser:*:*";
     QString removeGroupRequest="removeGroup:*";
     QString addNewGroupRequest="addNewGroup:*";
-    QString toggleListRequest="toggle_list:*";
     QString removeUserRequest="removeUser:*";
     QString session_id_request="session_id";
     QString setStatusRequest="set_status:*";
     QString loginRequest="login:*:*:[0,2]";
     QString haveReadRequest="have_read:*";
-    QString sendFileRequest="file:*:*";
     QString signOutRequest="sign_out";
     QString getListRequest="getlist";
     QString infoRequest="getMyInfo";
@@ -143,17 +140,11 @@ private:
     QString uname;
     QString userid = "unsigned";
 
-    QString loginAvailability;
     QString availabilityValue = "3";
 
     bool updateStatusUponLogin = false;
-    QString logInChallenge = "";
-    int logInChallengeCount = 0;
-
 
     QString previousRequestBuffer;
-
-
 
 
 
