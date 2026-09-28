@@ -111,7 +111,7 @@ private:
     QString loginQuery;
 
     QString respondAddNewUserRequest="respondAddNewUserRequest:*:*";
-    QString resendActivationCodeRequest="resendActivationCode:*:*";
+    QString resendActivationCodeRequest="resendActivationCode:*";
     QString registerNewUserRequest="register:*:*:*:*:*:*:*:true";
     QString activateNewUserRequest="activate_user_account:*:*";
     QString getPeerGroupNameRequest="getPeerGroupName:*";
