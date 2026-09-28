@@ -31,7 +31,8 @@
 
     //#include <QDebug>
 
-
+/// HotFix 27.09.2026 -> hide server messages for invisible user
+/// HotFix 28.09.2026 -> registration and activation tweaking (client side changes*) (remove openssl dependency)
 
 
 client::client(QHostAddress ip_address, quint16 remote_port, QString session_id_code, int clients_id, bool logging, bool verbose)
