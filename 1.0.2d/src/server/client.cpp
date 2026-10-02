@@ -26,8 +26,9 @@
 #include <QSqlError>
 #include <QFileInfo>
 #include <QProcess>
-#include <iostream>
+#include <QImage>
 #include <QFile>
+
 
     //#include <QDebug>
 
@@ -35,6 +36,8 @@
 /// HotFix 27.09.2026 -> hide server messages for invisible user
 /// HotFix 28.09.2026 -> registration and activation tweaking (client side changes*) (removed openssl dependency)
 /// HotFix 28.09.2026 -> RegularExpressionMatches tweak
+/// HotFix 02.10.2026 -> Scale Uploaded Avatars to 80x80 (Added multimedia dependencies)
+/// Hotfix 02.10.2026 -> Removed unused includes
 
 
 client::client(QHostAddress ip_address, quint16 remote_port, QString session_id_code, int clients_id, bool logging, bool verbose)
@@ -1463,14 +1466,19 @@ void client::process_binary_message(QByteArray data){
 
                 data = data.right(data.size() - 9);
 
-                QString path = "./avatars/";
-                path.append(myEmail);
+                QImage img;
+                img.loadFromData(data);
+                img.scaled(QSize(80,80)).save("./avatars/" + myEmail, "PNG");
 
-                QFile avatar(path);
-                avatar.open(QIODevice::WriteOnly);
-                //qInfo() <<
-                avatar.write(data);
-                sendLogData("writing avatar to hdd...");
+//                QString path = "./avatars/";
+//                path.append(myEmail);
+
+//                QFile avatar(path);
+//                avatar.open(QIODevice::WriteOnly);
+//                //qInfo() <<
+//                avatar.write(data);
+
+                sendLogData("avatar saved to hdd...");
 
            } // end of if (header == "myAvatar:")
 
