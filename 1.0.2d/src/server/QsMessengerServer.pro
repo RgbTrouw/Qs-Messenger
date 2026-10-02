@@ -1,4 +1,4 @@
-QT = websockets sql
+QT = websockets sql multimedia
 
 TARGET = 'QsMessengerServer'
 CONFIG   += console
