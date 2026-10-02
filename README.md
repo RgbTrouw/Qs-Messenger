@@ -58,8 +58,8 @@ Configuration:
 MYSQL Database Template               - assets/messenger.sql
 MYSQL Service Username and Password   - assets/mysql_credentials
  
-SMTP Username and Password      - assets/mailToRegister.php
-SMTP Username and Password      - assets/mailToRecover.php
+SMTP Username and Password            - assets/mailToRegister.php
+SMTP Username and Password            - assets/mailToRecover.php
  
 SSL CA Root Certificate               - crt/ca_certificate.crt
 SSL Certificate                       - crt/certificate.crt
