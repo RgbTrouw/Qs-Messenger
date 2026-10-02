@@ -37,7 +37,7 @@
 /// HotFix 28.09.2026 -> registration and activation tweaking (client side changes*) (removed openssl dependency)
 /// HotFix 28.09.2026 -> RegularExpressionMatches tweak
 /// HotFix 02.10.2026 -> Scale Uploaded Avatars to 80x80 (Added <multimedia> dependency)
- 
+  
 client::client(QHostAddress ip_address, quint16 remote_port, QString session_id_code, int clients_id, bool logging, bool verbose)
 {
 
