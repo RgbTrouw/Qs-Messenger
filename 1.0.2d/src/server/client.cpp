@@ -28,7 +28,7 @@
 #include <QProcess>
 #include <QImage>
 #include <QFile>
-
+ 
 
     //#include <QDebug>
 
