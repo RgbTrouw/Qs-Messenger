@@ -103,8 +103,8 @@ int main(int argc, char *argv[])
             qInfo().noquote() << "MYSQL Database Template               - assets/messenger.sql";
             qInfo().noquote() << "MYSQL Service Username and Password   - assets/mysql_credentials";
             qInfo().noquote() << " ";
-            qInfo().noquote() << "(PHP) SMTP Username and Password      - assets/mailToRegister.php";
-            qInfo().noquote() << "(PHP) SMTP Username and Password      - assets/mailToRecover.php";
+            qInfo().noquote() << "SMTP Username and Password      - assets/mailToRegister.php";
+            qInfo().noquote() << "SMTP Username and Password      - assets/mailToRecover.php";
             qInfo().noquote() << " ";
             qInfo().noquote() << "SSL CA Root Certificate               - crt/ca_certificate.crt";
             qInfo().noquote() << "SSL Certificate                       - crt/certificate.crt";
