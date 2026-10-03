@@ -13,7 +13,7 @@ Host Address: **qsmessenger.net 7080**
 <Introduction>  
 
   
-- This program is supposed to be similar to/ replace an old, popular instant messaging application that has become unavailable -  
+-- This program is supposed to be similar to/ replace an old, popular instant messaging application that has become unavailable --  
   
 ----------------------------------------------------------------------------------------------------
 
