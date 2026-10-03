@@ -31,11 +31,6 @@ by country code.
  (OpenSSL binary dependency removed)
       
 
-Log Format: ```<dateTime> <clientIp> <sessionId> <email> <server-client-message>```
-
-
-  
-
 
  Qs-Messenger Server Synopsis  
 
