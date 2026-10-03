@@ -23,7 +23,7 @@ Release Notes:
 
 - Both server and client have overall improvements, but most changes come with the server.
    
-- The client contains some minor changes, new Icons, send IM to Group and Audio Notifications - which are an addition.
+- The client contains some minor changes, new Icons, send IM to Group Option and Audio Notifications.
      
 - The server provides a more thorough syntax with better logging, display of service messages and performance,  plus an added option of filtering out IP clients
 by country code.
