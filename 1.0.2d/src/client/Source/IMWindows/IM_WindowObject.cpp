@@ -33,6 +33,8 @@
 
     //#include <QDebug>
 
+/// HotFix 04.10.2026 -> Add smiley support template
+
 
 IM_WindowObject::IM_WindowObject(QWidget *parent) :
     QWidget(parent),
@@ -90,6 +92,8 @@ IM_WindowObject::IM_WindowObject(QWidget *parent) :
     connect(ui->sendMsgButton, SIGNAL(clicked()), this, SLOT(sendMsg()));
     connect(ui->acceptButton, SIGNAL(clicked()), this, SLOT(acceptFile()));
     connect(ui->declineButton, SIGNAL(clicked()), this, SLOT(declineFile()));
+
+    playSmileys();
 
 }
 
@@ -157,6 +161,8 @@ void IM_WindowObject::sendMsg()
 
     if (ui->sendMessageBox->toPlainText().size() > 0){
 
+        QString msg2;
+
         if (ui->sendMessageBox->toPlainText() == "<ding>"){
 
             sendBuzz();
@@ -164,8 +170,15 @@ void IM_WindowObject::sendMsg()
         } else {
 
 
+            QString msg = ui->conversationTextBox->toPlainText();
+            msg2 = ui->sendMessageBox->toPlainText();
+            //msg.count(":)");
 
-       conversationList.append(ui->sendMessageBox->toPlainText() + "<br></br>");
+
+            msg2.replace(":)", "<img src='./Resources/smileys/smile0.png' width='18' height='18'/>");
+
+
+       conversationList.append(msg2 + "<br></br>");
 
        conversationList.last().prepend("<span style='color: rgb(52, 101, 164);'>" + myUsername + ": " + "</span>");
 
@@ -199,7 +212,7 @@ void IM_WindowObject::sendMsg()
 
         }
 
-        emit send_message(email, ui->sendMessageBox->toPlainText());
+        emit send_message(email, msg2);
         ui->sendMessageBox->setText("");
 
     }
@@ -491,73 +504,34 @@ void IM_WindowObject::playSmileys(){
 
    QString text = ui->conversationTextBox->toHtml();
 
+//   if(text != "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'DejaVu Sans'; font-size:10pt; font-weight:400; font-style:normal;\">\n<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Ubuntu'; font-size:x-large; font-weight:600;\"><br /></p></body></html>"){
+//   //qInfo() << ui->conversationTextBox->toHtml();
+//   }
 
    QScrollBar *scrollBar = ui->conversationTextBox->verticalScrollBar();
 
-   int scrollValue = scrollBar->value();;
-
-   int index;
-
-   index = 0;
+   int scrollValue = scrollBar->value();
 
 
-   while (text.indexOf("1.png", index) > -1){
-
-        index = text.indexOf(QRegularExpression("[0-9]{1,1}.png"), index);
-       if (index != -1){
-           bool insert = true;
-           for (int a=0; a< smileysList.size(); a++){
-               if(smileysList.at(a)==index){
-                   insert = false;
-               }
-           }
-           if(insert){
-               smileysList.append(index);
-           }
-           index += 1;}
+   if(!textSelection && this->isVisible()){
 
 
-   }
+       if(text.indexOf("<img src=\"./Resources/smileys/smile0.png\" width=\"18\" height=\"18\" />") != -1){
 
-   //qInfo() << smileysList;
 
-   for (int i=0; i<smileysList.size(); i++){
-       //qInfo() << text.left(smileysList.at(i) + 5).right(5);
+           text.replace("<img src=\"./Resources/smileys/smile0.png\" width=\"18\" height=\"18\" />", "<img src=\"./Resources/smileys/smile1.png\" width=\"18\" height=\"18\" />");
 
-       if (text.left(smileysList.at(i) + 5).right(5) == "1.png"){
-           text.replace(smileysList.at(i), 1, "2");
+
+       } else if(text.indexOf("<img src=\"./Resources/smileys/smile1.png\" width=\"18\" height=\"18\" />") != -1){
+
+
+           text.replace("<img src=\"./Resources/smileys/smile1.png\" width=\"18\" height=\"18\" />", "<img src=\"./Resources/smileys/smile0.png\" width=\"18\" height=\"18\" />");
+
        }
-       else if (text.left(smileysList.at(i) + 5).right(5) == "2.png"){
-           text.replace(smileysList.at(i), 1, "3");
-       }
-       else if (text.left(smileysList.at(i) + 5).right(5) == "3.png"){
-           text.replace(smileysList.at(i), 1, "4");
-       }
-       else if (text.left(smileysList.at(i) + 5).right(5) == "4.png"){
-           text.replace(smileysList.at(i), 1, "5");
-       }
-       else if (text.left(smileysList.at(i) + 5).right(5) == "5.png"){
-           text.replace(smileysList.at(i), 1, "6");
-       }
-       else if (text.left(smileysList.at(i) + 5).right(5) == "6.png"){
-           text.replace(smileysList.at(i), 1, "7");
-       }
-       else if (text.left(smileysList.at(i) + 5).right(5) == "7.png"){
-           text.replace(smileysList.at(i), 1, "8");
-       }
-       else if (text.left(smileysList.at(i) + 5).right(5) == "8.png"){
-           text.replace(smileysList.at(i), 1, "9");
-       }
-       else if (text.left(smileysList.at(i) + 5).right(5) == "9.png"){
-           text.replace(smileysList.at(i), 1, "1");
-       }
-   }
-
-
-
-
 
    ui->conversationTextBox->setHtml(text);
+
+   }
 
 //   ui->conversationTextBox->moveCursor(QTextCursor::End);
 //   QScrollBar *scrollBar = ui->conversationTextBox->verticalScrollBar();
@@ -565,7 +539,7 @@ void IM_WindowObject::playSmileys(){
 //   ui->conversationTextBox->ensureCursorVisible();
 
    scrollBar->setValue(scrollValue);
-   QTimer::singleShot(200, this, SLOT(playSmileys()));
+   QTimer::singleShot(1200, this, SLOT(playSmileys()));
 
 }
 
@@ -646,4 +620,13 @@ void IM_WindowObject::acceptFile(){
 
 void IM_WindowObject::declineFile(){
 
+}
+
+void IM_WindowObject::on_conversationTextBox_selectionChanged()
+{
+    if(ui->conversationTextBox->textCursor().selectedText().size() >0){
+        textSelection = true;
+    } else {
+        textSelection = false;
+    }
 }
