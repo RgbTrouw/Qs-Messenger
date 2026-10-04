@@ -567,11 +567,15 @@ void IM_WindowObject::playSmileys(){
 
        }
 
-   ui->conversationTextBox->setHtml(text);
+        int posV = ui->conversationTextBox->verticalScrollBar()->value();
+        ui->conversationTextBox->setHtml(text);
+
+        ui->conversationTextBox->verticalScrollBar()->setValue(posV);
 
    }
 
-  // ui->conversationTextBox->verticalScrollBar()->setValue(ui->conversationTextBox->verticalScrollBar()->maximum());
+
+  //ui->conversationTextBox->verticalScrollBar()->setValue(ui->conversationTextBox->verticalScrollBar()->maximum());
 
    QTimer::singleShot(1200, this, SLOT(playSmileys()));
 
