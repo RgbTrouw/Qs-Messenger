@@ -81,6 +81,8 @@ private slots:
     void showSmileys();
     void appendSmiley(QString characters);
     void resizeEvent(QResizeEvent* event);
+    void sliderMousePressEvent();
+    void sliderMouseReleaseEvent();
     bool event(QEvent *event);
     void playSmileys();
 
@@ -95,6 +97,7 @@ private slots:
     void on_conversationTextBox_selectionChanged();
 
     void on_sendMessageBox_textChanged();
+
 
 signals:
     void send_message(QString peer, QString message);
@@ -112,6 +115,7 @@ private:
     bool haveRead = true;
 
     bool textSelection = false;
+    bool mouseDown = false;
     //QList<MessageWidget *>
 
     QSpacerItem *horizontalSpacerExpanding = new QSpacerItem(1000,0, QSizePolicy::Expanding, QSizePolicy::Fixed);
