@@ -33,7 +33,7 @@
 
     //#include <QDebug>
 
-/// HotFix 04.10.2026 -> Add smiley support template
+/// HotFix 04.10.2026 -> Add smiley support template 
 
 
 IM_WindowObject::IM_WindowObject(QWidget *parent) :
