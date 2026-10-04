@@ -511,14 +511,6 @@ void IM_WindowObject::playSmileys(){
 
    QString text = ui->conversationTextBox->toHtml();
 
-//   if(text != "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'DejaVu Sans'; font-size:10pt; font-weight:400; font-style:normal;\">\n<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Ubuntu'; font-size:x-large; font-weight:600;\"><br /></p></body></html>"){
-//   //qInfo() << ui->conversationTextBox->toHtml();
-//   }
-
-   QScrollBar *scrollBar = ui->conversationTextBox->verticalScrollBar();
-
-   int scrollValue = scrollBar->value();
-
 
    if(!textSelection && this->isVisible()){
 
@@ -579,12 +571,8 @@ void IM_WindowObject::playSmileys(){
 
    }
 
-//   ui->conversationTextBox->moveCursor(QTextCursor::End);
-//   QScrollBar *scrollBar = ui->conversationTextBox->verticalScrollBar();
-//   scrollBar->setValue(scrollBar->maximum());
-//   ui->conversationTextBox->ensureCursorVisible();
+  // ui->conversationTextBox->verticalScrollBar()->setValue(ui->conversationTextBox->verticalScrollBar()->maximum());
 
-   scrollBar->setValue(scrollValue);
    QTimer::singleShot(1200, this, SLOT(playSmileys()));
 
 }
