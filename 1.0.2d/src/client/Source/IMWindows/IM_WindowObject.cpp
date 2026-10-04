@@ -34,6 +34,8 @@
     //#include <QDebug>
 
 /// HotFix 04.10.2026 -> Add smiley support template
+/// HotFix 04.10.2026 -> Fix clear archive not empty buffer
+/// HotFix 04.10.2026 -> Limit send message length
 
 
 IM_WindowObject::IM_WindowObject(QWidget *parent) :
@@ -674,5 +676,14 @@ void IM_WindowObject::on_conversationTextBox_selectionChanged()
         textSelection = true;
     } else {
         textSelection = false;
+    }
+}
+
+void IM_WindowObject::on_sendMessageBox_textChanged()
+{
+    if(ui->sendMessageBox->toPlainText().size() > 0){
+        if(ui->sendMessageBox->toPlainText().size() > 256){
+            ui->sendMessageBox->setPlainText(ui->sendMessageBox->toPlainText().left(256));
+        }
     }
 }
