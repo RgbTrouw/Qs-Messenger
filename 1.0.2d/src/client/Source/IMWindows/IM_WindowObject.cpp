@@ -33,8 +33,8 @@
 
     //#include <QDebug>
 
-/// HotFix 04.10.2026 -> Add smiley support template 
- 
+/// HotFix 04.10.2026 -> Add smiley support template
+
 
 IM_WindowObject::IM_WindowObject(QWidget *parent) :
     QWidget(parent),
@@ -175,7 +175,10 @@ void IM_WindowObject::sendMsg()
             //msg.count(":)");
 
 
+            msg2.replace(":D", "<img src='./Resources/smileys/grin0.png' width='18' height='18'/>");
+            msg2.replace(":d", "<img src='./Resources/smileys/grin0.png' width='18' height='18'/>");
             msg2.replace(":)", "<img src='./Resources/smileys/smile0.png' width='18' height='18'/>");
+
 
 
        conversationList.append(msg2 + "<br></br>");
@@ -526,6 +529,19 @@ void IM_WindowObject::playSmileys(){
 
 
            text.replace("<img src=\"./Resources/smileys/smile1.png\" width=\"18\" height=\"18\" />", "<img src=\"./Resources/smileys/smile0.png\" width=\"18\" height=\"18\" />");
+
+       }
+
+       if(text.indexOf("<img src=\"./Resources/smileys/grin0.png\" width=\"18\" height=\"18\" />") != -1){
+
+
+           text.replace("<img src=\"./Resources/smileys/grin0.png\" width=\"18\" height=\"18\" />", "<img src=\"./Resources/smileys/grin1.png\" width=\"18\" height=\"18\" />");
+
+
+       } else if(text.indexOf("<img src=\"./Resources/smileys/grin1.png\" width=\"18\" height=\"18\" />") != -1){
+
+
+           text.replace("<img src=\"./Resources/smileys/grin1.png\" width=\"18\" height=\"18\" />", "<img src=\"./Resources/smileys/grin0.png\" width=\"18\" height=\"18\" />");
 
        }
 
