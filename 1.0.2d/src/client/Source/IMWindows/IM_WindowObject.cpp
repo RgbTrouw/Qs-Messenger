@@ -44,6 +44,10 @@ IM_WindowObject::IM_WindowObject(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    connect(ui->conversationTextBox->verticalScrollBar(), &QScrollBar::sliderReleased, this, &IM_WindowObject::sliderMouseReleaseEvent) ;
+    connect(ui->conversationTextBox->verticalScrollBar(), &QScrollBar::sliderPressed, this, &IM_WindowObject::sliderMousePressEvent) ;
+
+
     this->setFocusPolicy(Qt::ClickFocus);
     vLayout->setContentsMargins(0,0,0,0);
     vLayout->setSpacing(0);
@@ -507,12 +511,26 @@ void IM_WindowObject::resizeEvent(QResizeEvent* event)
    // Your code here.
 }
 
+void IM_WindowObject::sliderMousePressEvent(){
+
+
+            mouseDown = true;
+
+}
+
+void IM_WindowObject::sliderMouseReleaseEvent(){
+
+
+            mouseDown = false;
+
+}
+
 void IM_WindowObject::playSmileys(){
 
    QString text = ui->conversationTextBox->toHtml();
 
 
-   if(!textSelection && this->isVisible()){
+   if(!textSelection && this->isVisible() && !mouseDown){
 
 
        if(text.indexOf("<img src=\"./Resources/smileys/smile0.png\" width=\"18\" height=\"18\" />") != -1){
@@ -567,11 +585,12 @@ void IM_WindowObject::playSmileys(){
 
        }
 
+       if(!mouseDown){
         int posV = ui->conversationTextBox->verticalScrollBar()->value();
         ui->conversationTextBox->setHtml(text);
 
         ui->conversationTextBox->verticalScrollBar()->setValue(posV);
-
+        }
    }
 
 
