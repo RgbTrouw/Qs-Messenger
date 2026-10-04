@@ -34,6 +34,8 @@
     //#include <QDebug>
 
 /// HotFix 04.10.2026 -> Add smiley support template
+/// HotFix 04.10.2026 -> Clear Archive Patch of non empty conversation buffer
+  
 
 
 IM_WindowObject::IM_WindowObject(QWidget *parent) :
@@ -573,6 +575,8 @@ void IM_WindowObject::clearArchive(){
 
       ui->sendMessageBox->clear();
       ui->conversationTextBox->clear();
+      conversationBuffer.clear();
+      conversationList.clear();
 
       emit clearArchiveSignal(email);
 
