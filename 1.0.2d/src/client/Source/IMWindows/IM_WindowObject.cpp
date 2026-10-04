@@ -220,6 +220,8 @@ void IM_WindowObject::sendMsg()
        //qInfo() << conversationList;
 
        ui->conversationTextBox->setHtml(conversationBuffer);
+       ui->conversationTextBox->verticalScrollBar()->setValue(ui->conversationTextBox->verticalScrollBar()->maximum());
+
 
         }
 
@@ -436,6 +438,7 @@ void IM_WindowObject::sendBuzz()
     audioEffect->play();
 
      ui->conversationTextBox->setHtml(conversationBuffer);
+     ui->conversationTextBox->verticalScrollBar()->setValue(ui->conversationTextBox->verticalScrollBar()->maximum());
 
      for (int i = 0; i < 4; i++){
 
