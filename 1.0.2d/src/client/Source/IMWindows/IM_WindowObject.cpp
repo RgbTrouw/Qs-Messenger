@@ -274,6 +274,8 @@ void IM_WindowObject::append_message(QString message, QString time){
         audioEffect->play();
 
          ui->conversationTextBox->setHtml(conversationBuffer);
+         ui->conversationTextBox->verticalScrollBar()->setValue(ui->conversationTextBox->verticalScrollBar()->maximum());
+
 
          for (int i = 0; i < 4; i++){
 
