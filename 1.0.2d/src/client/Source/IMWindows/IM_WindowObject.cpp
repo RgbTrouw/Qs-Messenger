@@ -181,11 +181,13 @@ void IM_WindowObject::sendMsg()
             //msg.count(":)");
 
 
-            msg2.replace(":D", "<img src='./Resources/smileys/grin0.png' width='18' height='18'/>");
-            msg2.replace(":d", "<img src='./Resources/smileys/grin0.png' width='18' height='18'/>");
-            msg2.replace(":)", "<img src='./Resources/smileys/smile0.png' width='18' height='18'/>");
-            msg2.replace(":|", "<img src='./Resources/smileys/straightF0.png' width='18' height='18'/>");
-            msg2.replace(":(", "<img src='./Resources/smileys/sad0.png' width='18' height='18'/>");
+            msg2.replace(":))", "<img src='./Resources/smileys/laugh0.png' width='18' height='18'/> ");
+            msg2.replace(":((", "<img src='./Resources/smileys/cry0.png' width='18' height='18'/> ");
+            msg2.replace(":D", "<img src='./Resources/smileys/grin0.png' width='18' height='18'/> ");
+            msg2.replace(":d", "<img src='./Resources/smileys/grin0.png' width='18' height='18'/> ");
+            msg2.replace(":)", "<img src='./Resources/smileys/smile0.png' width='18' height='18'/> ");
+            msg2.replace(":|", "<img src='./Resources/smileys/straightF0.png' width='18' height='18'/> ");
+            msg2.replace(":(", "<img src='./Resources/smileys/sad0.png' width='18' height='18'/> ");
 
 
 
@@ -587,6 +589,32 @@ void IM_WindowObject::playSmileys(){
 
 
            text.replace("<img src=\"./Resources/smileys/sad1.png\" width=\"18\" height=\"18\" />", "<img src=\"./Resources/smileys/sad0.png\" width=\"18\" height=\"18\" />");
+
+       }
+
+       if(text.indexOf("<img src=\"./Resources/smileys/laugh0.png\" width=\"18\" height=\"18\" />") != -1){
+
+
+           text.replace("<img src=\"./Resources/smileys/laugh0.png\" width=\"18\" height=\"18\" />", "<img src=\"./Resources/smileys/laugh1.png\" width=\"18\" height=\"18\" />");
+
+
+       } else if(text.indexOf("<img src=\"./Resources/smileys/laugh1.png\" width=\"18\" height=\"18\" />") != -1){
+
+
+           text.replace("<img src=\"./Resources/smileys/laugh1.png\" width=\"18\" height=\"18\" />", "<img src=\"./Resources/smileys/laugh0.png\" width=\"18\" height=\"18\" />");
+
+       }
+
+       if(text.indexOf("<img src=\"./Resources/smileys/cry0.png\" width=\"18\" height=\"18\" />") != -1){
+
+
+           text.replace("<img src=\"./Resources/smileys/cry0.png\" width=\"18\" height=\"18\" />", "<img src=\"./Resources/smileys/cry1.png\" width=\"18\" height=\"18\" />");
+
+
+       } else if(text.indexOf("<img src=\"./Resources/smileys/cry1.png\" width=\"18\" height=\"18\" />") != -1){
+
+
+           text.replace("<img src=\"./Resources/smileys/cry1.png\" width=\"18\" height=\"18\" />", "<img src=\"./Resources/smileys/cry0.png\" width=\"18\" height=\"18\" />");
 
        }
 
