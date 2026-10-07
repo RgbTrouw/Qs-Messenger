@@ -65,6 +65,7 @@ public slots:
     void receiveAcceptedFriendRequest(QString peerEmail);
     void receiveRemovedFromList(QString peerEmail);
     void receiveWritingAMessage(QString peerEmail, QString value);
+    void receiveHasRead(QString peerEmail, QString time);
 
     void sendLogData(QString message);
     void getOfflineMessages();
@@ -86,6 +87,7 @@ signals:
     void emit_removedFromList(QString myEmail, QString peerEmail);
 
     void emit_WritingAMessage(QString myEmail, QString peerEmail, QString value);
+    void emit_HaveRead(QString email, QString peerEmail, QString time);
 
     void emit_getUniqueLoginToken(QString sessionId, QString email);
     void emit_checkSignedIn( QString myEmail, QString loginToken);
