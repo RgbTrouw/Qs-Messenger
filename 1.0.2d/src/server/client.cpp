@@ -28,16 +28,17 @@
 #include <QProcess>
 #include <QImage>
 #include <QFile>
- 
+
 
     //#include <QDebug>
- 
+
 /// HotFix ...        -> fix sql "," extra erroneous separators
 /// HotFix 27.09.2026 -> hide server messages for invisible user
 /// HotFix 28.09.2026 -> registration and activation tweaking (client side changes*) (removed openssl dependency)
 /// HotFix 28.09.2026 -> RegularExpressionMatches tweak
 /// HotFix 02.10.2026 -> Scale Uploaded Avatars to 80x80 (Added <multimedia> dependency)
-  
+/// HotFix 07.10.2026 -> Add "is writing a message..." notification
+
 client::client(QHostAddress ip_address, quint16 remote_port, QString session_id_code, int clients_id, bool logging, bool verbose)
 {
 
@@ -494,6 +495,21 @@ void client::process_text_message(QString message){
              return;
          } // end of if (challenge.match(message).hasMatch())
 
+         else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(writingAMessageRequest)).match(message).hasMatch() ){
+
+
+             if (userid != "unsigned"){
+
+                 QString peerEmail = message.split(":").at(1);
+                 QString value = message.split(":").at(2);
+
+                 //qInfo() << "writing a message ... " + value;
+                 emit emit_WritingAMessage(myEmail, peerEmail, value);
+
+             } // end of if (userid != "unsigned")
+
+             return;
+         }
 
          else if ( QRegularExpression(QRegularExpression::wildcardToRegularExpression(clearArchiveRequest)).match(message).hasMatch() ){
 
@@ -1793,6 +1809,19 @@ void client::receiveRemovedFromList(QString peerEmail){
     } // end of if(userid != "unsigned")
 } // end of void client::receiveRemovedFromList(QString peerEmail)
 
+
+void client::receiveWritingAMessage(QString peerEmail, QString value){
+
+    if(userid != "unsigned"){
+
+        sendLogData("isWritingAMessage:" + peerEmail + ":" + value);
+        pClient->sendTextMessage("isWritingAMessage:" + peerEmail + ":" + value);
+        pClient->flush();
+    }
+
+
+
+}
 void client::receiveStatusUpdate(QString peerEmail){
 
     //qInfo() << myEmail +  " status update from: " + peerEmail;
