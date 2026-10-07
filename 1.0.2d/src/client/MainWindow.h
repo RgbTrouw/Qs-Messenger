@@ -24,7 +24,7 @@
 #include "Source/OtherWindows/Headers/SettingsObject.h"
 #include "Source/IMWindows/Headers/IM_WindowObject.h"
 #include "Source/OtherWindows/Headers/About.h"
-#include "Source/IMWindows/im_group.h"
+#include "Source/IMWindows/Headers/IM2Group.h"
 
 #include "ui_MainWindow.h"
 
@@ -149,6 +149,8 @@ private slots:
     void have_read(QString peerEmail);
     void get_prev_messages(QString peerEmail, QString index);
     void clearArchive(QString peerEmail);
+
+    void amWritingAMessage(QString email, bool value);
 
     void playAudio(QString path);
 
