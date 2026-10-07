@@ -88,6 +88,9 @@ IM_WindowObject::IM_WindowObject(QWidget *parent) :
     ui->declineButton->setVisible(false);
     ui->horizontalLayout_4->addItem(horizontalSpacerExpanding);
 
+    ui->iconLabel->setPixmap(QPixmap("./Resources/icons/pendingMessage.png"));
+    ui->iconLabel->setVisible(false);
+
 
     connect(ui->buzzButton, SIGNAL(clicked()), this, SLOT(sendBuzz()));
     connect(ui->sendFileButton, SIGNAL(clicked()), this, SLOT(sendFile()));
@@ -229,6 +232,7 @@ void IM_WindowObject::sendMsg()
 
         emit send_message(email, msg2);
         ui->sendMessageBox->setText("");
+        cancelWritingAMessage();
 
     }
 
@@ -726,8 +730,44 @@ void IM_WindowObject::on_conversationTextBox_selectionChanged()
 void IM_WindowObject::on_sendMessageBox_textChanged()
 {
     if(ui->sendMessageBox->toPlainText().size() > 0){
+
+
+
         if(ui->sendMessageBox->toPlainText().size() > 256){
             ui->sendMessageBox->setPlainText(ui->sendMessageBox->toPlainText().left(256));
         }
+
+         msgContent = ui->sendMessageBox->toPlainText();
+
+         if(!pendingNotice){
+
+             emit amWritingAMessage(email, true);
+             QTimer::singleShot(12000, this, SLOT(cancelWritingAMessage()));
+             pendingNotice = true;
+         }
     }
 }
+
+void IM_WindowObject::cancelWritingAMessage(){
+
+    if(ui->sendMessageBox->toPlainText() == msgContent || ui->sendMessageBox->toPlainText().size() == 0){
+
+        emit amWritingAMessage(email,false);
+        pendingNotice = false;
+    }
+}
+
+void IM_WindowObject::isWritingAMessage(QString value){
+
+    if (value == "true"){
+        ui->iconLabel->setVisible(true);
+        windowNotification = ui->notification_label->text();
+        ui->notification_label->setText(peer_name + " is writing a message...");
+    } else {
+        ui->iconLabel->setVisible(false);
+        if(ui->notification_label->text() == peer_name + " is writing a message..." ){
+        ui->notification_label->setText(windowNotification);
+        }
+    }
+}
+
