@@ -13,7 +13,7 @@
 
      You should have received a copy of the GNU General Public License
      along with this program.  If not, see <https://www.gnu.org/licenses/>. */
- 
+
 
 #ifndef CLIENT_H
 #define CLIENT_H
@@ -64,6 +64,7 @@ public slots:
     void receiveFriendRequest(QString peerEmail, QString myEmail);
     void receiveAcceptedFriendRequest(QString peerEmail);
     void receiveRemovedFromList(QString peerEmail);
+    void receiveWritingAMessage(QString peerEmail, QString value);
 
     void sendLogData(QString message);
     void getOfflineMessages();
@@ -83,6 +84,8 @@ signals:
     void emit_friendRequest(QString myEmail, QString peerEmail);
     void emit_acceptedFriendRequest(QString myEmail, QString peerEmail);
     void emit_removedFromList(QString myEmail, QString peerEmail);
+
+    void emit_WritingAMessage(QString myEmail, QString peerEmail, QString value);
 
     void emit_getUniqueLoginToken(QString sessionId, QString email);
     void emit_checkSignedIn( QString myEmail, QString loginToken);
@@ -115,6 +118,7 @@ private:
     QString resendActivationCodeRequest="resendActivationCode:*";
     QString registerNewUserRequest="register:*:*:*:*:*:*:*:true";
     QString activateNewUserRequest="activate_user_account:*:*";
+    QString writingAMessageRequest="amWritingAMessage:*:*";
     QString setAvailabilityRequest="set_availability:*";
     QString disconnectOther="disconnectOtherSession:*";
     QString recoverPasswordRequest="recoverPassword:*";
