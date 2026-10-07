@@ -22,11 +22,11 @@ Host Address: **qsmessenger.net 7080**
 Release Notes:  
 
 - Both server and client have overall improvements, but most changes come with the server.
+   
+- The client contains some minor changes, new Icons, some Smileys, send IM to Group Option and Audio Notifications.
   
   * "is writing a message... " notification has been added
   * "has read your message..." notification has been added  
-   
-- The client contains some minor changes, new Icons, some Smileys, send IM to Group Option and Audio Notifications.
      
 - The server provides a more thorough syntax with better logging, display of service messages and performance,  plus an added option of filtering out IP clients
 by country code.
