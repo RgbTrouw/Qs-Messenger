@@ -730,6 +730,28 @@ void MainWindow::onTextMessageReceived(QString message)
 
     }
 
+    searchPattern = "hasRead:*:*";
+
+    if (QRegularExpression(QRegularExpression::wildcardToRegularExpression(searchPattern)).match(message).hasMatch()){
+
+         QStringList parameters = message.split(":");
+
+         for(int i =0; i< friendsWidget->groups.size(); i++){
+
+             for (int a = 0; a< friendsWidget->groups.at(i)->peers.size(); a++){
+             if( friendsWidget->groups.at(i)->peers.at(a)->email == parameters.at(1)){
+
+
+                 friendsWidget->groups.at(i)->peers.at(a)->imWidget->hasReadNotification(parameters.at(2));
+
+                 break;
+                 }
+             }
+         }
+
+
+    }
+
 
     searchPattern = "pm:*:*:*:*";
 
