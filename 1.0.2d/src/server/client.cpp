@@ -38,6 +38,7 @@
 /// HotFix 28.09.2026 -> RegularExpressionMatches tweak
 /// HotFix 02.10.2026 -> Scale Uploaded Avatars to 80x80 (Added <multimedia> dependency)
 /// HotFix 07.10.2026 -> Add "is writing a message..." notification
+/// HotFix 07.10.2026 -> Add "has read your message..." notification
 
 client::client(QHostAddress ip_address, quint16 remote_port, QString session_id_code, int clients_id, bool logging, bool verbose)
 {
@@ -486,6 +487,8 @@ void client::process_text_message(QString message){
 
                          QSqlQuery query;
                          query.exec("UPDATE `messages` SET `has_read` = '1' , `read_time` = '" + mseconds + "' WHERE `fromEmail` = '" + peerEmail + "' AND `toEmail` = '" + myEmail + "' AND `has_read` = '0';");
+
+                         emit emit_HaveRead(myEmail, peerEmail, mseconds);
 
                       } // end of if(peerEmail == myPeers.at(i))
                    } // end of for(int i=0; i< myPeers.size(); i++)
@@ -1819,9 +1822,19 @@ void client::receiveWritingAMessage(QString peerEmail, QString value){
         pClient->flush();
     }
 
+}
 
+void client::receiveHasRead(QString peerEmail, QString time){
+
+    if(userid != "unsigned"){
+
+        sendLogData("hasRead:" + peerEmail + ":" + time);
+        pClient->sendTextMessage("hasRead:" + peerEmail + ":" + time);
+        pClient->flush();
+    }
 
 }
+
 void client::receiveStatusUpdate(QString peerEmail){
 
     //qInfo() << myEmail +  " status update from: " + peerEmail;
