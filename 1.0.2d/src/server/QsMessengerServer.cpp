@@ -259,6 +259,7 @@ void QsMessengerServer::onNewConnection()
                                connect(clients.at(i), SIGNAL(emit_removedFromList(QString,QString)), this, SLOT(fwUnfriended(QString,QString)));
 
                                connect(clients.at(i), SIGNAL(emit_WritingAMessage(QString,QString,QString)), this,SLOT(fwWritingAMessage(QString,QString,QString)));
+                               connect(clients.at(i), SIGNAL(emit_HaveRead(QString,QString,QString)), this,SLOT(fwHasRead(QString,QString,QString)) );
 
                                i=clients.size();
                            }
@@ -307,6 +308,8 @@ void QsMessengerServer::onNewConnection()
                     connect(clients.at(i), SIGNAL(emit_removedFromList(QString,QString)), this, SLOT(fwUnfriended(QString,QString)));
 
                     connect(clients.at(i), SIGNAL(emit_WritingAMessage(QString,QString,QString)), this,SLOT(fwWritingAMessage(QString,QString,QString)));
+                    connect(clients.at(i), SIGNAL(emit_HaveRead(QString,QString,QString)), this,SLOT(fwHasRead(QString,QString,QString)) );
+
 
                     i=clients.size();
                 }
@@ -577,6 +580,19 @@ void QsMessengerServer::fwWritingAMessage(QString myEmail, QString peerEmail, QS
         if(clients.at(i)->myEmail == peerEmail){
 
             clients.at(i)->receiveWritingAMessage(myEmail, value);
+
+            i=clients.size();
+        }
+    }
+
+}
+
+void QsMessengerServer::fwHasRead(QString myEmail, QString peerEmail, QString time){
+
+    for(int i=0; i< clients.size(); i++){
+        if(clients.at(i)->myEmail == peerEmail){
+
+            clients.at(i)->receiveHasRead(myEmail, time);
 
             i=clients.size();
         }
