@@ -71,6 +71,7 @@ public slots:
 
     void showHideNotice(bool value);
     void isWritingAMessage(QString value);
+    void hasReadNotification(QString time);
 
 
 
