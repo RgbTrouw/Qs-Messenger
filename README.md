@@ -25,8 +25,8 @@ Release Notes:
    
 - The client contains some minor changes, new Icons, some Smileys, send IM to Group option and Audio Notifications.
   
-  * "is writing a message... " notification has been added
-  * "has read your message..." notification has been added  
+  + "is writing a message... " notification has been added
+  + "has read your message..." notification has been added  
      
 - The server provides a more thorough syntax with better logging, display of service messages and performance,  plus an added option of filtering out IP clients
 by country code.
