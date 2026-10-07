@@ -56,6 +56,7 @@ private Q_SLOTS:
     void fwAcceptedFriendRequest(QString myEmail, QString peerEmail);
     void fwUnfriended(QString myEmail, QString peerEmail);
     void fwWritingAMessage(QString myEmail, QString peerEmail, QString value);
+    void fwHasRead(QString myEmail, QString peerEmail, QString time);
 
     void openDataBase();
 
