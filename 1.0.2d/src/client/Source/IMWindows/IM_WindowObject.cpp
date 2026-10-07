@@ -771,3 +771,11 @@ void IM_WindowObject::isWritingAMessage(QString value){
     }
 }
 
+void IM_WindowObject::hasReadNotification(QString time){
+
+    qint64 tm = time.toULongLong();
+
+    QDateTime *dt = new QDateTime();
+
+    ui->notification_label->setText(peer_name + " has read your message at: " + dt->fromMSecsSinceEpoch(tm).toString());
+}
