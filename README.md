@@ -31,7 +31,7 @@ Release Notes:
 - The server provides a more thorough syntax with better logging, display of service messages and performance,  plus an added option of filtering out IP clients
 by country code.
   
- (OpenSSL binary dependency removed)
+ (OpenSSL <binary> dependency removed)
       
 
 
