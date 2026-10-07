@@ -23,7 +23,7 @@ Release Notes:
 
 - Both server and client have overall improvements, but most changes come with the server.
    
-- The client contains some minor changes, new Icons, some Smileys, send IM to Group Option and Audio Notifications.
+- The client contains some minor changes, new Icons, some Smileys, send IM to Group option and Audio Notifications.
   
   * "is writing a message... " notification has been added
   * "has read your message..." notification has been added  
