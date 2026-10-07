@@ -536,6 +536,7 @@ void MainWindow::onTextMessageReceived(QString message)
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(have_read(QString)), this, SLOT(have_read(QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(playAudio(QString)), this, SLOT(playAudio(QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(clearArchiveSignal(QString)), this, SLOT(clearArchive(QString)));
+                connect(friendsWidget->groups.at(i)->peers.at(a)->imWidget, SIGNAL(amWritingAMessage(QString, bool)), this, SLOT(amWritingAMessage(QString, bool)));
 
                 connect(friendsWidget->groups.at(i)->peers.at(a), SIGNAL(refreshPeerAvatar(QString)), this, SLOT(refreshPeerAvatar(QString)));
                 connect(friendsWidget->groups.at(i)->peers.at(a), SIGNAL(removeUserSignal(QString)), this, SLOT(removeUser(QString)) );
@@ -704,6 +705,28 @@ void MainWindow::onTextMessageReceived(QString message)
                 }
             }
         }
+
+    }
+
+    searchPattern = "isWritingAMessage:*:*";
+
+    if (QRegularExpression(QRegularExpression::wildcardToRegularExpression(searchPattern)).match(message).hasMatch()){
+
+         QStringList parameters = message.split(":");
+
+         for(int i =0; i< friendsWidget->groups.size(); i++){
+
+             for (int a = 0; a< friendsWidget->groups.at(i)->peers.size(); a++){
+             if( friendsWidget->groups.at(i)->peers.at(a)->email == parameters.at(1)){
+
+
+                 friendsWidget->groups.at(i)->peers.at(a)->imWidget->isWritingAMessage(parameters.at(2));
+
+                 break;
+                 }
+             }
+         }
+
 
     }
 
@@ -1365,6 +1388,15 @@ void MainWindow::playAudio(QString path){
 void MainWindow::clearArchive(QString peerEmail){
 
     m_webSocket->sendTextMessage("clearArchive:" + peerEmail);
+}
+
+void MainWindow::amWritingAMessage(QString email, bool value){
+
+            QString v;
+            if(value){v="true";}
+            else {v="false";}
+
+            m_webSocket->sendTextMessage("amWritingAMessage:" + email + ":" + v);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
