@@ -258,6 +258,8 @@ void QsMessengerServer::onNewConnection()
                                connect(clients.at(i), SIGNAL(emit_acceptedFriendRequest(QString,QString)), this, SLOT(fwAcceptedFriendRequest(QString,QString)));
                                connect(clients.at(i), SIGNAL(emit_removedFromList(QString,QString)), this, SLOT(fwUnfriended(QString,QString)));
 
+                               connect(clients.at(i), SIGNAL(emit_WritingAMessage(QString,QString,QString)), this,SLOT(fwWritingAMessage(QString,QString,QString)));
+
                                i=clients.size();
                            }
 
@@ -303,6 +305,8 @@ void QsMessengerServer::onNewConnection()
                     connect(clients.at(i), SIGNAL(emit_disconnectOther(QString, QString)), this, SLOT(disconnectOther(QString,QString)));
                     connect(clients.at(i), SIGNAL(emit_acceptedFriendRequest(QString,QString)), this, SLOT(fwAcceptedFriendRequest(QString,QString)));
                     connect(clients.at(i), SIGNAL(emit_removedFromList(QString,QString)), this, SLOT(fwUnfriended(QString,QString)));
+
+                    connect(clients.at(i), SIGNAL(emit_WritingAMessage(QString,QString,QString)), this,SLOT(fwWritingAMessage(QString,QString,QString)));
 
                     i=clients.size();
                 }
@@ -560,6 +564,19 @@ void QsMessengerServer::fwUnfriended(QString myEmail, QString peerEmail){
         if(clients.at(i)->myEmail == peerEmail){
 
             clients.at(i)->receiveRemovedFromList(myEmail);
+
+            i=clients.size();
+        }
+    }
+
+}
+
+void QsMessengerServer::fwWritingAMessage(QString myEmail, QString peerEmail, QString value){
+
+    for(int i=0; i< clients.size(); i++){
+        if(clients.at(i)->myEmail == peerEmail){
+
+            clients.at(i)->receiveWritingAMessage(myEmail, value);
 
             i=clients.size();
         }
