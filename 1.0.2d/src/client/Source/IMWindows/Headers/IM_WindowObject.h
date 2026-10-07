@@ -68,8 +68,9 @@ public slots:
     void setPeerAvatar();
     void append_message(QString message, QString time);
     void prepend_message(QString msgFrom, QString msgTo, QString message, QString time);
-    void closeEvent(QCloseEvent *event);
+
     void showHideNotice(bool value);
+    void isWritingAMessage(QString value);
 
 
 
@@ -80,10 +81,14 @@ private slots:
     void loadPreviousMessages();
     void showSmileys();
     void appendSmiley(QString characters);
-    void resizeEvent(QResizeEvent* event);
     void sliderMousePressEvent();
     void sliderMouseReleaseEvent();
+
     bool event(QEvent *event);
+    void closeEvent(QCloseEvent *event);
+    void resizeEvent(QResizeEvent* event);
+
+
     void playSmileys();
 
     void clearArchive();
@@ -97,6 +102,7 @@ private slots:
     void on_conversationTextBox_selectionChanged();
 
     void on_sendMessageBox_textChanged();
+    void cancelWritingAMessage();
 
 
 signals:
@@ -107,10 +113,16 @@ signals:
     void clearArchiveSignal(QString email);
 
     void receiveFile(QString peer, QString file, bool value);
+    void amWritingAMessage(QString email, bool value);
 
 private:
     Ui::IM_WindowObject *ui;
     int previousMsgIndex = 0;
+    QString msgContent;
+    bool pendingNotice;
+
+    QString windowNotification;
+
     bool alternate = false;
     bool haveRead = true;
 
