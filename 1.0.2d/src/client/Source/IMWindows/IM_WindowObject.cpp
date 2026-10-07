@@ -233,6 +233,11 @@ void IM_WindowObject::sendMsg()
         emit send_message(email, msg2);
         ui->sendMessageBox->setText("");
         cancelWritingAMessage();
+        if(ui->notification_label->text() != peer_name + " is writing a message..."){
+            ui->notification_label->setText("");
+            ui->iconLabel->setVisible(false);
+            windowNotification = "";
+        }
 
     }
 
@@ -777,5 +782,6 @@ void IM_WindowObject::hasReadNotification(QString time){
 
     QDateTime *dt = new QDateTime();
 
+    ui->iconLabel->setVisible(false);
     ui->notification_label->setText(peer_name + " has read your message at: " + dt->fromMSecsSinceEpoch(tm).toString());
 }
