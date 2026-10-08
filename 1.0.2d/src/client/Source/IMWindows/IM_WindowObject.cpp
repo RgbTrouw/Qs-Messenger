@@ -781,7 +781,10 @@ void IM_WindowObject::hasReadNotification(QString time){
     qint64 tm = time.toULongLong();
 
     QDateTime *dt = new QDateTime();
+ 
+     if(email != myEmail){
+         ui->iconLabel->setVisible(false);
 
-    ui->iconLabel->setVisible(false);
-    ui->notification_label->setText(peer_name + " has read your message at: " + dt->fromMSecsSinceEpoch(tm).toString());
+         ui->notification_label->setText(peer_name + " has read your message at: " + dt->fromMSecsSinceEpoch(tm).toString());
+    }
 }
