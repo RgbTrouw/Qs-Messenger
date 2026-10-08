@@ -258,6 +258,7 @@ void IM_WindowObject::append_message(QString message, QString time){
     } else {
         //qInfo() << "doesn't have focus...";
         playAudio("./Resources/imNotification.wav");
+        newMessage = true;
     }
 
     if (message == "<ding>"){
@@ -422,7 +423,10 @@ bool IM_WindowObject::event(QEvent *event){
     //qInfo() << event->type();
 
     if(event->type() == QEvent::WindowActivate){
+        if(newMessage){
         emit have_read(email);
+        newMessage = false;
+        }
     }
     return QWidget::event(event);
 }
@@ -781,10 +785,10 @@ void IM_WindowObject::hasReadNotification(QString time){
     qint64 tm = time.toULongLong();
 
     QDateTime *dt = new QDateTime();
- 
-     if(email != myEmail){
-         ui->iconLabel->setVisible(false);
 
-         ui->notification_label->setText(peer_name + " has read your message at: " + dt->fromMSecsSinceEpoch(tm).toString());
+    if(email != myEmail){
+    ui->iconLabel->setVisible(false);
+
+    ui->notification_label->setText(peer_name + " has read your message at: " + dt->fromMSecsSinceEpoch(tm).toString());
     }
 }
