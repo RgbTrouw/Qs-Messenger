@@ -82,6 +82,7 @@ Latest Patches:
 /// HotFix 04.10.2026 -> Implement several smileys (client changes)
 /// HotFix 07.10.2026 -> Add "is writing a message..." notification
 /// HotFix 07.10.2026 -> Add "has read your message..." notification
+/// HotFix 08.10.2026 -> Fix message read notification handling
 ```
 
 ------------------------------------------------------------------------------------------------------------------------------
