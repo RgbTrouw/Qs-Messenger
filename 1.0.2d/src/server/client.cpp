@@ -1453,7 +1453,7 @@ void client::process_text_message(QString message){
 
         previousRequestBuffer = message;
 
-        qInfo() << response;
+       ///qInfo() << response;
 
             /// log server reply...
 
