@@ -79,6 +79,7 @@ Latest Patches:
 /// HotFix 28.09.2026 -> registration and activation tweaking (client side changes*) (removed openssl dependency)
 /// HotFix 28.09.2026 -> RegularExpressionMatches tweak
 /// HotFix 02.10.2026 -> Scale Uploaded Avatars to 80x80 (Added qt += <multimedia> dependency)
+/// HotFix 04.10.2026 -> Implement several smileys (client changes)
 /// HotFix 07.10.2026 -> Add "is writing a message..." notification
 /// HotFix 07.10.2026 -> Add "has read your message..." notification
 ```
