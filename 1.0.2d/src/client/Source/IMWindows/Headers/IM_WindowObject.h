@@ -121,6 +121,7 @@ private:
     int previousMsgIndex = 0;
     QString msgContent;
     bool pendingNotice;
+    bool newMessage;
 
     QString windowNotification;
 
