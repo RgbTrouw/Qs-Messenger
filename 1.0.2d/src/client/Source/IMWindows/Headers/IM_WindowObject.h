@@ -94,6 +94,7 @@ private slots:
 
     void clearArchive();
 
+    void sendImage();
     void receiveFileRequest(QString fileName);
     void acceptFile();
     void declineFile();
@@ -122,6 +123,8 @@ private:
     QString msgContent;
     bool pendingNotice;
     bool newMessage = false;
+    bool sendingImage = false;
+    QString img64;
 
     QString windowNotification;
 
