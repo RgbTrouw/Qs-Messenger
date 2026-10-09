@@ -195,7 +195,7 @@ void IM_WindowObject::sendMsg()
 
 
             if(sendingImage){
-                msg2 = "<img src='" + img64 + "' object-fit='cover' style='max-width:420px;' />";
+                msg2 = "<img src='" + img64 + " width='420' object-fit='cover'/>";
             }
 
 
