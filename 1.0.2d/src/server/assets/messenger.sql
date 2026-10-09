@@ -206,7 +206,7 @@ CREATE TABLE `messages` (
   `id` int NOT NULL,
   `msg_from` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
   `msg_to` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
-  `txt_message` text NOT NULL,
+  `txt_message` mediumtext NOT NULL,
   `time` bigint DEFAULT NULL,
   `has_read` int NOT NULL DEFAULT '1',
   `server_sent` int NOT NULL DEFAULT '0',
