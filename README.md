@@ -26,7 +26,9 @@ Release Notes:
 - The client contains some minor changes, new Icons, some Smileys, send IM to Group option and Audio Notifications.
   
   + "is writing a message... " notification has been added
-  + "has read your message..." notification has been added  
+  + "has read your message..." notification has been added
+  + send Image support added
+    
      
 - The server provides a more thorough syntax with better logging, display of service messages and performance,  plus an added option of filtering out IP clients
 by country code.
@@ -83,6 +85,7 @@ Latest Patches:
 /// HotFix 07.10.2026 -> Add "is writing a message..." notification
 /// HotFix 07.10.2026 -> Add "has read your message..." notification
 /// HotFix 08.10.2026 -> Fix message read notification handling
+/// HotFix 10.10.2026 -> Add send image support (sql messages 'message' changed from 'text' to 'mediumtext')  
 ```
 
 ------------------------------------------------------------------------------------------------------------------------------
