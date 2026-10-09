@@ -53,7 +53,7 @@ IM_WindowObject::IM_WindowObject(QWidget *parent) :
     vLayout->setSpacing(0);
 
 
-    ui->webcamButton->setIcon(QIcon("./Resources/icons/webcam.png"));
+    ui->webcamButton->setIcon(QIcon("./Resources/icons/webcam"));
     ui->offlineIcon->setPixmap(QPixmap("./Resources/icons/offline.png"));
 
 
@@ -94,6 +94,7 @@ IM_WindowObject::IM_WindowObject(QWidget *parent) :
 
     connect(ui->buzzButton, SIGNAL(clicked()), this, SLOT(sendBuzz()));
     connect(ui->sendFileButton, SIGNAL(clicked()), this, SLOT(sendFile()));
+    connect(ui->imagesButton, SIGNAL(clicked()), this, SLOT(sendImage()));
 
     ui->myAvatar->setPixmap(QPixmap("./Resources/icons/avatarIcon.png"));
     //ui->myAvatar->hide();
@@ -168,7 +169,7 @@ void IM_WindowObject::sendMsg()
 {
     //qInfo() << myUsername;
 
-    if (ui->sendMessageBox->toPlainText().size() > 0){
+    if (ui->sendMessageBox->toPlainText().size() > 0 || sendingImage){
 
         QString msg2;
 
@@ -191,6 +192,11 @@ void IM_WindowObject::sendMsg()
             msg2.replace(":)", "<img src='./Resources/smileys/smile0.png' width='18' height='18'/> ");
             msg2.replace(":|", "<img src='./Resources/smileys/straightF0.png' width='18' height='18'/> ");
             msg2.replace(":(", "<img src='./Resources/smileys/sad0.png' width='18' height='18'/> ");
+
+
+            if(sendingImage){
+                msg2 = "<img src='" + img64 + "' object-fit='cover' style='max-width:420px;' />";
+            }
 
 
 
@@ -233,11 +239,16 @@ void IM_WindowObject::sendMsg()
         emit send_message(email, msg2);
         ui->sendMessageBox->setText("");
         cancelWritingAMessage();
+
         if(ui->notification_label->text() != peer_name + " is writing a message..."){
             ui->notification_label->setText("");
             ui->iconLabel->setVisible(false);
             windowNotification = "";
         }
+
+
+        sendingImage = false;
+        img64 = "";
 
     }
 
@@ -357,6 +368,7 @@ void IM_WindowObject::prepend_message(QString msgFrom, QString msgTo, QString me
 
     Q_UNUSED(msgTo);
     Q_UNUSED(time);
+    qInfo() << message;
 
     if (msgFrom == myEmail){
             if (email == myEmail){
@@ -791,4 +803,39 @@ void IM_WindowObject::hasReadNotification(QString time){
 
     ui->notification_label->setText(peer_name + " has read your message at: " + dt->fromMSecsSinceEpoch(tm).toString());
     }
+}
+
+void IM_WindowObject::sendImage(){
+
+//    QFileDialog dialog(nullptr,  "File (*.png, *.jpg, *.jpeg)");
+
+//    dialog.setNameFilter("*.jpg, *.png, *.jpeg");
+//    dialog.exec();
+
+    QString imagePath = QFileDialog::getOpenFileName(nullptr,
+       tr("Open Image"), "/home/rgb_trouw/Desktop/", tr("Image Files (*.png *.jpg *.bmp *.jpeg)"));
+
+
+    QByteArray fileByteArray;
+
+
+    QFile selectedFile(imagePath);
+    if (selectedFile.open(QIODevice::ReadOnly)){;
+        fileByteArray = selectedFile.readAll();
+
+        int fileSize = fileByteArray.size();
+
+        QString imgBase64 = QString::fromLatin1(fileByteArray.toBase64().data());
+
+        img64 = "data:image/" + imagePath.right(3) + ";base64," + imgBase64;
+
+
+        sendingImage = true;
+        sendMsg();
+
+        //emit send_message(email, "<img src='data:image/" + imagePath.right(3) + ";base64," + imgBase64 + "' width='420' object-fit='cover'/>");
+
+    }
+
+
 }
