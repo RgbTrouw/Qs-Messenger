@@ -87,7 +87,7 @@ Latest Patches:
 /// HotFix 08.10.2026 -> Fix message read notification handling
 /// HotFix 10.10.2026 -> Add send image support (sql messages 'txt_message' changed from 'text' to 'mediumtext')  
 /// HotFix 10.10.2026 -> Trim log messages to 2400
-/// To Do: Start 'client' as QThread   
+/// To Do: 'client' -> moveToThread( QThread )  
 ```
 
 ------------------------------------------------------------------------------------------------------------------------------
