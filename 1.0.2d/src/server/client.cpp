@@ -39,6 +39,7 @@
 /// HotFix 02.10.2026 -> Scale Uploaded Avatars to 80x80 (Added <multimedia> dependency)
 /// HotFix 07.10.2026 -> Add "is writing a message..." notification
 /// HotFix 07.10.2026 -> Add "has read your message..." notification
+/// HotFix 10.10.2026 -> Trim log messages to 2400
 
 client::client(QHostAddress ip_address, quint16 remote_port, QString session_id_code, int clients_id, bool logging, bool verbose)
 {
@@ -115,7 +116,13 @@ void client::process_text_message(QString message){
 
             if(startVerbose){
 
+                if(message.size() > 2400){
+                QString m = message.left(2400);
+                qInfo().noquote() << "-> " + pClient->peerAddress().toString().split(":").last() + " " + session_id + " " + myEmail + "  -> " + m;
+
+                } else {
                 qInfo().noquote() << "-> " + pClient->peerAddress().toString().split(":").last() + " " + session_id + " " + myEmail + "  -> " + message;
+                }
             } // end of if(startVerbose)
 
          //} // end of if(message.indexOf("peer_avatar:") != 0)
@@ -1453,7 +1460,7 @@ void client::process_text_message(QString message){
 
         previousRequestBuffer = message;
 
-       ///qInfo() << response;
+        //qInfo() << response;
 
             /// log server reply...
 
@@ -1880,6 +1887,11 @@ void client::receiveStatusUpdate(QString peerEmail){
 } // end of void client::receiveStatusUpdate(QString peerEmail)
 
 void client::sendLogData(QString message){
+
+    if(message.size() > 2400){message = message.left(2400);
+
+    }
+
     if(startLogging){
 
      emit emit_logData(QDateTime::currentDateTimeUtc().toString() + " " + IPaddress.toString().split(":").last() + " " + session_id + " " + myEmail + " <-  " + message);
