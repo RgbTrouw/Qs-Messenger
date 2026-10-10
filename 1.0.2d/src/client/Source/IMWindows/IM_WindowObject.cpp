@@ -27,6 +27,7 @@
 #include <QScrollBar>
 #include <QDateTime>
 #include <QMenuBar>
+#include <QBuffer>
 #include <QTimer>
 #include <QFile>
 #include <QTime>
@@ -195,7 +196,7 @@ void IM_WindowObject::sendMsg()
 
 
             if(sendingImage){
-                msg2 = "<img src='" + img64 + " width='420' object-fit='cover'/>";
+            msg2 = "<img src='" + img64 + "' object-fit='scale-down' />";
             }
 
 
@@ -823,9 +824,20 @@ void IM_WindowObject::sendImage(){
     if (selectedFile.open(QIODevice::ReadOnly)){;
         fileByteArray = selectedFile.readAll();
 
+        QImage inImage = QImage::fromData(fileByteArray);
+        if(inImage.width() > 420){
+        inImage = QImage::fromData(fileByteArray).scaledToWidth(420, Qt::SmoothTransformation);
+        }
+        QByteArray byteArray;
+        QBuffer buffer(&byteArray);
+        buffer.open(QIODevice::WriteOnly);
+
+        // Save the image into the buffer (in-memory) as a PNG or JPG /// !<g
+        inImage.save(&buffer, "PNG");
+
         int fileSize = fileByteArray.size();
 
-        QString imgBase64 = QString::fromLatin1(fileByteArray.toBase64().data());
+        QString imgBase64 = QString::fromUtf8(byteArray.toBase64());
 
         img64 = "data:image/" + imagePath.right(3) + ";base64," + imgBase64;
 
