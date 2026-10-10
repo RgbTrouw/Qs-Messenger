@@ -27,7 +27,7 @@ Release Notes:
   
   + "is writing a message... " notification has been added
   + "has read your message..." notification has been added
-  + send Image support added
+  + send Picture support added
     
      
 - The server provides a more thorough syntax with better logging, display of service messages and performance,  plus an added option of filtering out IP clients
